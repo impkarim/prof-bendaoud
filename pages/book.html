@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="تفاصيل الكتاب – البروفيسور بن داود براهيم" />
+  <title>الكتاب | بن داود براهيم</title>
+  <script>document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"dark")</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            title: ['Amiri', 'serif'],
+            arabic: ['Tajawal', 'sans-serif'],
+            latin: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            slate: {
+              900: '#0f172a', 800: '#1e293b', 700: '#334155',
+              600: '#475569', 500: '#64748b', 400: '#94a3b8',
+              300: '#cbd5e1', 200: '#e2e8f0',
+            },
+            amber: { 500: '#d97706', 600: '#b45309', 400: '#f59e0b', 300: '#fbbf24' },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <div id="topbar"></div>
+  <nav id="navbar" class="fixed top-9 left-0 right-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-gray-800">
+  </nav>
+
+  <main id="book-page" class="pt-[100px] lg:pt-[116px]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <a id="back-link" href="library.html" class="text-gray-400 hover:text-amber-400 transition-colors text-sm">
+          <i class="fas fa-arrow-right ml-1"></i>
+          <span id="back-label">العودة للمكتبة</span>
+        </a>
+      </div>
+
+      <div id="book-not-found" class="hidden text-center py-20">
+        <i class="fas fa-book-open text-6xl text-gray-600 mb-4"></i>
+        <h2 class="text-2xl font-bold text-white font-title">الكتاب غير موجود</h2>
+        <p class="text-gray-400 mt-2">الرجاء العودة للمكتبة واختيار كتاب آخر.</p>
+        <a href="library.html" class="inline-block mt-6 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-6 py-3 rounded-lg transition-colors">
+          العودة للمكتبة
+        </a>
+      </div>
+
+      <div id="book-content" class="hidden">
+        <div class="grid lg:grid-cols-5 gap-8 lg:gap-12">
+          <div class="lg:col-span-2">
+            <div id="book-cover" class="w-full aspect-[3/4] rounded-2xl bg-gradient-to-br flex items-center justify-center border-2 border-amber-500/30">
+              <i id="cover-icon" class="fas text-8xl text-amber-400/60"></i>
+            </div>
+            <div class="mt-6 space-y-3">
+              <a id="book-link" href="#" target="_blank"
+                class="w-full block text-center bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors">
+                <i class="fas fa-download ml-2"></i>
+                <span id="download-label">تحميل أو شراء</span>
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-3">
+            <div class="flex items-center gap-2 mb-2">
+              <span id="book-type-badge" class="text-xs font-semibold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full"></span>
+            </div>
+            <h1 id="book-title" class="text-3xl lg:text-4xl font-bold text-white font-title leading-tight"></h1>
+            <p id="book-author" class="text-amber-400 mt-2 font-medium"></p>
+            <div class="flex flex-wrap gap-4 mt-4 text-sm text-gray-400">
+              <span id="book-pages" class="flex items-center gap-1"><i class="fas fa-file-alt text-amber-500"></i></span>
+              <span id="book-year" class="flex items-center gap-1"><i class="fas fa-calendar text-amber-500"></i></span>
+              <span id="book-isbn" class="flex items-center gap-1"><i class="fas fa-barcode text-amber-500"></i></span>
+              <span id="book-publisher" class="flex items-center gap-1 hidden"><i class="fas fa-building text-amber-500"></i></span>
+            </div>
+            <div class="mt-6">
+              <h3 class="text-white font-bold text-lg mb-2 font-title">
+                <i class="fas fa-align-left text-amber-500 ml-2"></i>
+                <span id="desc-heading">الوصف</span>
+              </h3>
+              <p id="book-long-desc" class="text-gray-300 leading-relaxed text-sm lg:text-base"></p>
+            </div>
+            <div id="chapters-section" class="mt-8">
+              <h3 class="text-white font-bold text-lg mb-4 font-title">
+                <i class="fas fa-list text-amber-500 ml-2"></i>
+                <span id="chapters-heading">فهرس المحتويات</span>
+              </h3>
+              <ol id="chapters-list" class="space-y-2">
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="border-t border-gray-800">
+  </footer>
+
+  <script type="module" src="../assets/js/pages/book.js"></script>
+</body>
+</html>
