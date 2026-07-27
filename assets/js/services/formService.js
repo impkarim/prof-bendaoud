@@ -32,14 +32,6 @@ function getFormData(form) {
 
 function getValidationMessages() {
   const lang = document.documentElement.lang || "ar";
-  if (lang === "fr") {
-    return {
-      name: "Veuillez entrer votre nom",
-      email: "Veuillez entrer un email valide",
-      subject: "Veuillez choisir un sujet",
-      message: "Veuillez écrire un message d'au moins 10 caractères",
-    };
-  }
   if (lang === "en") {
     return {
       name: "Please enter your name",

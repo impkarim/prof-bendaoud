@@ -53,12 +53,11 @@ function renderNavbar() {
           <div class="relative">
             <button id="lang-dropdown-btn" class="flex items-center gap-2 border border-gray-600 hover:border-amber-500 rounded-lg px-3 py-1.5 text-sm text-gray-300 hover:text-amber-400 transition-colors">
               <i class="fas fa-globe text-amber-400 text-xs"></i>
-              <span id="lang-current-label">${lang === "ar" ? "\u0627\u0644\u0639\u0631\u0628\u064a\u0629" : lang === "fr" ? "Fran\u00e7ais" : "English"}</span>
+              <span id="lang-current-label">${lang === "ar" ? "\u0627\u0644\u0639\u0631\u0628\u064a\u0629" : "English"}</span>
               <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
             </button>
             <div id="lang-dropdown-menu" class="hidden absolute top-full mt-1 bg-slate-800 border border-gray-600 rounded-lg shadow-xl z-50 min-w-[130px] overflow-hidden ${lang === "ar" ? "left-0" : "right-0"}">
               <button class="lang-btn block w-full px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "ar" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="ar">\u0627\u0644\u0639\u0631\u0628\u064a\u0629</button>
-              <button class="lang-btn block w-full px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "fr" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="fr">Fran\u00e7ais</button>
               <button class="lang-btn block w-full px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "en" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="en">English</button>
             </div>
           </div>
@@ -121,7 +120,6 @@ function renderLectureDetail() {
 
   const labels = {
     ar: { date: "\u0627\u0644\u062a\u0627\u0631\u064a\u062e", location: "\u0627\u0644\u0645\u0643\u0627\u0646", type: "\u0646\u0648\u0639 \u0627\u0644\u0641\u0639\u0627\u0644\u064a\u0629", detail: "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0645\u062d\u0627\u0636\u0631\u0629", back: "\u0627\u0644\u0639\u0648\u062f\u0629 \u0644\u0644\u0645\u062d\u0627\u0636\u0631\u0627\u062a" },
-    fr: { date: "Date", location: "Lieu", type: "Type d\u2019\u00e9v\u00e9nement", detail: "D\u00e9tails de la conf\u00e9rence", back: "Retour aux conf\u00e9rences" },
     en: { date: "Date", location: "Location", type: "Event Type", detail: "Lecture Details", back: "Back to Lectures" },
   };
 

@@ -58,12 +58,11 @@ function renderNavbar() {
           <div class="relative">
             <button id="lang-dropdown-btn" class="flex items-center gap-2 border border-gray-600 hover:border-amber-500 rounded-lg px-3 py-1.5 text-sm text-gray-300 hover:text-amber-400 transition-colors">
               <i class="fas fa-globe text-amber-400 text-xs"></i>
-              <span id="lang-current-label">${lang === "ar" ? "العربية" : lang === "fr" ? "Fran\u00e7ais" : "English"}</span>
+              <span id="lang-current-label">${lang === "ar" ? "العربية" : "English"}</span>
               <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
             </button>
             <div id="lang-dropdown-menu" class="hidden absolute top-full mt-1 bg-slate-800 border border-gray-600 rounded-lg shadow-xl z-50 min-w-[130px] overflow-hidden ${lang === "ar" ? "left-0" : "right-0"}">
               <button class="lang-btn block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "ar" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="ar">\u0627\u0644\u0639\u0631\u0628\u064a\u0629</button>
-              <button class="lang-btn block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "fr" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="fr">Fran\u00e7ais</button>
               <button class="lang-btn block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-amber-500/10 hover:text-amber-400 transition-colors ${lang === "en" ? "bg-amber-500/10 text-amber-400" : ""}" data-lang="en">English</button>
             </div>
           </div>
@@ -123,7 +122,7 @@ function renderHero() {
           <div class="mt-4 flex items-start gap-3">
             <span class="text-amber-400/60 text-xl leading-none mt-0.5 drop-shadow-[0_0_6px_rgba(217,119,6,0.3)]">\u2605</span>
             <div>
-              <span class="text-sm lg:text-base font-bold text-amber-400 drop-shadow-[0_0_8px_rgba(217,119,6,0.4)] tracking-[0.15em] uppercase">${getCurrentLang() === "ar" ? "تكريم رئاسي" : getCurrentLang() === "fr" ? "DISTINCTION PR\u00c9SIDENTIELLE" : "PRESIDENTIAL HONOR"}</span>
+              <span class="text-sm lg:text-base font-bold text-amber-400 drop-shadow-[0_0_8px_rgba(217,119,6,0.4)] tracking-[0.15em] uppercase">${getCurrentLang() === "ar" ? "تكريم رئاسي" : "PRESIDENTIAL HONOR"}</span>
               <p class="text-white text-base lg:text-lg font-title leading-relaxed mt-1 drop-shadow-[0_0_4px_rgba(255,255,255,0.08)]">${data.honor}</p>
             </div>
           </div>
@@ -240,7 +239,7 @@ function renderTimeline() {
       </div>
       <div class="text-center mt-8">
         <a href="pages/career.html" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors group">
-          <span>${getCurrentLang() === "ar" ? "عرض المسار المهني الكامل" : getCurrentLang() === "fr" ? "Voir la carri\u00e8re compl\u00e8te" : "View full career"}</span>
+          <span>${getCurrentLang() === "ar" ? "عرض المسار المهني الكامل" : "View full career"}</span>
           <i class="fas ${getCurrentLang() === "ar" ? "fa-arrow-left" : "fa-arrow-right"} text-xs group-hover:translate-x-1 transition-transform"></i>
         </a>
       </div>
@@ -255,7 +254,6 @@ function renderCertificates() {
 
   const typeColors = {
     ar: { "أكاديمي": "bg-blue-500/10 text-blue-400", "دكتوراه": "bg-purple-500/10 text-purple-400", "ماجستير": "bg-emerald-500/10 text-emerald-400", "إجازة": "bg-cyan-500/10 text-cyan-400", "مهني": "bg-amber-500/10 text-amber-400", "لغات": "bg-rose-500/10 text-rose-400" },
-    fr: { "Académique": "bg-blue-500/10 text-blue-400", "Doctorat": "bg-purple-500/10 text-purple-400", "Master": "bg-emerald-500/10 text-emerald-400", "Licence": "bg-cyan-500/10 text-cyan-400", "Professionnel": "bg-amber-500/10 text-amber-400", "Langues": "bg-rose-500/10 text-rose-400" },
     en: { "Academic": "bg-blue-500/10 text-blue-400", "Doctorate": "bg-purple-500/10 text-purple-400", "Master": "bg-emerald-500/10 text-emerald-400", "Bachelor": "bg-cyan-500/10 text-cyan-400", "Professional": "bg-amber-500/10 text-amber-400", "Languages": "bg-rose-500/10 text-rose-400" },
   };
 
