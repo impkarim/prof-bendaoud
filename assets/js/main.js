@@ -29,12 +29,12 @@ function renderNavbar() {
   const data = getContent().nav;
   const lang = getCurrentLang();
 
-  const basePath = window.location.pathname.split("/").length > 2 ? "../" : "";
+  const basePath = window.location.pathname.replace(/\/index\.html$/, "").split("/").length > 2 ? "../" : "";
 
   const navLinks = data.links
     .map(
       (link) =>
-        `<a href="${basePath}${link.href}" class="nav-link text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`
+        `<a href="${basePath}${link.href.startsWith("#") ? (basePath ? "index.html" + link.href : link.href) : link.href}" class="nav-link text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`
     )
     .join("");
 
