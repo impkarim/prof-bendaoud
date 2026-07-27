@@ -39,18 +39,18 @@ export const content = {
     subtitle: "A forward-looking vision based on academic excellence and institutional reform, aiming to build knowledge bridges between academic research and practical application in the fields of law, governance, and international relations.",
     cards: [
       {
-        icon: "robot",
-        heading: "AI Governance",
+        icon: "fa-brain",
+        title: "AI Governance",
         text: "Developing legal and regulatory frameworks to govern the use of artificial intelligence, ensuring a balance between technological innovation and the protection of human rights and fundamental freedoms."
       },
       {
-        icon: "building",
-        heading: "Institutional Reform",
+        icon: "fa-balance-scale",
+        title: "Institutional Reform",
         text: "Comprehensive visions for reforming judicial and academic institutions by enhancing transparency, efficiency, and applying international quality standards in legal education and judicial work."
       },
       {
-        icon: "globe",
-        heading: "International Diplomacy",
+        icon: "fa-globe-americas",
+        title: "International Diplomacy",
         text: "Strengthening international cooperation in legal fields, spreading a culture of international justice, and supporting mechanisms for peaceful dispute resolution through multilateral diplomacy."
       }
     ]
