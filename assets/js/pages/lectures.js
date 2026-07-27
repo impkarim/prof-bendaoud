@@ -110,7 +110,7 @@ function renderLectures() {
     .map((lecture, index) => {
       const colorClass = iconColors[index % iconColors.length];
       return `
-        <a href="lecture.html?id=${encodeURIComponent(lecture.id)}" class="group block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+        <a href="../lecture/?id=${encodeURIComponent(lecture.id)}" class="group block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
           <div class="h-32 overflow-hidden bg-gradient-to-br ${colorClass}">
             <img src="../assets/images/lectures/${lecture.id}.jpg" alt="${lecture.title}"
               class="w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"

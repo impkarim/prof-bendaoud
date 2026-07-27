@@ -113,7 +113,7 @@ function renderBooks() {
   const booksHTML = data.books
     .map((book, index) => {
       const colorClass = coverColors[index % coverColors.length];
-      const detailPage = `book.html?id=${book.id}`;
+      const detailPage = `../book/?id=${book.id}`;
 
       const imgPath = `../assets/images/books/${book.id}.jpg`;
 

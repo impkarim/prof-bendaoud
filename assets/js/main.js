@@ -29,7 +29,7 @@ function renderNavbar() {
   const data = getContent().nav;
   const lang = getCurrentLang();
 
-  const basePath = window.location.pathname.includes("/pages/") ? "../" : "";
+  const basePath = window.location.pathname.split("/").length > 2 ? "../" : "";
 
   const navLinks = data.links
     .map(
@@ -238,7 +238,7 @@ function renderTimeline() {
         ${eventsHTML}
       </div>
       <div class="text-center mt-8">
-        <a href="pages/career.html" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors group">
+          <a href="career/" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors group">
           <span>${getCurrentLang() === "ar" ? "عرض المسار المهني الكامل" : "View full career"}</span>
           <i class="fas ${getCurrentLang() === "ar" ? "fa-arrow-left" : "fa-arrow-right"} text-xs group-hover:translate-x-1 transition-transform"></i>
         </a>

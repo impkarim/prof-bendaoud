@@ -100,7 +100,7 @@ function renderAwards() {
   const awardsHTML = data.awards
     .map(
       (award) =>
-        `<a href="award.html?id=${encodeURIComponent(award.id)}" class="block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-200 backdrop-blur-sm text-center group hover:-translate-y-1">
+        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-200 backdrop-blur-sm text-center group hover:-translate-y-1">
           <div class="h-32 overflow-hidden bg-gradient-to-br from-amber-500/20 to-slate-700/50">
             <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
               class="w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
