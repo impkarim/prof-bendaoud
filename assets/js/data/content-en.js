@@ -60,7 +60,7 @@ export const content = {
     heading: "Academic & Judicial Career",
     subtitle: "A distinguished career spanning more than three decades, combining academic excellence and high-ranking judicial positions nationally and internationally.",
     events: [
-      { year: "2017", title: "Dean of the College of Law – Al Ghurair University Dubai", description: "Dean of the College of Law at Al Ghurair University, Dubai, from September 2017." },
+      { year: "2017", title: "Graduate Studies – Al Ghurair University Dubai", description: "Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
       { year: "2010", title: "Associate Professor – Political Science Department", description: "Associate Professor in the Political Science Department, University of Djelfa, 2010/2011." },
       { year: "2009", title: "Visiting Lecturer – Dutch University", description: "Visiting lecturer under a cooperation agreement with the Dutch University of Sciences and Arts, from December 2009." },
       { year: "2009", title: "Associate Professor – University of Ouargla", description: "Associate Professor at Kasdi Merbah University, Ouargla, 2009/2010." },
@@ -80,7 +80,7 @@ export const content = {
       { year: "2020", title: "Member – Equivalence Committee", description: "Member of the Ministerial Committee for Equivalence of Certificates, Ministry of Higher Education, Algeria, from May 2020." },
       { year: "2018", title: "Head of PRFU Research Project", description: "Head of PRFU research project on developing mechanisms to combat illegal immigration in Algeria." },
       { year: "2018", title: "Scientific Committee Member – International Conference", description: "Member of the scientific committee for the international conference on child protection, March 2018." },
-      { year: "2017", title: "Dean of the College of Law – Al Ghurair University Dubai", description: "Dean of the College of Law at Al Ghurair University, Dubai, from September 2017." },
+      { year: "2017", title: "Graduate Studies – Al Ghurair University Dubai", description: "Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
       { year: "2016", title: "Editor-in-Chief – International Journal", description: "Editor-in-Chief of the International Journal of Studies and Research, Al Ghurair University Dubai, from August 2016." },
       { year: "2016", title: "Head of Master's Department – Al Ghurair University Dubai", description: "Head of the Master's Department at Al Ghurair University, Dubai, from June 2016." },
       { year: "2015", title: "Chair – National Forum on Children and Reading", description: "Chair of the national forum on children and reading, Djelfa, December 2015." },
