@@ -164,13 +164,12 @@ function renderBookDetail() {
 
   const imgPath = `../assets/images/books/${book.id}.jpg`;
   const coverEl = document.getElementById("book-cover");
+  coverEl.className = `w-full aspect-[3/4] rounded-2xl relative overflow-hidden border border-amber-500/30 bg-gradient-to-br ${colorClass}`;
   coverEl.innerHTML = `
     <img src="${imgPath}" alt="${book.title}"
-      class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500"
+      class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 z-10"
       onerror="this.style.display='none'"
-      onload="this.style.opacity='1'">
-    <div class="w-full h-full bg-gradient-to-br ${colorClass}"></div>`;
-  coverEl.className = `w-full aspect-[3/4] rounded-2xl relative overflow-hidden border border-amber-500/30`;
+      onload="this.style.opacity='1'">`;
   document.getElementById("book-type-badge").textContent = book.type;
   document.getElementById("book-title").textContent = book.title;
   document.getElementById("book-author").textContent = l.author;
