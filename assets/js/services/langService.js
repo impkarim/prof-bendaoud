@@ -76,8 +76,7 @@ export function getAvailableLanguages() {
 
 export function initLanguage() {
   const saved = loadSavedLanguage();
-  const detected = getBrowserLanguage();
-  const initial = saved || detected || "ar";
+  const initial = saved || "ar";
   setLanguage(initial);
   return initial;
 }
