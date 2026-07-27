@@ -215,7 +215,7 @@ export const content = {
     backLabel: "Back to Home",
     books: [
       {
-        id: "commercial-instruments-algerian-law",
+        id: "الاسناد-التجارية-في-القانون-التجاري",
         title: "Commercial Instruments in Algerian Commercial Law",
         desc: "An analytical study of commercial instruments under Algerian commercial law",
         type: "Book",
@@ -229,7 +229,7 @@ export const content = {
         cover: "file-invoice"
       },
       {
-        id: "bankruptcy-system-algerian-law",
+        id: "نظام-الافلاس-والتسوية-القضائية",
         title: "The System of Bankruptcy and Judicial Settlement in Algerian Commercial Law",
         desc: "A study of bankruptcy and judicial settlement under Algerian commercial law",
         type: "Book",
@@ -243,7 +243,7 @@ export const content = {
         cover: "gavel"
       },
       {
-        id: "financial-control-public-expenditure",
+        id: "الرقابة-المالية-على-النفقات-العامة",
         title: "Financial Control Over Public Expenditure",
         desc: "A study on financial control over public expenditure",
         type: "Book",
@@ -257,7 +257,7 @@ export const content = {
         cover: "chart-line"
       },
       {
-        id: "international-treaties-conclusion-termination",
+        id: "المعاهدات-الدولية-بين-الابرام-والانتهاء",
         title: "International Treaties Between Conclusion and Termination",
         desc: "A study of international treaties from conclusion to termination",
         type: "Book",
@@ -271,7 +271,7 @@ export const content = {
         cover: "file-signature"
       },
       {
-        id: "international-relations-law",
+        id: "قانون-العلاقات-الدولية",
         title: "The Law of International Relations",
         desc: "A study of the law of international relations",
         type: "Book",
@@ -285,7 +285,7 @@ export const content = {
         cover: "globe-americas"
       },
       {
-        id: "reference-international-relations-law",
+        id: "الاحالة-في-قانون-العلاقات-الدولية",
         title: "Reference in the Law of International Relations",
         desc: "Co-authored with Dr. Fawzi Ousdik",
         type: "Book",
@@ -299,7 +299,7 @@ export const content = {
         cover: "file-contract"
       },
       {
-        id: "electoral-crimes",
+        id: "الجرائم-الانتخابية",
         title: "Electoral Crimes Between International and National Dimensions",
         desc: "A study of electoral crimes in both international and national dimensions",
         type: "Book",
@@ -313,7 +313,7 @@ export const content = {
         cover: "vote-yea"
       },
       {
-        id: "consumer-protection-law",
+        id: "قانون-حماية-المستهلك",
         title: "Consumer Protection Law",
         desc: "A study of consumer protection law",
         type: "Book",
@@ -327,7 +327,7 @@ export const content = {
         cover: "hand-holding-heart"
       },
       {
-        id: "civil-society-effectiveness-marginalization",
+        id: "المجتمع-المدني-بين-الفاعلية-والتغييب",
         title: "Civil Society Between Effectiveness and Marginalization",
         desc: "A study of civil society between effectiveness and marginalization",
         type: "Book",
@@ -341,7 +341,7 @@ export const content = {
         cover: "users"
       },
       {
-        id: "public-international-law-forthcoming",
+        id: "القانون-الدولي-العام",
         title: "Public International Law",
         desc: "A book on public international law – forthcoming",
         type: "Book",
@@ -355,7 +355,7 @@ export const content = {
         cover: "law-globe"
       },
       {
-        id: "commercial-law-polycopy",
+        id: "القانون-التجاري-مطبوعة",
         title: "Commercial Law",
         desc: "Polycopy for fourth-year law students",
         type: "University Polycopy",
@@ -369,7 +369,7 @@ export const content = {
         cover: "book-open"
       },
       {
-        id: "state-international-relations-polycopy",
+        id: "الدولة-والعلاقات-الدولية-مطبوعة",
         title: "The State and International Relations",
         desc: "Polycopy for doctoral school law students",
         type: "University Polycopy",
@@ -383,7 +383,7 @@ export const content = {
         cover: "university"
       },
       {
-        id: "civil-society-public-freedoms-polycopy",
+        id: "المجتمع-المدني-والحريات-العامة-مطبوعة",
         title: "Civil Society and Public Freedoms",
         desc: "Polycopy for master's students, Faculty of Law and Political Science, University of Ouargla",
         type: "University Polycopy",
@@ -397,7 +397,7 @@ export const content = {
         cover: "building-columns"
       },
       {
-        id: "international-protection-intellectual-property-polycopy",
+        id: "الحماية-الدولية-للملكية-الفنية-والأدبية",
         title: "International and Regional Protection of Artistic and Literary Property",
         desc: "Polycopy for master's students, Faculty of Law and Political Science, University of Djelfa",
         type: "University Polycopy",
@@ -411,7 +411,7 @@ export const content = {
         cover: "copyright"
       },
       {
-        id: "creativity-excellence-university-teaching",
+        id: "الابداع-والتميز-في-التدريس-الجامعي",
         title: "Creativity and Excellence in University Teaching",
         desc: "A book on creativity and excellence in university teaching – forthcoming",
         type: "Book",
@@ -425,7 +425,7 @@ export const content = {
         cover: "chalkboard-teacher"
       },
       {
-        id: "research-methodology",
+        id: "منهجية-اعداد-البحوث-العلمية",
         title: "Methodology for Preparing Documented Scientific Research and Studies",
         desc: "Published by Dar Al-Hafiz, United Arab Emirates",
         type: "Book",
@@ -439,7 +439,7 @@ export const content = {
         cover: "scroll"
       },
       {
-        id: "domestic-application-treaties-uae",
+        id: "التطبيق-الداخلي-للمعاهدات-الدولية",
         title: "The Domestic Application of International Treaties and Charters – The UAE as a Model",
         desc: "Published by Dar Al-Hafiz, United Arab Emirates",
         type: "Book",
@@ -453,7 +453,7 @@ export const content = {
         cover: "file-treaty"
       },
       {
-        id: "verbal-terrorism-against-women",
+        id: "الارهاب-اللفظي-ضد-المرأة",
         title: "Verbal Terrorism Against Women and Mechanisms to Counter It",
         desc: "Forthcoming in the United Arab Emirates",
         type: "Book",
@@ -467,7 +467,7 @@ export const content = {
         cover: "handcuffs"
       },
       {
-        id: "bankruptcy-uae-law-09",
+        id: "الافلاس-وفق-القانون-09",
         title: "Bankruptcy Under Law No. 09 of 2016 in the United Arab Emirates",
         desc: "Published by Dar Al-Hafiz, United Arab Emirates",
         type: "Book",
@@ -481,7 +481,7 @@ export const content = {
         cover: "balance-scale"
       },
       {
-        id: "protection-trafficking-victims",
+        id: "حماية-ضحايا-الاتجار-بالبشر",
         title: "Legal Mechanisms for Protecting Victims of Human Trafficking – Women and Children",
         desc: "General supervision – Collective book, published, second semester 2022",
         type: "Book",
@@ -495,7 +495,7 @@ export const content = {
         cover: "hands-helping"
       },
       {
-        id: "draft-international-convention-ai",
+        id: "اتفاقية-دولية-حول-الذكاء-الاصطناعي",
         title: "Draft International Convention on Artificial Intelligence",
         desc: "Published March 2026",
         type: "Book",
