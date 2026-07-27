@@ -21,7 +21,7 @@ export const content = {
     role: "Professor of Law",
     titles: [
       "Professor of International Law",
-      "Former Dean of the College of Law",
+      "Graduate Studies, Al Ghurair University Dubai",
       "International Legal Advisor"
     ],
     honor: "Honored with the Presidential Honor Medal by the President of the Republic in recognition of academic and judicial contributions at the national and international levels.",
@@ -561,7 +561,7 @@ export const content = {
         id: "سيادة-القانون",
         title: "Rule of Law and Judicial Reform",
         desc: "A seminar on the challenges of judicial reform in Arab countries",
-        longDesc: "A high-level legal seminar where he participated as former Dean of the College of Law in Dubai, addressing issues of rule of law and judicial independence in Arab countries. An analytical vision was presented on mechanisms for developing the judicial system and aligning it with international standards.",
+        longDesc: "A high-level legal seminar where he participated as Graduate Studies at Al Ghurair University Dubai, addressing issues of rule of law and judicial independence in Arab countries. An analytical vision was presented on mechanisms for developing the judicial system and aligning it with international standards.",
         date: "2022",
         location: "Riyadh – Saudi Arabia",
         type: "Seminar",

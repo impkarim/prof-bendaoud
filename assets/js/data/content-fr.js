@@ -22,7 +22,7 @@ export const content = {
     titles: [
       "Professeur de Droit International et de Science Politique",
       "Avocat pr\u00e8s la Cour Supr\u00eame et le Conseil d\u2019\u00c9tat",
-      "Ancien Doyen de la Facult\u00e9 de Droit de Duba\u00ef"
+      "\u00c9tudes Sup\u00e9rieures, Universit\u00e9 Al Ghurair Duba\u00ef"
     ],
     honor:
       "Premier au niveau national avec distinction pr\u00e9sidentielle de Son Excellence le Pr\u00e9sident de la R\u00e9publique",
