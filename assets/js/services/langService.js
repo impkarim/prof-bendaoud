@@ -1,12 +1,10 @@
 import { content as contentAr } from "../data/content-ar.js";
-import { content as contentFr } from "../data/content-fr.js";
 import { content as contentEn } from "../data/content-en.js";
 
 const STORAGE_KEY = "ibendaoud-lang";
 
 const contentMap = {
   ar: contentAr,
-  fr: contentFr,
   en: contentEn,
 };
 
@@ -15,7 +13,6 @@ let currentLang = "ar";
 function getBrowserLanguage() {
   try {
     const navLang = navigator.language || navigator.userLanguage || "";
-    if (navLang.startsWith("fr")) return "fr";
     if (navLang.startsWith("en")) return "en";
     return "ar";
   } catch {
@@ -45,7 +42,7 @@ function applyDirection(lang) {
 
 function applyFontClass(lang) {
   const html = document.documentElement;
-  html.classList.remove("lang-ar", "lang-fr", "lang-en");
+  html.classList.remove("lang-ar", "lang-en");
   html.classList.add("lang-" + lang);
 }
 
@@ -69,7 +66,6 @@ export function setLanguage(lang) {
 export function getAvailableLanguages() {
   return [
     { code: "ar", label: "العربية" },
-    { code: "fr", label: "Français" },
     { code: "en", label: "English" },
   ];
 }
