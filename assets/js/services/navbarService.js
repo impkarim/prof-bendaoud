@@ -6,6 +6,43 @@ function getBasePath() {
   return depth > 0 ? "../".repeat(depth) : "";
 }
 
+function isHomePage() {
+  const cleanPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "");
+  return cleanPath.split("/").filter(Boolean).length === 0;
+}
+
+const SECTION_SCROLL_KEY = "bb-scroll-target";
+
+export function handleSectionLink(targetId, e) {
+  if (isHomePage()) {
+    e.preventDefault();
+    scrollToSection(targetId);
+  } else {
+    e.preventDefault();
+    sessionStorage.setItem(SECTION_SCROLL_KEY, targetId);
+    window.location.href = `${getBasePath()}index.html`;
+  }
+}
+
+export function scrollToSection(targetId) {
+  const el = targetId ? document.getElementById(targetId) : null;
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+export function initSectionScrollOnLoad() {
+  const targetId = sessionStorage.getItem(SECTION_SCROLL_KEY);
+  if (targetId) {
+    sessionStorage.removeItem(SECTION_SCROLL_KEY);
+    requestAnimationFrame(() => {
+      setTimeout(() => scrollToSection(targetId), 150);
+    });
+  }
+}
+
 export function renderTopBar() {
   const data = getContent().topbar;
   const topbar = document.getElementById("topbar");
@@ -39,10 +76,13 @@ export function renderNavbar() {
 
   const navLinks = data.links
     .map((link) => {
-      const href = link.href.startsWith("#")
-        ? (basePath ? `${basePath}index.html${link.href}` : link.href)
+      const isSection = link.href.startsWith("#");
+      const href = isSection
+        ? (basePath ? `${basePath}index.html` : "./")
         : `${basePath}${link.href}`;
-      return `<a href="${href}" class="nav-link text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
+      const targetId = isSection ? link.href.slice(1) : "";
+      const cls = `nav-link${isSection ? " nav-section" : ""}`;
+      return `<a href="${href}" data-section="${targetId}" class="${cls} text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
     })
     .join("");
 
@@ -78,5 +118,11 @@ export function renderNavbar() {
 
   document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
     document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  });
+
+  document.querySelectorAll(".nav-section").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      handleSectionLink(link.dataset.section || "", e);
+    });
   });
 }
