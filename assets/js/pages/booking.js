@@ -41,6 +41,7 @@ function renderHeading() {
   const data = getBookingData();
   document.getElementById("page-heading").textContent = data.heading;
   document.getElementById("page-subtitle").textContent = data.subtitle;
+  document.getElementById("page-badge").textContent = data.badgeLabel;
   document.getElementById("back-label").textContent = data.backLabel;
 
   const lang = getCurrentLang();
@@ -55,6 +56,74 @@ function renderStep(stepHTML) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function renderStepsIndicator(current) {
+  const data = getBookingData();
+  const steps = [
+    { label: data.step1Label, icon: "fa-file-signature" },
+    { label: data.step2Label, icon: "fa-credit-card" },
+  ];
+  return `
+    <div class="flex items-center justify-center gap-2 sm:gap-4 mb-10">
+      ${steps
+        .map((s, i) => {
+          const isActive = i === current;
+          const isDone = i < current;
+          return `
+            <div class="flex items-center gap-2 sm:gap-4">
+              <div class="flex items-center gap-2">
+                <span class="w-9 h-9 rounded-full flex items-center justify-center text-sm transition-colors ${
+                  isDone
+                    ? "bg-amber-500 text-slate-900"
+                    : isActive
+                    ? "bg-amber-500/15 border border-amber-500/50 text-amber-400"
+                    : "bg-white/5 border border-gray-700/50 text-gray-500"
+                }">
+                  <i class="fas ${isDone ? "fa-check" : s.icon}"></i>
+                </span>
+                <span class="text-sm font-bold ${isActive || isDone ? "text-amber-400" : "text-gray-500"}">${s.label}</span>
+              </div>
+              ${i < steps.length - 1 ? `<span class="w-8 sm:w-16 h-px ${isDone ? "bg-amber-500/40" : "bg-gray-700/50"}"></span>` : ""}
+            </div>`;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function renderContactSidebar() {
+  const data = getBookingData();
+  const contact = getContent().contact.info;
+  return `
+    <div class="bg-white/5 border border-gray-700/50 rounded-xl p-6 backdrop-blur-sm">
+      <h3 class="text-white font-bold text-lg mb-5 font-title flex items-center gap-2">
+        <i class="fas fa-address-card text-amber-400"></i>${data.contactHeading}
+      </h3>
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm flex-shrink-0">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="text-gray-300 text-sm" dir="ltr">${contact.email}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm flex-shrink-0">
+            <i class="fas fa-phone"></i>
+          </span>
+          <span class="text-gray-300 text-sm"><bdi dir="ltr">${contact.phone}</bdi></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm flex-shrink-0">
+            <i class="fas fa-map-marker-alt"></i>
+          </span>
+          <span class="text-gray-300 text-sm">${contact.address}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+const inputClass =
+  "w-full bg-white/5 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200";
+
 function renderForm() {
   const data = getBookingData();
   const app = document.getElementById("booking-app");
@@ -68,50 +137,89 @@ function renderForm() {
     )
     .join("");
 
-  renderStep(`
-    <div>
-      <div class="text-center mb-8">
-        <h2 class="text-2xl lg:text-3xl font-bold text-white font-title">${data.formHeading}</h2>
-        <p class="text-gray-400 text-sm mt-2">${data.formSubheading}</p>
-      </div>
+  const howSteps = data.howSteps
+    .map(
+      (s, i) => `
+      <div class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-sm">
+          <i class="fas ${s.icon}"></i>
+        </span>
+        <div>
+          <p class="text-white font-bold text-sm mb-1">${i + 1}. ${s.title}</p>
+          <p class="text-gray-400 text-xs leading-relaxed">${s.desc}</p>
+        </div>
+      </div>`
+    )
+    .join("");
 
-      <form id="booking-form" class="space-y-5 bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6">
-        <div>
-          <label class="block text-gray-300 text-sm font-bold mb-2">${data.typeLabel}</label>
-          <select id="b-type" class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500 transition-colors">
-            ${typeOptions}
-          </select>
-          <div id="b-type-info" class="mt-3 flex items-center justify-between bg-slate-800/50 border border-gray-600 rounded-xl px-4 py-3 text-sm">
-            <span class="text-gray-400 flex items-center gap-2">
-              <i class="fas fa-clock text-amber-400/70"></i><span id="b-duration">${selectedType.duration}</span>
-            </span>
-            <span class="text-amber-400 font-bold text-lg" id="b-price">${selectedType.price}</span>
+  renderStep(`
+    <div class="max-w-5xl mx-auto">
+      ${renderStepsIndicator(0)}
+
+      <div class="grid lg:grid-cols-3 gap-8 items-start">
+        <div class="lg:col-span-2">
+          <div class="bg-white/5 border border-gray-700/50 rounded-2xl p-6 lg:p-8 backdrop-blur-sm">
+            <h2 class="text-xl lg:text-2xl font-bold text-white font-title mb-6 flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <i class="fas fa-file-signature"></i>
+              </span>
+              ${data.formHeading}
+            </h2>
+
+            <form id="booking-form" class="space-y-5">
+              <div>
+                <label class="block text-gray-300 text-sm font-bold mb-2">${data.typeLabel}</label>
+                <select id="b-type" class="${inputClass} appearance-none">
+                  ${typeOptions}
+                </select>
+                <div id="b-type-info" class="mt-3 flex items-center justify-between bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3 text-sm">
+                  <span class="text-gray-400 flex items-center gap-2">
+                    <i class="fas fa-clock text-amber-400/70"></i><span id="b-duration">${selectedType.duration}</span>
+                  </span>
+                  <span class="text-amber-400 font-bold text-lg" id="b-price">${selectedType.price}</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-gray-300 text-sm font-bold mb-2">${data.nameLabel}</label>
+                  <input id="b-name" type="text" required class="${inputClass}" placeholder="${data.namePlaceholder}">
+                </div>
+                <div>
+                  <label class="block text-gray-300 text-sm font-bold mb-2">${data.phoneLabel}</label>
+                  <input id="b-phone" type="tel" required dir="ltr" class="${inputClass} text-left" placeholder="${data.phonePlaceholder}">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-gray-300 text-sm font-bold mb-2">${data.emailLabel}</label>
+                <input id="b-email" type="email" required dir="ltr" class="${inputClass} text-left" placeholder="${data.emailPlaceholder}">
+              </div>
+
+              <div>
+                <label class="block text-gray-300 text-sm font-bold mb-2">${data.detailsLabel}</label>
+                <textarea id="b-details" rows="5" required class="${inputClass} resize-none" placeholder="${data.detailsPlaceholder}"></textarea>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button type="submit" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 hover:text-slate-900 font-bold rounded-xl px-6 py-3 text-sm transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
+                  <i class="fas fa-paper-plane"></i>${data.submitBtn}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
-            <label class="block text-gray-300 text-sm font-bold mb-2">${data.nameLabel}</label>
-            <input id="b-name" type="text" required class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors" placeholder="${data.namePlaceholder}">
+
+        <aside class="space-y-6">
+          <div class="bg-white/5 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+            <h3 class="text-white font-bold text-lg font-title mb-5 flex items-center gap-2">
+              <i class="fas fa-list-check text-amber-400"></i>${data.howHeading}
+            </h3>
+            <div class="space-y-5">${howSteps}</div>
           </div>
-          <div>
-            <label class="block text-gray-300 text-sm font-bold mb-2">${data.phoneLabel}</label>
-            <input id="b-phone" type="tel" required dir="ltr" class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors text-left" placeholder="${data.phonePlaceholder}">
-          </div>
-        </div>
-        <div>
-          <label class="block text-gray-300 text-sm font-bold mb-2">${data.emailLabel}</label>
-          <input id="b-email" type="email" required dir="ltr" class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors text-left" placeholder="${data.emailPlaceholder}">
-        </div>
-        <div>
-          <label class="block text-gray-300 text-sm font-bold mb-2">${data.detailsLabel}</label>
-          <textarea id="b-details" rows="4" required class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors resize-none" placeholder="${data.detailsPlaceholder}"></textarea>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <button type="submit" class="flex-[2] bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 inline-flex items-center justify-center gap-2">
-            <i class="fas fa-paper-plane"></i>${data.submitBtn}
-          </button>
-        </div>
-      </form>
+          ${renderContactSidebar()}
+        </aside>
+      </div>
     </div>
   `);
 
@@ -178,62 +286,66 @@ function renderPayment() {
     .join("");
 
   renderStep(`
-    <div class="max-w-2xl mx-auto">
+    <div class="max-w-3xl mx-auto">
+      ${renderStepsIndicator(1)}
+
       <div class="text-center mb-8">
         <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-3xl mb-4">
           <i class="fas fa-check"></i>
         </div>
         <h2 class="text-2xl lg:text-3xl font-bold text-white font-title">${data.paymentHeading}</h2>
-        <p class="text-gray-400 text-sm mt-2">${data.paymentSubtitle}</p>
+        <p class="text-gray-400 text-sm mt-2 max-w-xl mx-auto">${data.paymentSubtitle}</p>
       </div>
 
-      <div class="bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6 mb-6">
-        <h3 class="text-white font-bold text-lg font-title mb-4 flex items-center gap-2">
+      <div class="bg-white/5 border border-gray-700/50 rounded-2xl p-6 lg:p-8 backdrop-blur-sm mb-6">
+        <h3 class="text-white font-bold text-lg font-title mb-5 flex items-center gap-2">
           <i class="fas fa-file-invoice text-amber-400"></i>${data.summaryHeading}
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-          <div>
+          <div class="bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3">
             <p class="text-gray-500 text-xs mb-1">${data.referenceLabel}</p>
             <p class="text-amber-400 font-bold font-mono" dir="ltr">${state.reference}</p>
           </div>
-          <div>
+          <div class="bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3">
             <p class="text-gray-500 text-xs mb-1">${data.typeLabel}</p>
             <p class="text-white font-bold">${selectedType.title}</p>
           </div>
-          <div>
+          <div class="bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3">
             <p class="text-gray-500 text-xs mb-1">${data.durationLabel}</p>
             <p class="text-gray-300">${selectedType.duration}</p>
           </div>
-          <div>
+          <div class="bg-white/5 border border-amber-500/30 rounded-xl px-4 py-3">
             <p class="text-gray-500 text-xs mb-1">${data.priceLabel}</p>
-            <p class="text-amber-400 font-bold">${selectedType.price}</p>
+            <p class="text-amber-400 font-bold text-lg">${selectedType.price}</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/25 rounded-2xl p-6 mb-6">
-        <h3 class="text-white font-bold text-lg font-title mb-4 flex items-center gap-2">
+      <div class="bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/25 rounded-2xl p-6 lg:p-8 mb-6">
+        <h3 class="text-white font-bold text-lg font-title mb-5 flex items-center gap-2">
           <i class="fas fa-landmark text-amber-400"></i>${data.ccpLabel}
         </h3>
         <div class="space-y-3 text-sm">
-          <div class="flex justify-between items-center bg-slate-800/60 border border-gray-600 rounded-xl px-4 py-3">
+          <div class="flex justify-between items-center bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3">
             <span class="text-gray-400">${data.ccpHolder}</span>
             <span class="text-white font-bold">${getContent().hero.name}</span>
           </div>
-          <div class="flex justify-between items-center bg-slate-800/60 border border-gray-600 rounded-xl px-4 py-3">
+          <div class="flex justify-between items-center bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3">
             <span class="text-gray-400">${data.ccpLabel}</span>
             <span class="text-white font-bold font-mono" dir="ltr">0000 0000 0000 00</span>
           </div>
-          <div class="flex justify-between items-center bg-slate-800/60 border border-amber-500/30 rounded-xl px-4 py-3">
+          <div class="flex justify-between items-center bg-white/5 border border-amber-500/30 rounded-xl px-4 py-3">
             <span class="text-gray-400">${data.ccpAmount}</span>
             <span class="text-amber-400 font-bold text-lg">${selectedType.price}</span>
           </div>
         </div>
       </div>
 
-      <div class="bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6 mb-6">
-        <h3 class="text-white font-bold text-lg font-title mb-4">${data.appointmentNoteHeading}</h3>
-        <p class="text-gray-300 text-sm leading-relaxed mb-4">${data.appointmentNote}</p>
+      <div class="bg-white/5 border border-gray-700/50 rounded-2xl p-6 lg:p-8 backdrop-blur-sm mb-6">
+        <h3 class="text-white font-bold text-lg font-title mb-4 flex items-center gap-2">
+          <i class="fas fa-info-circle text-amber-400"></i>${data.appointmentNoteHeading}
+        </h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-5">${data.appointmentNote}</p>
         <ol class="space-y-3">${steps}</ol>
       </div>
 
