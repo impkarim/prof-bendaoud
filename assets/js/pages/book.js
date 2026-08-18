@@ -52,7 +52,7 @@ function renderBookDetail() {
 
   const labels = {
     ar: {
-      author: "البروفيسور بن داود براهيم",
+      author: "البروفيسور براهيم بن داود",
       pages: "صفحة",
       desc: "الوصف",
       chapters: "فهرس المحتويات",
@@ -60,7 +60,7 @@ function renderBookDetail() {
       back: "العودة للمكتبة",
     },
     en: {
-      author: "Prof. Bendaoud Brahim",
+      author: "Prof. Ibrahim Bendaoud",
       pages: "pages",
       desc: "Description",
       chapters: "Table of Contents",

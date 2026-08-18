@@ -32,7 +32,11 @@ function renderHero() {
             ${data.titles
               .map((t, i) => {
                 const icons = ["fa-scroll", "fa-scale-balanced", "fa-building-columns"];
-                return `<p class="text-gray-300 text-base lg:text-lg"><i class="fas ${icons[i] || "fa-star"} text-amber-500 ml-2 text-xs w-4 text-center"></i>${t}</p>`;
+                const [main, suffix] = t.split("|");
+                const suffixHTML = suffix
+                  ? ` <span class="text-xs lg:text-sm text-amber-400/80 font-medium align-middle">${suffix}</span>`
+                  : "";
+                return `<p class="text-gray-300 text-base lg:text-lg"><i class="fas ${icons[i] || "fa-star"} text-amber-500 ml-2 text-xs w-4 text-center"></i>${main}${suffixHTML}</p>`;
               })
               .join("")}
           </div>
@@ -78,7 +82,7 @@ function renderHero() {
           </div>
         </div>
       </div>
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
         ${statsHTML}
       </div>
     </div>
