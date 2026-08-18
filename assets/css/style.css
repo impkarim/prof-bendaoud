@@ -113,6 +113,26 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #f8fafc !important;
 }
 
+/* ===== Select dropdowns (native popup) theming ===== */
+select {
+  color-scheme: dark;
+}
+select option {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+[data-theme="light"] select {
+  color-scheme: light;
+}
+[data-theme="light"] select option {
+  background-color: #ffffff;
+  color: #0c0a09;
+}
+[data-theme="light"] select option.bg-slate-800 {
+  background-color: #ffffff !important;
+  color: #0c0a09 !important;
+}
+
 /* Replace gray with white-based tones site-wide (dark mode default) */
 .text-gray-300 { color: rgba(255,255,255,0.85) !important; }
 .text-gray-400 { color: rgba(255,255,255,0.65) !important; }

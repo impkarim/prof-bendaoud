@@ -133,7 +133,7 @@ function renderForm() {
   const typeOptions = data.types
     .map(
       (t) => `
-      <option value="${t.id}" ${t.id === state.type ? "selected" : ""}>${t.title} — ${t.price}</option>`
+      <option value="${t.id}" class="bg-slate-800 text-white" ${t.id === state.type ? "selected" : ""}>${t.title} — ${t.price}</option>`
     )
     .join("");
 
