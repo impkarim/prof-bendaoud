@@ -115,23 +115,7 @@ function renderPodcast() {
 
   renderFeatured(data.episodes);
 
-  const rest = data.episodes.slice(1);
-  const episodesHeading = document.getElementById("podcast-episodes-heading");
-  if (episodesHeading && rest.length > 0) {
-    episodesHeading.classList.remove("hidden");
-    episodesHeading.innerHTML = `
-      <div class="flex items-center justify-center gap-4 mb-8">
-        <span class="w-10 h-px bg-gradient-to-l from-amber-500/40 to-transparent"></span>
-        <span class="text-gray-500 text-xs uppercase tracking-[0.2em] flex items-center gap-2">
-          <i class="fas fa-headphones text-amber-400/50"></i>${getCurrentLang() === "ar" ? "جميع الحلقات" : "All Episodes"}
-        </span>
-        <span class="w-10 h-px bg-gradient-to-r from-amber-500/40 to-transparent"></span>
-      </div>`;
-  } else if (episodesHeading) {
-    episodesHeading.classList.add("hidden");
-  }
-
-  const episodesHTML = rest
+  const episodesHTML = data.episodes
     .map((episode, index) => {
       const colorClass = iconColors[index % iconColors.length];
       const hasVideo = episode.videoId && episode.videoId.trim() !== "";
