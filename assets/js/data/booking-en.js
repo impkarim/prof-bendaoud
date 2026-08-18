@@ -33,7 +33,7 @@ export const booking = {
       title: "Academic Consultation",
       desc: "Guidance for PhD students and participants in competitions (judiciary, advocacy, recruitment).",
       duration: "30 minutes",
-      price: "4000 DZD",
+      price: "Free",
     },
   ],
   formHeading: "Legal Consultation Request",

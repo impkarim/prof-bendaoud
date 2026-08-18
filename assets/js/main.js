@@ -1,6 +1,5 @@
 import { initLanguage, getContent, setLanguage, getCurrentLang } from "./services/langService.js";
 import { initTheme, toggleTheme } from "./services/themeService.js";
-import { initForm } from "./services/formService.js";
 import { initPageTransitions } from "./services/pageTransition.js";
 import { renderTopBar, renderNavbar } from "./services/navbarService.js";
 
@@ -51,7 +50,7 @@ function renderHero() {
             <a href="#timeline" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200">
               ${data.cta}
             </a>
-            <a href="#contact" class="border border-gray-500 hover:border-amber-500 text-gray-200 hover:text-amber-400 px-6 py-3 rounded-lg transition-colors duration-200">
+            <a href="booking/" class="border border-gray-500 hover:border-amber-500 text-gray-200 hover:text-amber-400 px-6 py-3 rounded-lg transition-colors duration-200">
               ${data.secondaryCta}
             </a>
           </div>
@@ -211,93 +210,6 @@ function renderCertificates() {
   `;
 }
 
-function renderContact() {
-  const data = getContent().contact;
-  const section = document.getElementById("contact");
-  if (!section) return;
-
-  const subjectOptions = data.form.subjects
-    .map(
-      (s) =>
-        `<option value="${s}" class="bg-slate-800">${s}</option>`
-    )
-    .join("");
-
-  const lang = getCurrentLang();
-  const labelDir = lang === "ar" ? "text-right" : "text-left";
-
-  section.innerHTML = `
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl lg:text-4xl font-bold text-white font-title">${data.heading}</h2>
-        <p class="text-gray-400 mt-2">${data.subtitle}</p>
-      </div>
-      <div class="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <div class="lg:col-span-2">
-          <div id="form-success" class="hidden opacity-0 transition-opacity duration-400 bg-green-500/10 border border-green-500/30 text-green-400 px-6 py-4 rounded-lg mb-6 flex items-center gap-3">
-            <i class="fas fa-check-circle text-xl"></i>
-            <span>${data.form.successMsg}</span>
-          </div>
-          <div id="form-error" class="hidden opacity-0 transition-opacity duration-400 bg-red-500/10 border border-red-500/30 text-red-400 px-6 py-4 rounded-lg mb-6 flex items-center gap-3">
-            <i class="fas fa-exclamation-circle text-xl"></i>
-            <span>${data.form.errorMsg}</span>
-          </div>
-          <form id="contact-form" class="space-y-5">
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-1 ${labelDir}">${data.form.nameLabel}</label>
-              <input type="text" name="name" placeholder="${data.form.namePlaceholder}" required
-                class="w-full bg-white/5 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-1 ${labelDir}">${data.form.emailLabel}</label>
-              <input type="email" name="email" placeholder="${data.form.emailPlaceholder}" required
-                class="w-full bg-white/5 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200">
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-1 ${labelDir}">${data.form.subjectLabel}</label>
-              <select name="subject" required
-                class="w-full bg-white/5 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200">
-                <option value="" disabled selected class="bg-slate-800">${data.form.subjectPlaceholder}</option>
-                ${subjectOptions}
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-300 mb-1 ${labelDir}">${data.form.messageLabel}</label>
-              <textarea name="message" rows="5" placeholder="${data.form.messagePlaceholder}" required
-                class="w-full bg-white/5 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200 resize-none"></textarea>
-            </div>
-            <button type="submit" id="contact-submit" data-submitting="${data.form.submittingBtn}"
-              class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-              ${data.form.submitBtn}
-            </button>
-          </form>
-        </div>
-        <div class="space-y-6">
-          <div class="bg-white/5 border border-gray-700/50 rounded-xl p-6 backdrop-blur-sm">
-            <h3 class="text-white font-bold text-lg mb-4 font-title">${data.infoHeading}</h3>
-            <div class="space-y-4">
-              <div class="flex items-center gap-3">
-                <i class="fas fa-envelope text-amber-400 w-5"></i>
-                <span class="text-gray-300 text-sm">${data.info.email}</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i class="fas fa-phone text-amber-400 w-5"></i>
-                <span class="text-gray-300 text-sm"><bdi dir="ltr">${data.info.phone}</bdi></span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i class="fas fa-map-marker-alt text-amber-400 w-5"></i>
-                <span class="text-gray-300 text-sm">${data.info.address}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  initForm();
-}
-
 function renderFooter() {
   const data = getContent().footer;
   const footer = document.getElementById("footer");
@@ -323,7 +235,6 @@ function renderAll() {
   renderVision();
   renderTimeline();
   renderCertificates();
-  renderContact();
   renderFooter();
 }
 
