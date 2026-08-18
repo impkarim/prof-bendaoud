@@ -743,7 +743,7 @@ export const content = {
     info: {
       email: "contact@brahimbendaoud.com",
 phone: "+213 676 27 36 36",
-      address: "Resident in the Province of Djelfa, People's Democratic Republic of Algeria"
+      address: "Resident in the Province of Djelfa, Algeria"
     }
   },
 

@@ -746,7 +746,7 @@ export const content = {
     info: {
       email: "contact@brahimbendaoud.com",
 phone: "+213 676 27 36 36",
-      address: "مقيم في ولاية الجلفة – الجمهورية الجزائرية الديمقراطية الشعبية"
+      address: "مقيم في ولاية الجلفة – الجزائر"
     }
   },
 
