@@ -1,6 +1,6 @@
 export const content = {
   nav: {
-    brand: "Bendaoud Brahim",
+    brand: "Ibrahim Bendaoud",
     links: [
       { href: "#hero", label: "Home" },
       { href: "#vision", label: "Vision" },
@@ -15,18 +15,17 @@ export const content = {
 
   hero: {
     greeting: "Professor",
-    name: "Bendaoud Brahim",
+    name: "Ibrahim Bendaoud",
     role: "Professor of Law",
     titles: [
-      "Professor of International Law",
-      "Graduate Studies, Al Ghurair University Dubai",
-      "International Legal Advisor"
+      "Professor of Public Law",
+      "Certified Lawyer at the Supreme Court and the Council of State",
+      "Director of Graduate Studies, Al Ghurair University Dubai|Formerly"
     ],
     honor: "Honored with the Presidential Honor Medal by the President of the Republic in recognition of academic and judicial contributions at the national and international levels.",
     stats: [
-      { number: "30+", label: "Years of Experience" },
-      { number: "50+", label: "Research Papers & Publications" },
-      { number: "15+", label: "International Conferences" }
+      { number: "22", label: "Years of Academic & Professional Experience" },
+      { number: "+30", label: "Published Scientific Works in Law" }
     ],
     cta: "My Career",
     secondaryCta: "Contact Me"
@@ -58,7 +57,7 @@ export const content = {
     heading: "Academic & Judicial Career",
     subtitle: "A distinguished career spanning more than three decades, combining academic excellence and high-ranking judicial positions nationally and internationally.",
     events: [
-      { year: "2017", title: "Graduate Studies – Al Ghurair University Dubai", description: "Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
+      { year: "2017", title: "Director of Graduate Studies – Al Ghurair University Dubai", description: "Director of Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
       { year: "2010", title: "Associate Professor – Political Science Department", description: "Associate Professor in the Political Science Department, University of Djelfa, 2010/2011." },
       { year: "2009", title: "Visiting Lecturer – Dutch University", description: "Visiting lecturer under a cooperation agreement with the Dutch University of Sciences and Arts, from December 2009." },
       { year: "2009", title: "Associate Professor – University of Ouargla", description: "Associate Professor at Kasdi Merbah University, Ouargla, 2009/2010." },
@@ -78,7 +77,7 @@ export const content = {
       { year: "2020", title: "Member – Equivalence Committee", description: "Member of the Ministerial Committee for Equivalence of Certificates, Ministry of Higher Education, Algeria, from May 2020." },
       { year: "2018", title: "Head of PRFU Research Project", description: "Head of PRFU research project on developing mechanisms to combat illegal immigration in Algeria." },
       { year: "2018", title: "Scientific Committee Member – International Conference", description: "Member of the scientific committee for the international conference on child protection, March 2018." },
-      { year: "2017", title: "Graduate Studies – Al Ghurair University Dubai", description: "Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
+      { year: "2017", title: "Director of Graduate Studies – Al Ghurair University Dubai", description: "Director of Graduate Studies at Al Ghurair University, Dubai, from September 2017." },
       { year: "2016", title: "Editor-in-Chief – International Journal", description: "Editor-in-Chief of the International Journal of Studies and Research, Al Ghurair University Dubai, from August 2016." },
       { year: "2016", title: "Head of Master's Department – Al Ghurair University Dubai", description: "Head of the Master's Department at Al Ghurair University, Dubai, from June 2016." },
       { year: "2015", title: "Chair – National Forum on Children and Reading", description: "Chair of the national forum on children and reading, Djelfa, December 2015." },
@@ -487,7 +486,7 @@ export const content = {
         year: 2022,
         isbn: "",
         publisher: "",
-        longDesc: "A collective book under the general supervision of Professor Bendaoud Brahim, addressing the legal mechanisms for protecting victims of human trafficking, particularly women and children, analyzing the international and national legal framework in this field. Published second semester 2022.",
+        longDesc: "A collective book under the general supervision of Professor Ibrahim Bendaoud, addressing the legal mechanisms for protecting victims of human trafficking, particularly women and children, analyzing the international and national legal framework in this field. Published second semester 2022.",
         chapters: [],
         link: "#",
         cover: "hands-helping"
@@ -511,7 +510,7 @@ export const content = {
 
   lectures: {
     heading: "Lectures & Seminars",
-    subtitle: "Lectures, seminars, and conferences in international law and political science",
+    subtitle: "Lectures, seminars, and conferences in law",
     subjectsHeading: "Courses Taught",
     backLabel: "Back to Home",
     lectures: [
@@ -559,7 +558,7 @@ export const content = {
         id: "سيادة-القانون",
         title: "Rule of Law and Judicial Reform",
         desc: "A seminar on the challenges of judicial reform in Arab countries",
-        longDesc: "A high-level legal seminar where he participated as Graduate Studies at Al Ghurair University Dubai, addressing issues of rule of law and judicial independence in Arab countries. An analytical vision was presented on mechanisms for developing the judicial system and aligning it with international standards.",
+        longDesc: "A high-level legal seminar where he participated as Director of Graduate Studies at Al Ghurair University Dubai, addressing issues of rule of law and judicial independence in Arab countries. An analytical vision was presented on mechanisms for developing the judicial system and aligning it with international standards.",
         date: "2022",
         location: "Riyadh – Saudi Arabia",
         type: "Seminar",
@@ -742,14 +741,14 @@ export const content = {
     infoHeading: "Contact Information",
     info: {
       email: "contact@brahimbendaoud.com",
-      phone: "0676273636",
+phone: "213676273636",
       address: "Faculty of Law, University of Algiers, Algeria"
     }
   },
 
   topbar: {
     email: "contact@brahimbendaoud.com",
-    phone: "0676273636",
+    phone: "213676273636",
     social: [
       { icon: "fab fa-facebook-f", url: "https://www.facebook.com/albrwfyswr.brahym.bn.dawd", title: "Facebook" },
       { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/brahim-bendaoud-28800460/", title: "LinkedIn" },
@@ -759,8 +758,8 @@ export const content = {
   },
 
   footer: {
-    rights: "\u00a9 2026 Professor Bendaoud Brahim. All Rights Reserved.",
-    designer: "Design & Management | Professor Bendaoud Brahim",
-    motto: "Knowledge is honor, justice is a trust"
+    rights: "\u00a9 2026 Professor Ibrahim Bendaoud. All Rights Reserved.",
+    designer: "Design & Management | Professor Ibrahim Bendaoud",
+    motto: "Knowledge is ethics and performance"
   }
 };
