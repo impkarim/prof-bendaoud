@@ -3,7 +3,6 @@ import { initTheme, toggleTheme } from "../services/themeService.js";
 import { initPageTransitions } from "../services/pageTransition.js";
 import { renderTopBar, renderNavbar } from "../services/navbarService.js";
 import { getSupabaseClient } from "../config/supabase.js";
-import { sendTelegramMessage } from "../config/telegram.js";
 import { booking as bookingAr } from "../data/booking-ar.js";
 import { booking as bookingEn } from "../data/booking-en.js";
 
@@ -469,7 +468,7 @@ async function bookAppointment(data) {
 
   if (!client || !client.rpc) {
     console.info("[Booking] Supabase not connected. Simulating successful booking.");
-    sendTelegramNotification(booking, data);
+    sendBookingEmail(booking, data);
     return { success: true };
   }
 
@@ -495,7 +494,7 @@ async function bookAppointment(data) {
       return { success: false };
     }
 
-    sendTelegramNotification(booking, data);
+    sendBookingEmail(booking, data);
     return { success: true };
   } catch (err) {
     console.error("[Booking] Unexpected error:", err);
@@ -503,25 +502,41 @@ async function bookAppointment(data) {
   }
 }
 
-function sendTelegramNotification(booking, data) {
+function sendBookingEmail(booking, data) {
   const selectedType = data.types.find((t) => t.id === booking.type);
   const lang = getCurrentLang();
 
-  const lines = [
-    "📌 <b>" + (lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request") + "</b>",
-    "━━━━━━━━━━━━━━━",
-    "🆔 " + (lang === "ar" ? "رقم الحجز" : "Reference") + ": <code>" + booking.reference + "</code>",
-    "👤 " + (lang === "ar" ? "الاسم" : "Name") + ": " + booking.name,
-    "📞 " + (lang === "ar" ? "الهاتف" : "Phone") + ": " + booking.phone,
-    "✉️ " + (lang === "ar" ? "البريد" : "Email") + ": " + booking.email,
-    "⚖️ " + (lang === "ar" ? "نوع الاستشارة" : "Consultation") + ": " + (selectedType ? selectedType.title : booking.type),
-    "💵 " + (lang === "ar" ? "المبلغ" : "Amount") + ": " + (selectedType ? selectedType.price : ""),
-    "📝 " + (lang === "ar" ? "وصف الاستشارة" : "Details") + ": " + booking.details,
-    "",
-    "🕐 " + (lang === "ar" ? "الموعد: يُحدد بعد استلام وصل الدفع" : "Appointment: set after receiving payment receipt"),
-  ];
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "https://formsubmit.co/contact@brahimbendaoud.com";
+  form.target = "_blank";
+  form.style.display = "none";
+  document.body.appendChild(form);
 
-  sendTelegramMessage(lines.join("\n"));
+  const fields = {
+    _subject: `${lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request"} ${booking.reference}`,
+    _template: "table",
+    _captcha: "true",
+    _next: `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}index.html`,
+    [lang === "ar" ? "رقم الحجز" : "Reference"]: booking.reference,
+    [lang === "ar" ? "الاسم" : "Name"]: booking.name,
+    [lang === "ar" ? "الهاتف" : "Phone"]: booking.phone,
+    [lang === "ar" ? "البريد" : "Email"]: booking.email,
+    [lang === "ar" ? "نوع الاستشارة" : "Consultation"]: selectedType ? selectedType.title : booking.type,
+    [lang === "ar" ? "المبلغ" : "Amount"]: selectedType ? selectedType.price : "",
+    [lang === "ar" ? "وصف الاستشارة" : "Details"]: booking.details,
+  };
+
+  for (const [name, value] of Object.entries(fields)) {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    form.appendChild(input);
+  }
+
+  form.submit();
+  form.remove();
 }
 
 function renderAll() {
