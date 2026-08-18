@@ -36,7 +36,7 @@ function renderHero() {
                 const suffixHTML = suffix
                   ? ` <span class="text-xs lg:text-sm text-amber-400/80 font-medium align-middle">${suffix}</span>`
                   : "";
-                return `<p class="text-gray-300 text-base lg:text-lg"><i class="fas ${icons[i] || "fa-star"} text-amber-500 ml-2 text-xs w-4 text-center"></i>${main}${suffixHTML}</p>`;
+                return `<p class="text-gray-300 text-base lg:text-lg"><i class="fas ${icons[i] || "fa-star"} text-amber-500 me-2 text-xs w-4 text-center"></i>${main}${suffixHTML}</p>`;
               })
               .join("")}
           </div>
@@ -192,7 +192,7 @@ function renderCertificates() {
             <span class="inline-block text-xs font-semibold ${colors[item.type] || "text-amber-400"} px-2 py-0.5 rounded-full">${item.type}</span>
             <h3 class="text-base lg:text-lg font-bold text-white mt-1 font-title">${item.title}</h3>
             ${item.org ? `<p class="text-gray-400 text-sm mt-1">${item.org}</p>` : ""}
-            ${item.year ? `<p class="text-amber-300/70 text-xs mt-1"><i class="fas fa-star text-amber-500 ml-1"></i>${item.year}</p>` : ""}
+            ${item.year ? `<p class="text-amber-300/70 text-xs mt-1"><i class="fas fa-star text-amber-500 me-1"></i>${item.year}</p>` : ""}
           </div>
         </div>`
     )

@@ -113,8 +113,8 @@ function renderConferences(type) {
               <h3 class="text-lg lg:text-xl font-bold text-white font-title leading-snug">${c.title}</h3>
               <p class="text-amber-400/70 text-sm lg:text-base mt-2 font-medium">${c.event}</p>
               <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3 text-xs lg:text-sm text-gray-500">
-                <span><i class="fas fa-map-pin ml-1 text-gray-600"></i>${c.location}</span>
-                <span><i class="fas fa-calendar ml-1 text-gray-600"></i>${c.date}</span>
+                <span><i class="fas fa-map-pin me-1 text-gray-600"></i>${c.location}</span>
+                <span><i class="fas fa-calendar me-1 text-gray-600"></i>${c.date}</span>
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@ function renderContent() {
   const backLink = document.getElementById("back-link");
   const icon = backLink.querySelector("i");
   if (lang === "ar") {
-    icon.className = "fas fa-arrow-right ml-1";
+    icon.className = "fas fa-arrow-right me-1";
   } else {
     icon.className = "fas fa-arrow-left mr-1";
   }

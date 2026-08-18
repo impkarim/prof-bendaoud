@@ -99,17 +99,17 @@ function renderBookDetail() {
 
   const pagesEl = document.getElementById("book-pages");
   if (book.pages > 0) {
-    pagesEl.innerHTML = `<i class="fas fa-file-alt text-amber-500 ml-1"></i>${book.pages} ${l.pages}`;
+    pagesEl.innerHTML = `<i class="fas fa-file-alt text-amber-500 me-1"></i>${book.pages} ${l.pages}`;
     pagesEl.classList.remove("hidden");
   } else {
     pagesEl.classList.add("hidden");
   }
 
-  document.getElementById("book-year").innerHTML = `<i class="fas fa-calendar text-amber-500 ml-1"></i>${book.year}`;
+  document.getElementById("book-year").innerHTML = `<i class="fas fa-calendar text-amber-500 me-1"></i>${book.year}`;
 
   const isbnEl = document.getElementById("book-isbn");
   if (book.isbn) {
-    isbnEl.innerHTML = `<i class="fas fa-barcode text-amber-500 ml-1"></i>${book.isbn}`;
+    isbnEl.innerHTML = `<i class="fas fa-barcode text-amber-500 me-1"></i>${book.isbn}`;
     isbnEl.classList.remove("hidden");
   } else {
     isbnEl.classList.add("hidden");
@@ -117,7 +117,7 @@ function renderBookDetail() {
 
   const publisherEl = document.getElementById("book-publisher");
   if (book.publisher) {
-    publisherEl.innerHTML = `<i class="fas fa-building text-amber-500 ml-1"></i>${book.publisher}`;
+    publisherEl.innerHTML = `<i class="fas fa-building text-amber-500 me-1"></i>${book.publisher}`;
     publisherEl.classList.remove("hidden");
   } else {
     publisherEl.classList.add("hidden");
@@ -148,7 +148,7 @@ function renderBookDetail() {
   const backLink = document.getElementById("back-link");
   const backIcon = backLink.querySelector("i");
   if (lang === "ar") {
-    backIcon.className = "fas fa-arrow-right ml-1";
+    backIcon.className = "fas fa-arrow-right me-1";
   } else {
     backIcon.className = "fas fa-arrow-left mr-1";
   }
