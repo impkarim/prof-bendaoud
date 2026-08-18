@@ -238,8 +238,8 @@ function renderForm() {
               </div>
 
               <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                <button type="submit" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 hover:text-slate-900 font-bold rounded-xl px-6 py-3 text-sm transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
-                  <i class="fas fa-paper-plane"></i>${data.submitBtn}
+                <button type="submit" class="flex-1 h-12 min-w-0 whitespace-nowrap inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 hover:text-slate-900 font-bold rounded-xl px-6 py-3 text-sm transition-colors duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
+                  <i class="fas fa-paper-plane"></i><span>${data.submitBtn}</span>
                 </button>
               </div>
             </form>
@@ -342,7 +342,8 @@ function renderForm() {
 
     const originalHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>${data.submittingBtn}`;
+    submitBtn.classList.add("pointer-events-none");
+    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i><span>${data.submittingBtn}</span>`;
 
     const result = await bookAppointment(data);
 
