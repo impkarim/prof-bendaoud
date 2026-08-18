@@ -50,10 +50,10 @@ function renderBooks() {
       const imgPath = `../assets/images/books/${book.id}.jpg`;
 
       const pagesStr = book.pages > 0
-        ? `<span><i class="fas fa-file-alt ml-1"></i>${book.pages} ${lang === "ar" ? "صفحة" : "pages"}</span>`
+        ? `<span><i class="fas fa-file-alt me-1"></i>${book.pages} ${lang === "ar" ? "صفحة" : "pages"}</span>`
         : "";
       const publisherStr = book.publisher
-        ? `<span><i class="fas fa-building ml-1"></i>${book.publisher}</span>`
+        ? `<span><i class="fas fa-building me-1"></i>${book.publisher}</span>`
         : "";
 
       return `
@@ -69,7 +69,7 @@ function renderBooks() {
             <h3 class="text-base font-bold text-white mt-1.5 font-title leading-tight group-hover:text-amber-400 transition-colors line-clamp-2">${book.title}</h3>
             <p class="text-gray-400 text-xs mt-1 leading-relaxed line-clamp-2">${book.desc}</p>
             <div class="flex items-center gap-2 mt-2 text-xs text-gray-500">
-              <span><i class="fas fa-calendar ml-1"></i>${book.year}</span>
+              <span><i class="fas fa-calendar me-1"></i>${book.year}</span>
               ${pagesStr}
             </div>
             ${publisherStr ? `<p class="text-gray-500 text-xs mt-1 truncate">${publisherStr}</p>` : ""}
@@ -92,7 +92,7 @@ function renderContent() {
   const backLink = document.getElementById("back-link");
   const icon = backLink.querySelector("i");
   if (lang === "ar") {
-    icon.className = "fas fa-arrow-right ml-1";
+    icon.className = "fas fa-arrow-right me-1";
   } else {
     icon.className = "fas fa-arrow-left mr-1";
   }

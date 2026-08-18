@@ -82,7 +82,7 @@ function renderContent() {
   const lang = getCurrentLang();
   const backLink = document.getElementById("back-link");
   const icon = backLink.querySelector("i");
-  icon.className = lang === "ar" ? "fas fa-arrow-right ml-1" : "fas fa-arrow-left mr-1";
+  icon.className = lang === "ar" ? "fas fa-arrow-right me-1" : "fas fa-arrow-left mr-1";
 }
 
 function renderAll() {

@@ -54,8 +54,8 @@ function renderLectures() {
             <h3 class="text-lg font-bold text-white mt-2 font-title leading-tight group-hover:text-amber-400 transition-colors">${lecture.title}</h3>
             <p class="text-gray-400 text-sm mt-2 leading-relaxed line-clamp-2">${lecture.desc}</p>
             <div class="flex items-center gap-3 mt-3 text-xs text-gray-500">
-              <span><i class="fas fa-calendar ml-1"></i>${lecture.date}</span>
-              <span><i class="fas fa-map-marker-alt ml-1"></i>${lecture.location}</span>
+              <span><i class="fas fa-calendar me-1"></i>${lecture.date}</span>
+              <span><i class="fas fa-map-marker-alt me-1"></i>${lecture.location}</span>
             </div>
           </div>
         </a>`;
@@ -104,7 +104,7 @@ function renderContent() {
   const backLink = document.getElementById("back-link");
   const icon = backLink.querySelector("i");
   if (lang === "ar") {
-    icon.className = "fas fa-arrow-right ml-1";
+    icon.className = "fas fa-arrow-right me-1";
   } else {
     icon.className = "fas fa-arrow-left mr-1";
   }

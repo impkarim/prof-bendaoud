@@ -86,7 +86,7 @@ function renderAwardDetail() {
 
   const backLink = document.getElementById("back-link");
   const backIcon = backLink.querySelector("i");
-  backIcon.className = lang === "ar" ? "fas fa-arrow-right ml-1" : "fas fa-arrow-left mr-1";
+  backIcon.className = lang === "ar" ? "fas fa-arrow-right me-1" : "fas fa-arrow-left mr-1";
 }
 
 function renderAll() {
