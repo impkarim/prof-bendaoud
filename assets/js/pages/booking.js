@@ -238,7 +238,6 @@ function renderForm() {
               </div>
 
               <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 hover:text-slate-900 font-bold rounded-xl px-6 py-3 text-sm transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
                   <i class="fas fa-paper-plane"></i>${data.submitBtn}
                 </button>
@@ -333,11 +332,11 @@ function renderForm() {
       return;
     }
 
-    const botcheck = form.querySelector('input[name="botcheck"]');
-    if (botcheck && botcheck.checked) {
+    const limitMsg = enforceRateLimit(lang);
+    if (limitMsg) {
+      alert(limitMsg);
       return;
     }
-    state.botcheck = botcheck ? botcheck.checked : false;
 
     state.reference = `BB-${Date.now().toString(36).toUpperCase()}`;
 
@@ -354,6 +353,8 @@ function renderForm() {
       alert(data.bookingErrorMsg);
       return;
     }
+
+    recordSubmission();
 
     renderPayment();
   });
@@ -526,7 +527,6 @@ function sendBookingEmail(booking, data) {
     subject: `${lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request"} ${booking.reference}`,
     from_name: booking.name,
     email: booking.email,
-    botcheck: state.botcheck ? "on" : "",
     [lang === "ar" ? "رقم الحجز" : "Reference"]: booking.reference,
     [lang === "ar" ? "الاسم" : "Name"]: booking.name,
     [lang === "ar" ? "الهاتف" : "Phone"]: booking.phone,
@@ -552,6 +552,42 @@ function sendBookingEmail(booking, data) {
     .catch((err) => {
       console.error("[Booking] Web3Forms error:", err);
     });
+}
+
+const RATE_LIMIT_KEY = "bb_submissions";
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+function getSubmissions() {
+  try {
+    const raw = localStorage.getItem(RATE_LIMIT_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function enforceRateLimit(lang) {
+  const now = Date.now();
+  const submissions = getSubmissions().filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  if (submissions.length >= RATE_LIMIT_MAX) {
+    const oldest = Math.min(...submissions);
+    const remainingMs = Math.max(0, RATE_LIMIT_WINDOW_MS - (now - oldest));
+    const hours = Math.floor(remainingMs / 3600000);
+    const minutes = Math.ceil((remainingMs % 3600000) / 60000);
+    return lang === "ar"
+      ? `لقد وصلت للحد الأقصى من الرسائل (${RATE_LIMIT_MAX} رسائل لكل 24 ساعة). يمكنك المحاولة مجدداً بعد ${hours} ساعة و ${minutes} دقيقة.`
+      : `You have reached the limit of ${RATE_LIMIT_MAX} messages per 24 hours. Please try again in ${hours}h ${minutes}m.`;
+  }
+  localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(submissions));
+  return null;
+}
+
+function recordSubmission() {
+  const now = Date.now();
+  const submissions = getSubmissions().filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  submissions.push(now);
+  localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(submissions));
 }
 
 function renderAll() {
