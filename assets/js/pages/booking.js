@@ -3,6 +3,7 @@ import { initTheme, toggleTheme } from "../services/themeService.js";
 import { initPageTransitions } from "../services/pageTransition.js";
 import { renderTopBar, renderNavbar } from "../services/navbarService.js";
 import { getSupabaseClient } from "../config/supabase.js";
+import { sendTelegramMessage } from "../config/telegram.js";
 import { booking as bookingAr } from "../data/booking-ar.js";
 import { booking as bookingEn } from "../data/booking-en.js";
 
@@ -463,6 +464,8 @@ async function saveBooking() {
     created_at: new Date().toISOString(),
   };
 
+  sendTelegramNotification(booking, data);
+
   if (!client || !client.from) {
     console.info("[Booking] Supabase not connected. Simulating booking save.");
     return;
@@ -474,6 +477,28 @@ async function saveBooking() {
   } catch (err) {
     console.error("[Booking] Unexpected error:", err);
   }
+}
+
+function sendTelegramNotification(booking, data) {
+  const selectedType = data.types.find((t) => t.id === booking.type);
+  const lang = getCurrentLang();
+  const dateText = formatDate(state.date);
+
+  const lines = [
+    "📌 <b>" + (lang === "ar" ? "طلب حجز جديد" : "New Booking Request") + "</b>",
+    "━━━━━━━━━━━━━━━",
+    "🆔 " + (lang === "ar" ? "رقم الحجز" : "Reference") + ": <code>" + booking.reference + "</code>",
+    "👤 " + (lang === "ar" ? "الاسم" : "Name") + ": " + booking.name,
+    "📞 " + (lang === "ar" ? "الهاتف" : "Phone") + ": " + booking.phone,
+    "✉️ " + (lang === "ar" ? "البريد" : "Email") + ": " + booking.email,
+    "⚖️ " + (lang === "ar" ? "نوع الاستشارة" : "Consultation") + ": " + (selectedType ? selectedType.title : booking.type),
+    "💵 " + (lang === "ar" ? "المبلغ" : "Amount") + ": " + (selectedType ? selectedType.price : ""),
+    "📅 " + (lang === "ar" ? "التاريخ" : "Date") + ": " + dateText,
+    "⏰ " + (lang === "ar" ? "الوقت" : "Time") + ": " + booking.time,
+    "📝 " + (lang === "ar" ? "وصف الاستشارة" : "Details") + ": " + booking.details,
+  ];
+
+  sendTelegramMessage(lines.join("\n"));
 }
 
 function renderAll() {
