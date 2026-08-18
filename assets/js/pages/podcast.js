@@ -24,79 +24,12 @@ function thumbSrc(videoId) {
   return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 }
 
-function thumbFallback(el) {
-  const fallback = el.dataset.fallback;
-  if (!fallback || el.dataset.fellback) return;
-  el.dataset.fellback = "1";
-  el.src = fallback;
-}
-
 function playButton(videoId, title, sizeClass = "w-14 h-14 text-xl") {
   return `
     <button type="button" data-play-video="${videoId}" data-title="${title}"
       class="podcast-play ${sizeClass} rounded-full bg-amber-500/95 text-slate-900 flex items-center justify-center shadow-lg shadow-amber-500/40 ring-4 ring-amber-500/20 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
       <i class="fas fa-play ms-1"></i>
     </button>`;
-}
-
-function renderFeatured(episodes) {
-  const container = document.getElementById("podcast-featured");
-  if (!container) return;
-
-  const featured = episodes.find((e) => e.featured) || episodes[0];
-  if (!featured) return;
-
-  const hasVideo = featured.videoId && featured.videoId.trim() !== "";
-  const lang = getCurrentLang();
-
-  container.innerHTML = `
-    <div class="relative mb-14 lg:mb-16">
-      <div class="absolute -inset-px rounded-3xl bg-gradient-to-br from-amber-500/40 via-amber-500/10 to-transparent opacity-60 blur-sm"></div>
-      <div class="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-700/60 shadow-2xl shadow-black/40">
-        <div class="grid lg:grid-cols-2">
-          <div class="relative aspect-video lg:aspect-auto lg:min-h-[320px] bg-gradient-to-br from-amber-500/20 via-slate-800 to-slate-900">
-            ${hasVideo ? `
-              <img src="${thumbSrc(featured.videoId)}" alt="${featured.title}"
-                data-fallback="https://img.youtube.com/vi/${featured.videoId}/hqdefault.jpg"
-                onerror="thumbFallback(this)"
-                class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
-                ${playButton(featured.videoId, featured.title, "w-20 h-20 text-3xl")}
-              </div>` : `
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="w-20 h-20 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-3xl">
-                  <i class="fas fa-microphone"></i>
-                </span>
-              </div>`}
-          </div>
-          <div class="p-6 lg:p-10 flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/15 border border-amber-500/30 rounded-full text-amber-400 text-xs font-bold tracking-wide">
-                <i class="fas fa-star"></i>${lang === "ar" ? "الحلقة المميزة" : "Featured Episode"}
-              </span>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-gray-700/50 rounded-full text-gray-400 text-xs">
-                <i class="fas fa-calendar-alt text-amber-400/70"></i>${featured.date}
-              </span>
-            </div>
-            <h2 class="text-2xl lg:text-3xl font-bold text-white font-title leading-snug mb-3">${featured.title}</h2>
-            <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-6">${featured.desc}</p>
-            <div class="flex flex-wrap items-center gap-4">
-              <span class="inline-flex items-center gap-2 text-gray-300 text-sm">
-                <i class="fas fa-clock text-amber-400/70"></i>${featured.duration}
-              </span>
-              <span class="inline-flex items-center gap-2 text-gray-300 text-sm">
-                <i class="fas fa-tag text-amber-400/70"></i>${featured.type}
-              </span>
-              ${hasVideo ? `
-              <a href="https://www.youtube.com/watch?v=${featured.videoId}" target="_blank" rel="noopener"
-                class="ms-auto inline-flex items-center gap-2 px-4 py-2 bg-red-600/90 hover:bg-red-700 text-white rounded-full text-sm font-bold transition-colors">
-                <i class="fab fa-youtube text-lg"></i>YouTube
-              </a>` : ""}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`;
 }
 
 function renderPodcast() {
@@ -113,8 +46,6 @@ function renderPodcast() {
     "from-cyan-500/25 to-slate-700/50",
   ];
 
-  renderFeatured(data.episodes);
-
   const episodesHTML = data.episodes
     .map((episode, index) => {
       const colorClass = iconColors[index % iconColors.length];
@@ -125,8 +56,8 @@ function renderPodcast() {
             ${hasVideo ? `
               <img src="${thumbSrc(episode.videoId)}" alt="${episode.title}"
                 data-fallback="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg"
-                onerror="thumbFallback(this)"
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                loading="lazy"
+                class="podcast-thumb absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                 ${playButton(episode.videoId, episode.title)}
               </div>` : `
@@ -158,6 +89,15 @@ function renderPodcast() {
     .join("");
 
   grid.innerHTML = episodesHTML;
+
+  grid.querySelectorAll(".podcast-thumb").forEach((img) => {
+    img.addEventListener("error", () => {
+      const fallback = img.dataset.fallback;
+      if (!fallback || img.dataset.fellback) return;
+      img.dataset.fellback = "1";
+      img.src = fallback;
+    });
+  });
 
   document.querySelectorAll("[data-play-video]").forEach((btn) => {
     btn.addEventListener("click", () => {
