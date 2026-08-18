@@ -60,7 +60,7 @@ function renderBookDetail() {
       back: "العودة للمكتبة",
     },
     en: {
-      author: "Prof. Ibrahim Bendaoud",
+      author: "Prof. Brahim Bendaoud",
       pages: "pages",
       desc: "Description",
       chapters: "Table of Contents",

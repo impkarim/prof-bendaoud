@@ -1,6 +1,6 @@
 export const content = {
   nav: {
-    brand: "Ibrahim Bendaoud",
+    brand: "Brahim Bendaoud",
     links: [
       { href: "#hero", label: "Home" },
       { href: "#vision", label: "Vision" },
@@ -15,7 +15,7 @@ export const content = {
 
   hero: {
     greeting: "Professor",
-    name: "Ibrahim Bendaoud",
+    name: "Brahim Bendaoud",
     role: "Professor of Law",
     titles: [
       "Professor of Public Law",
@@ -33,7 +33,7 @@ export const content = {
 
   vision: {
     heading: "Vision & Strategic Foresight",
-    subtitle: "A forward-looking vision based on academic excellence and institutional reform, aiming to build knowledge bridges between academic research and practical application in the fields of law, governance, and international relations.",
+    subtitle: "A forward-looking vision based on academic excellence, institutional reform, and scientific methodology.",
     cards: [
       {
         icon: "fa-brain",
@@ -46,9 +46,9 @@ export const content = {
         text: "Comprehensive visions for reforming judicial and academic institutions by enhancing transparency, efficiency, and applying international quality standards in legal education and judicial work."
       },
       {
-        icon: "fa-globe-americas",
-        title: "International Diplomacy",
-        text: "Strengthening international cooperation in legal fields, spreading a culture of international justice, and supporting mechanisms for peaceful dispute resolution through multilateral diplomacy."
+        icon: "fa-graduation-cap",
+        title: "Methodology",
+        text: "Significant contributions to guiding students in preparing for various competitions, whether related to doctorate, judiciary, advocacy, or other competitions, and tracking the trajectory of student researchers."
       }
     ]
   },
@@ -486,7 +486,7 @@ export const content = {
         year: 2022,
         isbn: "",
         publisher: "",
-        longDesc: "A collective book under the general supervision of Professor Ibrahim Bendaoud, addressing the legal mechanisms for protecting victims of human trafficking, particularly women and children, analyzing the international and national legal framework in this field. Published second semester 2022.",
+        longDesc: "A collective book under the general supervision of Professor Brahim Bendaoud, addressing the legal mechanisms for protecting victims of human trafficking, particularly women and children, analyzing the international and national legal framework in this field. Published second semester 2022.",
         chapters: [],
         link: "#",
         cover: "hands-helping"
@@ -758,8 +758,8 @@ phone: "213676273636",
   },
 
   footer: {
-    rights: "\u00a9 2026 Professor Ibrahim Bendaoud. All Rights Reserved.",
-    designer: "Design & Management | Professor Ibrahim Bendaoud",
+    rights: "\u00a9 2026 Professor Brahim Bendaoud. All Rights Reserved.",
+    designer: "Design & Management | Professor Brahim Bendaoud",
     motto: "Knowledge is ethics and performance"
   }
 };
