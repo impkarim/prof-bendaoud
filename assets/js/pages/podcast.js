@@ -40,16 +40,16 @@ function renderPodcast() {
       const hasVideo = episode.videoId && episode.videoId.trim() !== "";
       const card = `
         <div class="group block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
-          <div class="relative h-40 bg-gradient-to-br ${colorClass} flex items-center justify-center">
+          <div class="relative aspect-video bg-gradient-to-br ${colorClass}">
             ${hasVideo ? `
               <img src="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg" alt="${episode.title}"
-                class="w-full h-full object-cover opacity-100 transition-opacity duration-500">
+                class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <span class="w-14 h-14 rounded-full bg-amber-500/90 text-slate-900 flex items-center justify-center text-xl shadow-lg shadow-amber-500/30 transition-transform group-hover:scale-110">
+                <button type="button" data-play-video="${episode.videoId}" class="podcast-play w-16 h-16 rounded-full bg-amber-500/90 text-slate-900 flex items-center justify-center text-2xl shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
                   <i class="fas fa-play ms-1"></i>
-                </span>
+                </button>
               </div>` : `
-              <span class="w-14 h-14 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl">
+              <span class="absolute inset-0 flex items-center justify-center w-14 h-14 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 text-xl">
                 <i class="fas fa-microphone"></i>
               </span>`}
           </div>
@@ -60,15 +60,31 @@ function renderPodcast() {
             <div class="flex items-center gap-3 mt-3 text-xs text-gray-500">
               <span><i class="fas fa-calendar me-1"></i>${episode.date}</span>
               <span><i class="fas fa-clock me-1"></i>${episode.duration}</span>
+              ${hasVideo ? `
+              <a href="https://www.youtube.com/watch?v=${episode.videoId}" target="_blank" rel="noopener" class="ms-auto inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors">
+                <i class="fab fa-youtube"></i>YouTube
+              </a>` : ""}
             </div>
           </div>
         </div>`;
-      if (!hasVideo) return card;
-      return `<a href="https://www.youtube.com/watch?v=${episode.videoId}" target="_blank" rel="noopener" class="group block">${card}</a>`;
+      return card;
     })
     .join("");
 
   grid.innerHTML = episodesHTML;
+
+  grid.querySelectorAll("[data-play-video]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const container = btn.closest(".relative.aspect-video");
+      if (!container) return;
+      container.innerHTML = `
+        <iframe class="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/${btn.dataset.playVideo}?autoplay=1&rel=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    });
+  });
 }
 
 function renderContent() {
