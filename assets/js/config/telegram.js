@@ -1,5 +1,5 @@
-const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN";
-const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID";
+const TELEGRAM_BOT_TOKEN = "8695615060:AAFIKcl3XqLCv2jR_MD3usKgdrfqg2-R5Ws";
+const TELEGRAM_CHAT_ID = "5203892045";
 
 const TELEGRAM_API = "https://api.telegram.org/bot";
 
