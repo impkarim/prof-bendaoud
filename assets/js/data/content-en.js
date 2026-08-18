@@ -25,7 +25,8 @@ export const content = {
     honor: "Honored with the Presidential Honor Medal by the President of the Republic in recognition of academic and judicial contributions at the national and international levels.",
     stats: [
       { number: "22", label: "Years of Academic & Professional Experience" },
-      { number: "+30", label: "Published Scientific Works in Law" }
+      { number: "+30", label: "Published Scientific Works in Law" },
+      { number: "40+", label: "Peer-Reviewed Research Papers" }
     ],
     cta: "My Career",
     secondaryCta: "Contact Me"
