@@ -76,5 +76,6 @@ export const booking = {
   referenceLabel: "Booking Reference",
   bookingSavedMsg: "Your booking request has been registered successfully. Complete the payment to confirm your appointment.",
   bookingErrorMsg: "An error occurred while registering your booking. Please try again later.",
+  slotTakenMsg: "Sorry, this time slot was just booked. Please choose another time.",
   note: "Note: The booking is only confirmed after the transfer receipt is received.",
 };

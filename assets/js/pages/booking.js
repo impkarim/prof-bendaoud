@@ -76,11 +76,20 @@ function generateSlots(date) {
   return slots;
 }
 
-function isSlotBooked(date, time) {
-  const key = `${date.toISOString().slice(0, 10)} ${time}`;
-  let hash = 0;
-  for (let i = 0; i < key.length; i++) hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
-  return hash % 5 === 0;
+async function fetchBookedSlots(date) {
+  const client = getSupabaseClient();
+  if (!client || !client.rpc) return [];
+  try {
+    const { data, error } = await client.rpc("get_booked_slots", { p_date: formatDateKey(date) });
+    if (error) {
+      console.error("[Booking] get_booked_slots error:", error);
+      return [];
+    }
+    return (data || []).map((row) => row.time);
+  } catch (err) {
+    console.error("[Booking] fetch booked slots error:", err);
+    return [];
+  }
 }
 
 function formatDateKey(date) {
@@ -209,23 +218,6 @@ function renderSlots() {
   const slots = generateSlots(state.date);
   const lang = getCurrentLang();
 
-  const slotCells = slots
-    .map((time) => {
-      const booked = isSlotBooked(state.date, time);
-      const selected = state.time === time;
-      return `
-      <button data-time="${time}" ${booked ? "disabled" : ""} class="slot-cell rounded-xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 ${
-        booked
-          ? "border-gray-700/20 text-gray-600 cursor-not-allowed line-through"
-          : selected
-          ? "bg-amber-500/15 border-amber-500/50 text-amber-300"
-          : "bg-white/[0.02] border-gray-700/30 text-gray-300 hover:border-amber-500/40 hover:bg-white/[0.04]"
-      }">
-        <span dir="ltr">${time}</span>
-      </button>`;
-    })
-    .join("");
-
   renderStep(`
     <div>
       <div class="flex items-center justify-between mb-6">
@@ -235,8 +227,15 @@ function renderSlots() {
         </button>
       </div>
       <p class="text-gray-400 text-sm mb-6">${formatDate(state.date)}</p>
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
-        ${slotCells}
+      <div id="slot-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
+        ${slots
+          .map(
+            (time) => `
+          <div class="slot-loading rounded-xl border border-gray-700/30 bg-white/[0.02] px-3 py-2.5 flex items-center justify-center">
+            <i class="fas fa-spinner fa-spin text-amber-400/60 text-sm"></i>
+          </div>`
+          )
+          .join("")}
       </div>
       <p class="text-gray-500 text-xs mt-6 flex items-center gap-2">
         <i class="fas fa-info-circle text-amber-400/60"></i>${data.unavailableNote}
@@ -244,16 +243,38 @@ function renderSlots() {
     </div>
   `);
 
-  app.querySelectorAll(".slot-cell").forEach((cell) => {
-    if (cell.disabled) return;
-    cell.addEventListener("click", () => {
-      state.time = cell.dataset.time;
-      renderForm();
-    });
-  });
   app.querySelector("#back-dates").addEventListener("click", () => {
     state.time = null;
     renderDates();
+  });
+
+  const grid = app.querySelector("#slot-grid");
+  const selected = state.time;
+
+  slots.forEach((time) => {
+    const btn = document.createElement("button");
+    btn.dataset.time = time;
+    btn.innerHTML = `<span dir="ltr">${time}</span>`;
+    btn.className = "slot-cell rounded-xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 bg-white/[0.02] border-gray-700/30 text-gray-300 hover:border-amber-500/40 hover:bg-white/[0.04]";
+    if (selected === time) {
+      btn.className = "slot-cell rounded-xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 bg-amber-500/15 border-amber-500/50 text-amber-300";
+    }
+    btn.addEventListener("click", () => {
+      state.time = time;
+      renderForm();
+    });
+    grid.appendChild(btn);
+  });
+
+  fetchBookedSlots(state.date).then((bookedTimes) => {
+    grid.querySelectorAll(".slot-cell").forEach((cell) => {
+      const time = cell.dataset.time;
+      if (bookedTimes.includes(time)) {
+        cell.disabled = true;
+        cell.classList.remove("bg-white/[0.02]", "border-gray-700/30", "text-gray-300", "hover:border-amber-500/40", "hover:bg-white/[0.04]", "bg-amber-500/15", "border-amber-500/50", "text-amber-300");
+        cell.classList.add("border-gray-700/20", "text-gray-600", "cursor-not-allowed", "line-through");
+      }
+    });
   });
 }
 
@@ -325,6 +346,7 @@ function renderForm() {
   });
 
   const form = app.querySelector("#booking-form");
+  const submitBtn = form.querySelector("button[type='submit']");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     state.name = app.querySelector("#b-name").value.trim();
@@ -338,6 +360,27 @@ function renderForm() {
     }
 
     state.reference = `BB-${Date.now().toString(36).toUpperCase()}`;
+
+    const originalHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i>${data.submittingBtn}`;
+
+    const result = await bookAppointment(data);
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalHTML;
+
+    if (!result.success) {
+      if (result.slotTaken) {
+        alert(data.slotTakenMsg);
+        state.time = null;
+        renderSlots();
+        return;
+      }
+      alert(data.bookingErrorMsg);
+      return;
+    }
+
     renderPayment();
   });
 }
@@ -443,12 +486,9 @@ function renderPayment() {
       </p>
     </div>
   `);
-
-  saveBooking();
 }
 
-async function saveBooking() {
-  const data = getBookingData();
+async function bookAppointment(data) {
   const client = getSupabaseClient();
   const booking = {
     reference: state.reference,
@@ -461,21 +501,44 @@ async function saveBooking() {
     details: state.details,
     status: "pending",
     language: getCurrentLang(),
-    created_at: new Date().toISOString(),
   };
 
-  sendTelegramNotification(booking, data);
-
-  if (!client || !client.from) {
-    console.info("[Booking] Supabase not connected. Simulating booking save.");
-    return;
+  if (!client || !client.rpc) {
+    console.info("[Booking] Supabase not connected. Simulating successful booking.");
+    sendTelegramNotification(booking, data);
+    return { success: true };
   }
 
   try {
-    const { error } = await client.from("bookings").insert([booking]);
-    if (error) console.error("[Booking] Supabase insert error:", error);
+    const { data: result, error } = await client.rpc("create_booking", {
+      p_reference: booking.reference,
+      p_type: booking.type,
+      p_date: booking.date,
+      p_time: booking.time,
+      p_name: booking.name,
+      p_phone: booking.phone,
+      p_email: booking.email,
+      p_details: booking.details,
+      p_language: booking.language,
+    });
+
+    if (error) {
+      console.error("[Booking] create_booking error:", error);
+      return { success: false, slotTaken: false };
+    }
+
+    if (!result || result.success === false) {
+      if (result && result.error === "slot_taken") {
+        return { success: false, slotTaken: true };
+      }
+      return { success: false, slotTaken: false };
+    }
+
+    sendTelegramNotification(booking, data);
+    return { success: true };
   } catch (err) {
     console.error("[Booking] Unexpected error:", err);
+    return { success: false, slotTaken: false };
   }
 }
 
