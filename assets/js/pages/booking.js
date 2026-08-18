@@ -55,57 +55,18 @@ function renderStep(stepHTML) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function renderTypes() {
-  const data = getBookingData();
-  const cards = data.types
-    .map(
-      (t) => `
-      <button data-type="${t.id}" class="type-card text-left group relative flex flex-col bg-white/[0.02] hover:bg-white/[0.04] rounded-2xl border border-gray-700/30 hover:border-amber-500/40 transition-all duration-300 p-6 backdrop-blur-sm hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-500/10">
-        <div class="flex items-start justify-between mb-4">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
-            <i class="fas ${t.icon}"></i>
-          </div>
-          <span class="text-amber-400 font-bold text-lg">${t.price}</span>
-        </div>
-        <h3 class="text-white font-bold text-base lg:text-lg font-title mb-2">${t.title}</h3>
-        <p class="text-gray-400 text-xs lg:text-sm leading-relaxed mb-4 flex-1">${t.desc}</p>
-        <div class="flex items-center justify-between">
-          <span class="inline-flex items-center gap-1.5 text-xs text-gray-400">
-            <i class="fas fa-clock text-amber-400/70"></i>${t.duration}
-          </span>
-          <span class="inline-flex items-center gap-1.5 text-xs text-amber-400/80">
-            ${data.chooseLabel}<i class="fas fa-chevron-${getCurrentLang() === "ar" ? "left" : "right"}"></i>
-          </span>
-        </div>
-      </button>`
-    )
-    .join("");
-
-  const app = document.getElementById("booking-app");
-  renderStep(`
-    <div>
-      <div class="text-center mb-8">
-        <h2 class="text-2xl lg:text-3xl font-bold text-white font-title">${data.typesHeading}</h2>
-        <p class="text-gray-400 text-sm mt-2">${data.typesSubheading}</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        ${cards}
-      </div>
-    </div>
-  `);
-
-  app.querySelectorAll(".type-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      state.type = card.dataset.type;
-      renderForm();
-    });
-  });
-}
-
 function renderForm() {
   const data = getBookingData();
   const app = document.getElementById("booking-app");
-  const selectedType = data.types.find((t) => t.id === state.type);
+  const selectedType = data.types.find((t) => t.id === state.type) || data.types[0];
+  if (!state.type) state.type = selectedType.id;
+
+  const typeOptions = data.types
+    .map(
+      (t) => `
+      <option value="${t.id}" ${t.id === state.type ? "selected" : ""}>${t.title} — ${t.price}</option>`
+    )
+    .join("");
 
   renderStep(`
     <div>
@@ -114,24 +75,19 @@ function renderForm() {
         <p class="text-gray-400 text-sm mt-2">${data.formSubheading}</p>
       </div>
 
-      <div class="bg-white/[0.02] border border-gray-700/30 rounded-2xl p-5 mb-6">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-          <div>
-            <p class="text-gray-500 text-xs mb-1">${data.typeLabel}</p>
-            <p class="text-white font-bold">${selectedType.title}</p>
-          </div>
-          <div>
-            <p class="text-gray-500 text-xs mb-1">${data.durationLabel}</p>
-            <p class="text-gray-300">${selectedType.duration}</p>
-          </div>
-          <div>
-            <p class="text-gray-500 text-xs mb-1">${data.priceLabel}</p>
-            <p class="text-amber-400 font-bold">${selectedType.price}</p>
+      <form id="booking-form" class="space-y-5 bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6">
+        <div>
+          <label class="block text-gray-300 text-sm font-bold mb-2">${data.typeLabel}</label>
+          <select id="b-type" class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500 transition-colors">
+            ${typeOptions}
+          </select>
+          <div id="b-type-info" class="mt-3 flex items-center justify-between bg-slate-800/50 border border-gray-600 rounded-xl px-4 py-3 text-sm">
+            <span class="text-gray-400 flex items-center gap-2">
+              <i class="fas fa-clock text-amber-400/70"></i><span id="b-duration">${selectedType.duration}</span>
+            </span>
+            <span class="text-amber-400 font-bold text-lg" id="b-price">${selectedType.price}</span>
           </div>
         </div>
-      </div>
-
-      <form id="booking-form" class="space-y-5 bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label class="block text-gray-300 text-sm font-bold mb-2">${data.nameLabel}</label>
@@ -151,7 +107,6 @@ function renderForm() {
           <textarea id="b-details" rows="4" required class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors resize-none" placeholder="${data.detailsPlaceholder}"></textarea>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <button id="back-types" type="button" class="flex-1 border border-gray-600 text-gray-300 hover:border-amber-500 hover:text-amber-400 rounded-xl px-6 py-3 text-sm font-bold transition-colors">${data.backToSlots}</button>
           <button type="submit" class="flex-[2] bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 inline-flex items-center justify-center gap-2">
             <i class="fas fa-paper-plane"></i>${data.submitBtn}
           </button>
@@ -160,9 +115,12 @@ function renderForm() {
     </div>
   `);
 
-  app.querySelector("#back-types").addEventListener("click", () => {
-    state.type = null;
-    renderTypes();
+  const typeSelect = app.querySelector("#b-type");
+  typeSelect.addEventListener("change", () => {
+    state.type = typeSelect.value;
+    const t = data.types.find((x) => x.id === state.type);
+    app.querySelector("#b-duration").textContent = t.duration;
+    app.querySelector("#b-price").textContent = t.price;
   });
 
   const form = app.querySelector("#booking-form");
@@ -372,7 +330,7 @@ function renderAll() {
   renderNavbar();
   renderFooter();
   renderHeading();
-  renderTypes();
+  renderForm();
 }
 
 function init() {
