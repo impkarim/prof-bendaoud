@@ -742,14 +742,14 @@ export const content = {
     infoHeading: "Contact Information",
     info: {
       email: "contact@brahimbendaoud.com",
-phone: "213676273636",
+phone: "+213 676 27 36 36",
       address: "Resident in the Province of Djelfa, People's Democratic Republic of Algeria"
     }
   },
 
   topbar: {
     email: "contact@brahimbendaoud.com",
-    phone: "213676273636",
+    phone: "+213 676 27 36 36",
     social: [
       { icon: "fab fa-facebook-f", url: "https://www.facebook.com/albrwfyswr.brahym.bn.dawd", title: "Facebook" },
       { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/brahim-bendaoud-28800460/", title: "LinkedIn" },
