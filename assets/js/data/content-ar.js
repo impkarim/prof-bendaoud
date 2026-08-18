@@ -745,14 +745,14 @@ export const content = {
     infoHeading: "معلومات الاتصال",
     info: {
       email: "contact@brahimbendaoud.com",
-phone: "213676273636",
+phone: "+213 676 27 36 36",
       address: "مقيم في ولاية الجلفة – الجمهورية الجزائرية الديمقراطية الشعبية"
     }
   },
 
   topbar: {
     email: "contact@brahimbendaoud.com",
-    phone: "213676273636",
+    phone: "+213 676 27 36 36",
     social: [
       { icon: "fab fa-facebook-f", url: "https://www.facebook.com/albrwfyswr.brahym.bn.dawd", title: "فيسبوك" },
       { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/brahim-bendaoud-28800460/", title: "لينكد إن" },
