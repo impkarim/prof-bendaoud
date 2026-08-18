@@ -8,7 +8,8 @@ export const content = {
       { href: "library/", label: "المكتبة الفكرية" },
       { href: "lectures/", label: "المحاضرات" },
       { href: "conferences/", label: "الملتقيات" },
-      { href: "honors/", label: "التكريمات" }
+      { href: "honors/", label: "التكريمات" },
+      { href: "booking/", label: "حجز موعد" }
     ],
     langLabel: "العربية"
   },
