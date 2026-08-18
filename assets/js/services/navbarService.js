@@ -39,10 +39,14 @@ export function renderNavbar() {
 
   const navLinks = data.links
     .map((link) => {
-      const href = link.href.startsWith("#")
-        ? (basePath ? `${basePath}index.html${link.href}` : link.href)
-        : `${basePath}${link.href}`;
-      return `<a href="${href}" class="nav-link text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
+      const isHome = link.href === "#hero";
+      const href = isHome
+        ? (basePath ? `${basePath}index.html` : "./")
+        : link.href.startsWith("#")
+          ? (basePath ? `${basePath}index.html${link.href}` : link.href)
+          : `${basePath}${link.href}`;
+      const cls = isHome ? "nav-link nav-home" : "nav-link";
+      return `<a href="${href}" class="${cls} text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
     })
     .join("");
 
@@ -78,5 +82,16 @@ export function renderNavbar() {
 
   document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
     document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  });
+
+  document.querySelectorAll(".nav-home").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const cleanPath = window.location.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "");
+      const depth = cleanPath.split("/").filter(Boolean).length;
+      if (depth === 0) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
   });
 }
