@@ -155,6 +155,7 @@ select option {
 
 /* --- Backgrounds --- */
 [data-theme="light"] .bg-slate-900 { background-color: #f7f5f0 !important; }
+[data-theme="light"] .bg-slate-900\/95 { background-color: rgba(247,245,240,0.97) !important; }
 [data-theme="light"] .bg-slate-900\/90 { background-color: rgba(247,245,240,0.92) !important; }
 [data-theme="light"] .bg-slate-900\/80 { background-color: rgba(247,245,240,0.85) !important; }
 [data-theme="light"] .bg-slate-800 { background-color: #ffffff !important; }
@@ -250,6 +251,7 @@ select option {
 [data-theme="light"] .border-gray-800 { border-color: #e7e2d9 !important; }
 [data-theme="light"] .border-gray-800\/60 { border-color: rgba(231,226,217,0.6) !important; }
 [data-theme="light"] .border-gray-700 { border-color: #e7e2d9 !important; }
+[data-theme="light"] .border-gray-700\/60 { border-color: rgba(231,226,217,0.6) !important; }
 [data-theme="light"] .border-gray-700\/50 { border-color: rgba(231,226,217,0.5) !important; }
 [data-theme="light"] .border-gray-700\/30 { border-color: rgba(231,226,217,0.3) !important; }
 [data-theme="light"] .border-gray-600 { border-color: #d6d0c7 !important; }
