@@ -21,7 +21,7 @@ function renderFooter() {
 }
 
 function thumbSrc(videoId) {
-  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 }
 
 function playButton(videoId, title, sizeClass = "w-14 h-14 text-xl") {
