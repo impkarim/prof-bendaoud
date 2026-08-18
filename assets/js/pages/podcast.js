@@ -20,6 +20,17 @@ function renderFooter() {
   `;
 }
 
+function thumbSrc(videoId) {
+  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+}
+
+function thumbFallback(el) {
+  const fallback = el.dataset.fallback;
+  if (!fallback || el.dataset.fellback) return;
+  el.dataset.fellback = "1";
+  el.src = fallback;
+}
+
 function playButton(videoId, title, sizeClass = "w-14 h-14 text-xl") {
   return `
     <button type="button" data-play-video="${videoId}" data-title="${title}"
@@ -45,7 +56,9 @@ function renderFeatured(episodes) {
         <div class="grid lg:grid-cols-2">
           <div class="relative aspect-video lg:aspect-auto lg:min-h-[320px] bg-gradient-to-br from-amber-500/20 via-slate-800 to-slate-900">
             ${hasVideo ? `
-              <img src="https://img.youtube.com/vi/${featured.videoId}/hqdefault.jpg" alt="${featured.title}"
+              <img src="${thumbSrc(featured.videoId)}" alt="${featured.title}"
+                data-fallback="https://img.youtube.com/vi/${featured.videoId}/hqdefault.jpg"
+                onerror="thumbFallback(this)"
                 class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
                 ${playButton(featured.videoId, featured.title, "w-20 h-20 text-3xl")}
@@ -126,7 +139,9 @@ function renderPodcast() {
         <div class="group flex flex-col bg-white/5 border border-gray-700/50 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1.5 transition-all duration-300 backdrop-blur-sm">
           <div class="relative aspect-video bg-gradient-to-br ${colorClass}">
             ${hasVideo ? `
-              <img src="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg" alt="${episode.title}"
+              <img src="${thumbSrc(episode.videoId)}" alt="${episode.title}"
+                data-fallback="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg"
+                onerror="thumbFallback(this)"
                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
               <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                 ${playButton(episode.videoId, episode.title)}
