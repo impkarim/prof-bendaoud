@@ -130,10 +130,31 @@ function renderForm() {
   const selectedType = data.types.find((t) => t.id === state.type) || data.types[0];
   if (!state.type) state.type = selectedType.id;
 
-  const typeOptions = data.types
+  const typeCards = data.types
     .map(
       (t) => `
-      <option value="${t.id}" class="bg-slate-800 text-white" ${t.id === state.type ? "selected" : ""}>${t.title} — ${t.price}</option>`
+      <button type="button" data-type="${t.id}" class="b-type-option w-full flex items-start gap-3 p-4 text-right transition-colors border-b border-gray-700/50 last:border-0 hover:bg-white/5 ${
+        t.id === state.type ? "bg-white/5" : ""
+      }">
+        <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+          <i class="fas ${t.icon}"></i>
+        </span>
+        <span class="flex-1">
+          <span class="flex items-center justify-between gap-2">
+            <span class="block font-bold text-white text-sm">${t.title}</span>
+            <span class="text-amber-400 font-bold text-sm flex-shrink-0">${t.price}</span>
+          </span>
+          <span class="block text-gray-400 text-xs leading-relaxed mt-1">${t.desc}</span>
+          <span class="inline-flex items-center gap-1.5 text-xs text-gray-500 mt-2">
+            <i class="fas fa-clock text-amber-400/70"></i>${t.duration}
+          </span>
+        </span>
+        <span class="b-type-check flex-shrink-0 w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center text-transparent mt-0.5 ${
+          t.id === state.type ? "!bg-amber-500 !border-amber-500 !text-slate-900" : ""
+        }">
+          <i class="fas fa-check text-[10px]"></i>
+        </span>
+      </button>`
     )
     .join("");
 
@@ -169,15 +190,27 @@ function renderForm() {
             <form id="booking-form" class="space-y-5">
               <div>
                 <label class="block text-gray-300 text-sm font-bold mb-2">${data.typeLabel}</label>
-                <select id="b-type" class="${inputClass} appearance-none">
-                  ${typeOptions}
-                </select>
-                <div id="b-type-info" class="mt-3 flex items-center justify-between bg-white/5 border border-gray-700/50 rounded-xl px-4 py-3 text-sm">
-                  <span class="text-gray-400 flex items-center gap-2">
-                    <i class="fas fa-clock text-amber-400/70"></i><span id="b-duration">${selectedType.duration}</span>
-                  </span>
-                  <span class="text-amber-400 font-bold text-lg" id="b-price">${selectedType.price}</span>
+                <div class="relative">
+                  <button type="button" id="b-type-trigger" class="w-full bg-white/5 border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200 flex items-center justify-between gap-3">
+                    <span class="flex items-center gap-3 min-w-0">
+                      <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <i class="fas ${selectedType.icon}"></i>
+                      </span>
+                      <span class="text-left min-w-0">
+                        <span id="b-type-title" class="block text-white font-bold text-sm truncate">${selectedType.title}</span>
+                        <span id="b-type-duration" class="block text-gray-500 text-xs mt-0.5"><i class="fas fa-clock text-amber-400/70 me-1"></i>${selectedType.duration}</span>
+                      </span>
+                    </span>
+                    <span class="flex items-center gap-3 flex-shrink-0">
+                      <span id="b-type-price" class="text-amber-400 font-bold">${selectedType.price}</span>
+                      <i id="b-type-chevron" class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
+                    </span>
+                  </button>
+                  <div id="b-type-menu" class="hidden absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900 border border-gray-700 rounded-xl shadow-2xl shadow-black/40 overflow-hidden max-h-80 overflow-y-auto">
+                    ${typeCards}
+                  </div>
                 </div>
+                <input type="hidden" id="b-type-value" value="${state.type}">
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -223,12 +256,60 @@ function renderForm() {
     </div>
   `);
 
-  const typeSelect = app.querySelector("#b-type");
-  typeSelect.addEventListener("change", () => {
-    state.type = typeSelect.value;
-    const t = data.types.find((x) => x.id === state.type);
-    app.querySelector("#b-duration").textContent = t.duration;
-    app.querySelector("#b-price").textContent = t.price;
+  const typeTrigger = app.querySelector("#b-type-trigger");
+  const typeMenu = app.querySelector("#b-type-menu");
+  const typeValue = app.querySelector("#b-type-value");
+  const chevron = app.querySelector("#b-type-chevron");
+
+  function selectType(id) {
+    const t = data.types.find((x) => x.id === id);
+    if (!t) return;
+    state.type = id;
+    typeValue.value = id;
+    app.querySelector("#b-type-title").textContent = t.title;
+    app.querySelector("#b-type-duration").innerHTML = `<i class="fas fa-clock text-amber-400/70 me-1"></i>${t.duration}`;
+    app.querySelector("#b-type-price").textContent = t.price;
+    typeTrigger.querySelector("span.flex-shrink-0 i").className = `fas ${t.icon}`;
+    typeMenu.querySelectorAll(".b-type-option").forEach((opt) => {
+      const active = opt.dataset.type === id;
+      opt.classList.toggle("bg-white/5", active);
+      const check = opt.querySelector(".b-type-check");
+      if (check) {
+        check.classList.toggle("!bg-amber-500", active);
+        check.classList.toggle("!border-amber-500", active);
+        check.classList.toggle("!text-slate-900", active);
+        check.classList.toggle("text-transparent", !active);
+      }
+    });
+    closeMenu();
+  }
+
+  function closeMenu() {
+    typeMenu.classList.add("hidden");
+    chevron.style.transform = "rotate(0deg)";
+  }
+
+  function toggleMenu() {
+    typeMenu.classList.toggle("hidden");
+    chevron.style.transform = typeMenu.classList.contains("hidden") ? "rotate(0deg)" : "rotate(180deg)";
+  }
+
+  typeTrigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  typeMenu.querySelectorAll(".b-type-option").forEach((opt) => {
+    opt.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectType(opt.dataset.type);
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("#b-type-trigger") && !e.target.closest("#b-type-menu")) {
+      closeMenu();
+    }
   });
 
   const form = app.querySelector("#booking-form");
