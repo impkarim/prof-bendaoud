@@ -45,7 +45,7 @@ function renderPodcast() {
               <img src="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg" alt="${episode.title}"
                 class="absolute inset-0 w-full h-full object-cover">
               <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <button type="button" data-play-video="${episode.videoId}" class="podcast-play w-16 h-16 rounded-full bg-amber-500/90 text-slate-900 flex items-center justify-center text-2xl shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
+                <button type="button" data-play-video="${episode.videoId}" data-title="${episode.title}" class="podcast-play w-16 h-16 rounded-full bg-amber-500/90 text-slate-900 flex items-center justify-center text-2xl shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
                   <i class="fas fa-play ms-1"></i>
                 </button>
               </div>` : `
@@ -75,16 +75,54 @@ function renderPodcast() {
 
   grid.querySelectorAll("[data-play-video]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const container = btn.closest(".relative.aspect-video");
-      if (!container) return;
-      container.innerHTML = `
-        <iframe class="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/${btn.dataset.playVideo}?autoplay=1&rel=0"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      openVideoModal(btn.dataset.playVideo, btn.dataset.title);
     });
   });
+}
+
+function openVideoModal(videoId, title) {
+  let modal = document.getElementById("video-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "video-modal";
+    modal.className = "fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6";
+    modal.innerHTML = `
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-video-close></div>
+      <div class="relative w-full max-w-4xl bg-slate-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl shadow-black/60">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-gray-700/60 bg-slate-900/95">
+          <h3 id="video-modal-title" class="text-white font-bold text-sm sm:text-base font-title truncate pe-4"></h3>
+          <button type="button" data-video-close aria-label="Close" class="flex-shrink-0 w-8 h-8 rounded-full border border-gray-600 text-gray-400 hover:text-amber-400 hover:border-amber-500 transition-colors flex items-center justify-center text-sm">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="aspect-video bg-black">
+          <iframe id="video-modal-frame" class="w-full h-full" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+
+    modal.querySelectorAll("[data-video-close]").forEach((el) => {
+      el.addEventListener("click", () => closeVideoModal(modal));
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("hidden") === false) closeVideoModal(modal);
+    });
+  }
+
+  document.getElementById("video-modal-title").textContent = title || "";
+  const frame = document.getElementById("video-modal-frame");
+  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  modal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+function closeVideoModal(modal) {
+  const frame = document.getElementById("video-modal-frame");
+  if (frame) frame.src = "";
+  modal.classList.add("hidden");
+  document.body.style.overflow = "";
 }
 
 function renderContent() {
