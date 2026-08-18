@@ -502,22 +502,22 @@ async function bookAppointment(data) {
   }
 }
 
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+
 function sendBookingEmail(booking, data) {
+  if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("YOUR_")) {
+    console.warn("[Booking] Web3Forms access key not configured. Skipping email.");
+    return;
+  }
+
   const selectedType = data.types.find((t) => t.id === booking.type);
   const lang = getCurrentLang();
 
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = "https://formsubmit.co/contact@brahimbendaoud.com";
-  form.target = "_blank";
-  form.style.display = "none";
-  document.body.appendChild(form);
-
-  const fields = {
-    _subject: `${lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request"} ${booking.reference}`,
-    _template: "table",
-    _captcha: "true",
-    _next: `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}index.html`,
+  const payload = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    subject: `${lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request"} ${booking.reference}`,
+    from_name: booking.name,
+    email: booking.email,
     [lang === "ar" ? "رقم الحجز" : "Reference"]: booking.reference,
     [lang === "ar" ? "الاسم" : "Name"]: booking.name,
     [lang === "ar" ? "الهاتف" : "Phone"]: booking.phone,
@@ -525,18 +525,25 @@ function sendBookingEmail(booking, data) {
     [lang === "ar" ? "نوع الاستشارة" : "Consultation"]: selectedType ? selectedType.title : booking.type,
     [lang === "ar" ? "المبلغ" : "Amount"]: selectedType ? selectedType.price : "",
     [lang === "ar" ? "وصف الاستشارة" : "Details"]: booking.details,
+    botcheck: "",
   };
 
-  for (const [name, value] of Object.entries(fields)) {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    form.appendChild(input);
-  }
-
-  form.submit();
-  form.remove();
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.success) {
+        console.info("[Booking] Request email sent to contact@brahimbendaoud.com");
+      } else {
+        console.warn("[Booking] Web3Forms result:", result.message || result);
+      }
+    })
+    .catch((err) => {
+      console.error("[Booking] Web3Forms error:", err);
+    });
 }
 
 function renderAll() {
