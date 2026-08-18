@@ -1,7 +1,7 @@
 import { initLanguage, getContent, setLanguage, getCurrentLang } from "./services/langService.js";
 import { initTheme, toggleTheme } from "./services/themeService.js";
 import { initPageTransitions } from "./services/pageTransition.js";
-import { renderTopBar, renderNavbar } from "./services/navbarService.js";
+import { renderTopBar, renderNavbar, handleSectionLink, initSectionScrollOnLoad } from "./services/navbarService.js";
 
 
 
@@ -47,7 +47,7 @@ function renderHero() {
             </div>
           </div>
           <div class="mt-8 flex flex-wrap gap-4">
-            <a href="#timeline" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200">
+            <a href="./" data-section="timeline" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200">
               ${data.cta}
             </a>
             <a href="booking/" class="border border-gray-500 hover:border-amber-500 text-gray-200 hover:text-amber-400 px-6 py-3 rounded-lg transition-colors duration-200">
@@ -275,6 +275,12 @@ function init() {
   initPageTransitions();
   renderAll();
   initializeLanguageSwitcher();
+  document.querySelectorAll("[data-section]").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      handleSectionLink(link.dataset.section || "", e);
+    });
+  });
+  initSectionScrollOnLoad();
   document.addEventListener("click", (event) => {
     const themeBtn = event.target.closest("#theme-toggle");
     if (themeBtn) { toggleTheme(); return; }
