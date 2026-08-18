@@ -713,6 +713,7 @@ export const content = {
   podcast: {
     heading: "Podcast",
     subtitle: "Podcast videos on law, religious sciences and academia",
+    badgeLabel: "YouTube Channel",
     backLabel: "Back to Home",
     episodes: [
       {
@@ -722,7 +723,9 @@ export const content = {
         videoId: "fL3cE-sU_Sk",
         duration: "—",
         date: "2026",
-        type: "Podcast"
+        type: "Podcast",
+        icon: "fa-microphone",
+        featured: true
       }
     ]
   },

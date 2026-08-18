@@ -714,6 +714,7 @@ export const content = {
   podcast: {
     heading: "البودكاست",
     subtitle: "فيديوهات بودكاست في القانون والعلوم الشرعية والأكاديميا",
+    badgeLabel: "قناة يوتيوب",
     backLabel: "العودة للصفحة الرئيسية",
     episodes: [
       {
@@ -723,7 +724,9 @@ export const content = {
         videoId: "fL3cE-sU_Sk",
         duration: "—",
         date: "2026",
-        type: "بودكاست"
+        type: "بودكاست",
+        icon: "fa-microphone",
+        featured: true
       }
     ]
   },

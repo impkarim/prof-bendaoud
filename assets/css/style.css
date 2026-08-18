@@ -168,6 +168,7 @@ select option {
 [data-theme="light"] .bg-amber-500 { background-color: #d97706 !important; }
 [data-theme="light"] .bg-amber-500\/40 { background-color: rgba(217,119,6,0.1) !important; }
 [data-theme="light"] .bg-amber-500\/20 { background-color: rgba(217,119,6,0.07) !important; }
+[data-theme="light"] .bg-amber-500\/15 { background-color: rgba(217,119,6,0.05) !important; }
 [data-theme="light"] .bg-amber-500\/10 { background-color: rgba(217,119,6,0.04) !important; }
 [data-theme="light"] .bg-amber-600 { background-color: #b45309 !important; }
 
@@ -207,11 +208,17 @@ select option {
 
 /* Book/library cover gradients */
 [data-theme="light"] .from-amber-500\/20,
+[data-theme="light"] .from-amber-500\/25,
 [data-theme="light"] .from-blue-500\/20,
+[data-theme="light"] .from-blue-500\/25,
 [data-theme="light"] .from-emerald-500\/20,
+[data-theme="light"] .from-emerald-500\/25,
 [data-theme="light"] .from-purple-500\/20,
+[data-theme="light"] .from-purple-500\/25,
 [data-theme="light"] .from-rose-500\/20,
+[data-theme="light"] .from-rose-500\/25,
 [data-theme="light"] .from-cyan-500\/20,
+[data-theme="light"] .from-cyan-500\/25,
 [data-theme="light"] .from-orange-500\/20,
 [data-theme="light"] .from-teal-500\/20 {
   --tw-gradient-from: rgba(217,119,6,0.08) !important;
@@ -246,6 +253,7 @@ select option {
 [data-theme="light"] .text-rose-400 { color: #f43f5e !important; }
 [data-theme="light"] .text-green-400 { color: #22c55e !important; }
 [data-theme="light"] .text-red-400 { color: #ef4444 !important; }
+[data-theme="light"] .text-red-500 { color: #dc2626 !important; }
 
 /* --- Border colors --- */
 [data-theme="light"] .border-gray-800 { border-color: #e7e2d9 !important; }
@@ -253,6 +261,7 @@ select option {
 [data-theme="light"] .border-gray-700 { border-color: #e7e2d9 !important; }
 [data-theme="light"] .border-gray-700\/60 { border-color: rgba(231,226,217,0.6) !important; }
 [data-theme="light"] .border-gray-700\/50 { border-color: rgba(231,226,217,0.5) !important; }
+[data-theme="light"] .border-gray-700\/40 { border-color: rgba(231,226,217,0.4) !important; }
 [data-theme="light"] .border-gray-700\/30 { border-color: rgba(231,226,217,0.3) !important; }
 [data-theme="light"] .border-gray-600 { border-color: #d6d0c7 !important; }
 [data-theme="light"] .border-gray-500 { border-color: #c5bfb6 !important; }
@@ -283,6 +292,8 @@ select option {
 [data-theme="light"] .shadow-amber-500\/5,
 [data-theme="light"] .shadow-amber-500\/10,
 [data-theme="light"] .shadow-amber-500\/15 { box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
+[data-theme="light"] .hover\:shadow-amber-500\/10:hover { box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
+[data-theme="light"] .shadow-amber-500\/40 { box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important; }
 
 /* --- Hover states --- */
 [data-theme="light"] .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08) !important; }

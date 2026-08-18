@@ -50,18 +50,47 @@
   </nav>
 
   <main id="podcast-page" class="pt-[100px] lg:pt-[116px]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div class="flex items-center gap-3 mb-8">
-        <a id="back-link" href="../index.html" class="text-gray-400 hover:text-amber-400 transition-colors text-sm">
-          <i class="fas fa-arrow-right me-1"></i>
-          <span id="back-label">العودة للصفحة الرئيسية</span>
-        </a>
-      </div>
-      <div class="text-center mb-12">
-        <h1 id="page-heading" class="text-3xl lg:text-5xl font-bold text-white font-title">البودكاست</h1>
-        <p id="page-subtitle" class="text-gray-400 mt-3 text-lg">فيديوهات بودكاست في القانون والأكاديميا</p>
-      </div>
-      <div id="podcast-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="relative overflow-hidden">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+        <div class="flex items-center gap-3 mb-8">
+          <a id="back-link" href="../index.html" class="text-gray-400 hover:text-amber-400 transition-colors text-sm">
+            <i class="fas fa-arrow-right me-1"></i>
+            <span id="back-label">العودة للصفحة الرئيسية</span>
+          </a>
+        </div>
+
+        <div class="relative mb-12 lg:mb-16">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <span class="w-8 h-px bg-amber-500/30"></span>
+            <span class="w-1 h-1 rounded-full bg-amber-500/40"></span>
+            <span class="w-8 h-px bg-amber-500/30"></span>
+          </div>
+          <div class="text-center pt-6">
+            <div class="relative inline-block">
+              <h1 id="page-heading" class="text-4xl lg:text-5xl font-bold text-white font-title leading-tight">البودكاست</h1>
+              <div class="absolute -bottom-3 left-[15%] right-[15%] h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+            </div>
+            <div class="mt-6">
+              <p id="page-subtitle" class="text-gray-400 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">فيديوهات بودكاست في القانون والأكاديميا</p>
+              <div class="flex items-center justify-center gap-2 mt-2">
+                <span class="w-4 h-px bg-amber-500/20"></span>
+                <span class="relative inline-flex items-center gap-1.5 px-3 py-0.5 bg-amber-500/10 border border-amber-500/15 rounded-full">
+                  <i class="fas fa-microphone text-amber-400/60 text-[9px]"></i>
+                  <span id="page-badge" class="text-[11px] font-bold text-amber-400/70 tracking-wider">قناة يوتيوب</span>
+                </span>
+                <span class="w-4 h-px bg-amber-500/20"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="podcast-featured"></div>
+        <div id="podcast-episodes-heading" class="hidden"></div>
+        <div id="podcast-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
       </div>
     </div>
   </main>
