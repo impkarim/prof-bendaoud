@@ -20,60 +20,147 @@ function renderFooter() {
   `;
 }
 
+function playButton(videoId, title, sizeClass = "w-14 h-14 text-xl") {
+  return `
+    <button type="button" data-play-video="${videoId}" data-title="${title}"
+      class="podcast-play ${sizeClass} rounded-full bg-amber-500/95 text-slate-900 flex items-center justify-center shadow-lg shadow-amber-500/40 ring-4 ring-amber-500/20 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
+      <i class="fas fa-play ms-1"></i>
+    </button>`;
+}
+
+function renderFeatured(episodes) {
+  const container = document.getElementById("podcast-featured");
+  if (!container) return;
+
+  const featured = episodes.find((e) => e.featured) || episodes[0];
+  if (!featured) return;
+
+  const hasVideo = featured.videoId && featured.videoId.trim() !== "";
+  const lang = getCurrentLang();
+
+  container.innerHTML = `
+    <div class="relative mb-14 lg:mb-16">
+      <div class="absolute -inset-px rounded-3xl bg-gradient-to-br from-amber-500/40 via-amber-500/10 to-transparent opacity-60 blur-sm"></div>
+      <div class="relative rounded-3xl overflow-hidden bg-slate-900 border border-gray-700/60 shadow-2xl shadow-black/40">
+        <div class="grid lg:grid-cols-2">
+          <div class="relative aspect-video lg:aspect-auto lg:min-h-[320px] bg-gradient-to-br from-amber-500/20 via-slate-800 to-slate-900">
+            ${hasVideo ? `
+              <img src="https://img.youtube.com/vi/${featured.videoId}/hqdefault.jpg" alt="${featured.title}"
+                class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
+                ${playButton(featured.videoId, featured.title, "w-20 h-20 text-3xl")}
+              </div>` : `
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="w-20 h-20 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-3xl">
+                  <i class="fas fa-microphone"></i>
+                </span>
+              </div>`}
+          </div>
+          <div class="p-6 lg:p-10 flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/15 border border-amber-500/30 rounded-full text-amber-400 text-xs font-bold tracking-wide">
+                <i class="fas fa-star"></i>${lang === "ar" ? "الحلقة المميزة" : "Featured Episode"}
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-gray-700/50 rounded-full text-gray-400 text-xs">
+                <i class="fas fa-calendar-alt text-amber-400/70"></i>${featured.date}
+              </span>
+            </div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-white font-title leading-snug mb-3">${featured.title}</h2>
+            <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-6">${featured.desc}</p>
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="inline-flex items-center gap-2 text-gray-300 text-sm">
+                <i class="fas fa-clock text-amber-400/70"></i>${featured.duration}
+              </span>
+              <span class="inline-flex items-center gap-2 text-gray-300 text-sm">
+                <i class="fas fa-tag text-amber-400/70"></i>${featured.type}
+              </span>
+              ${hasVideo ? `
+              <a href="https://www.youtube.com/watch?v=${featured.videoId}" target="_blank" rel="noopener"
+                class="ms-auto inline-flex items-center gap-2 px-4 py-2 bg-red-600/90 hover:bg-red-700 text-white rounded-full text-sm font-bold transition-colors">
+                <i class="fab fa-youtube text-lg"></i>YouTube
+              </a>` : ""}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderPodcast() {
   const data = getContent().podcast;
   const grid = document.getElementById("podcast-grid");
   if (!grid) return;
 
   const iconColors = [
-    "from-amber-500/20 to-slate-700/50",
-    "from-blue-500/20 to-slate-700/50",
-    "from-emerald-500/20 to-slate-700/50",
-    "from-purple-500/20 to-slate-700/50",
-    "from-rose-500/20 to-slate-700/50",
-    "from-cyan-500/20 to-slate-700/50",
+    "from-amber-500/25 to-slate-700/50",
+    "from-blue-500/25 to-slate-700/50",
+    "from-emerald-500/25 to-slate-700/50",
+    "from-purple-500/25 to-slate-700/50",
+    "from-rose-500/25 to-slate-700/50",
+    "from-cyan-500/25 to-slate-700/50",
   ];
 
-  const episodesHTML = data.episodes
+  renderFeatured(data.episodes);
+
+  const rest = data.episodes.slice(1);
+  const episodesHeading = document.getElementById("podcast-episodes-heading");
+  if (episodesHeading && rest.length > 0) {
+    episodesHeading.classList.remove("hidden");
+    episodesHeading.innerHTML = `
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <span class="w-10 h-px bg-gradient-to-l from-amber-500/40 to-transparent"></span>
+        <span class="text-gray-500 text-xs uppercase tracking-[0.2em] flex items-center gap-2">
+          <i class="fas fa-headphones text-amber-400/50"></i>${getCurrentLang() === "ar" ? "جميع الحلقات" : "All Episodes"}
+        </span>
+        <span class="w-10 h-px bg-gradient-to-r from-amber-500/40 to-transparent"></span>
+      </div>`;
+  } else if (episodesHeading) {
+    episodesHeading.classList.add("hidden");
+  }
+
+  const episodesHTML = rest
     .map((episode, index) => {
       const colorClass = iconColors[index % iconColors.length];
       const hasVideo = episode.videoId && episode.videoId.trim() !== "";
-      const card = `
-        <div class="group block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+      return `
+        <div class="group flex flex-col bg-white/5 border border-gray-700/50 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1.5 transition-all duration-300 backdrop-blur-sm">
           <div class="relative aspect-video bg-gradient-to-br ${colorClass}">
             ${hasVideo ? `
               <img src="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg" alt="${episode.title}"
-                class="absolute inset-0 w-full h-full object-cover">
-              <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <button type="button" data-play-video="${episode.videoId}" data-title="${episode.title}" class="podcast-play w-16 h-16 rounded-full bg-amber-500/90 text-slate-900 flex items-center justify-center text-2xl shadow-lg shadow-amber-500/30 transition-all duration-300 hover:scale-110 hover:bg-amber-400 focus:outline-none">
-                  <i class="fas fa-play ms-1"></i>
-                </button>
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                ${playButton(episode.videoId, episode.title)}
               </div>` : `
-              <span class="absolute inset-0 flex items-center justify-center w-14 h-14 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 text-xl">
-                <i class="fas fa-microphone"></i>
-              </span>`}
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="w-14 h-14 rounded-full bg-white/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl">
+                  <i class="fas fa-microphone"></i>
+                </span>
+              </div>`}
           </div>
-          <div class="p-5">
-            <span class="inline-block text-xs font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full">${episode.type}</span>
-            <h3 class="text-lg font-bold text-white mt-2 font-title leading-tight group-hover:text-amber-400 transition-colors">${episode.title}</h3>
-            <p class="text-gray-400 text-sm mt-2 leading-relaxed line-clamp-2">${episode.desc}</p>
-            <div class="flex items-center gap-3 mt-3 text-xs text-gray-500">
-              <span><i class="fas fa-calendar me-1"></i>${episode.date}</span>
-              <span><i class="fas fa-clock me-1"></i>${episode.duration}</span>
+          <div class="p-5 flex flex-col flex-1">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full">
+                <i class="fas ${episode.icon || "fa-microphone"} text-[10px]"></i>${episode.type}
+              </span>
+            </div>
+            <h3 class="text-base font-bold text-white font-title leading-snug mb-2 group-hover:text-amber-400 transition-colors">${episode.title}</h3>
+            <p class="text-gray-400 text-xs leading-relaxed line-clamp-2 flex-1">${episode.desc}</p>
+            <div class="flex items-center gap-4 mt-4 pt-4 border-t border-gray-700/40 text-xs text-gray-500">
+              <span class="inline-flex items-center gap-1.5"><i class="fas fa-calendar text-amber-400/70"></i>${episode.date}</span>
+              <span class="inline-flex items-center gap-1.5"><i class="fas fa-clock text-amber-400/70"></i>${episode.duration}</span>
               ${hasVideo ? `
-              <a href="https://www.youtube.com/watch?v=${episode.videoId}" target="_blank" rel="noopener" class="ms-auto inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors">
-                <i class="fab fa-youtube"></i>YouTube
+              <a href="https://www.youtube.com/watch?v=${episode.videoId}" target="_blank" rel="noopener" class="ms-auto inline-flex items-center gap-1.5 text-red-500 hover:text-red-400 transition-colors">
+                <i class="fab fa-youtube"></i>
               </a>` : ""}
             </div>
           </div>
         </div>`;
-      return card;
     })
     .join("");
 
   grid.innerHTML = episodesHTML;
 
-  grid.querySelectorAll("[data-play-video]").forEach((btn) => {
+  document.querySelectorAll("[data-play-video]").forEach((btn) => {
     btn.addEventListener("click", () => {
       openVideoModal(btn.dataset.playVideo, btn.dataset.title);
     });
@@ -88,17 +175,19 @@ function openVideoModal(videoId, title) {
     modal.className = "fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6";
     modal.innerHTML = `
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-video-close></div>
-      <div class="relative w-full max-w-4xl bg-slate-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl shadow-black/60">
-        <div class="flex items-center justify-between px-5 py-3 border-b border-gray-700/60 bg-slate-900/95">
+      <div class="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-slate-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl shadow-black/60 animate-[fadeInUp_0.3s_ease-out]">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-gray-700/60 bg-slate-900/95 flex-shrink-0">
           <h3 id="video-modal-title" class="text-white font-bold text-sm sm:text-base font-title truncate pe-4"></h3>
           <button type="button" data-video-close aria-label="Close" class="flex-shrink-0 w-8 h-8 rounded-full border border-gray-600 text-gray-400 hover:text-amber-400 hover:border-amber-500 transition-colors flex items-center justify-center text-sm">
             <i class="fas fa-times"></i>
           </button>
         </div>
-        <div class="aspect-video bg-black">
-          <iframe id="video-modal-frame" class="w-full h-full" title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="relative flex-1 min-h-0 bg-black flex items-center justify-center">
+          <div class="relative aspect-video w-full max-h-full mx-auto">
+            <iframe id="video-modal-frame" class="absolute inset-0 w-full h-full" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>`;
     document.body.appendChild(modal);
@@ -129,6 +218,7 @@ function renderContent() {
   const data = getContent().podcast;
   document.getElementById("page-heading").textContent = data.heading;
   document.getElementById("page-subtitle").textContent = data.subtitle;
+  document.getElementById("page-badge").textContent = data.badgeLabel;
   document.getElementById("back-label").textContent = data.backLabel;
 
   const lang = getCurrentLang();
