@@ -8,10 +8,8 @@ export const content = {
       { href: "library/", label: "Library" },
       { href: "lectures/", label: "Lectures" },
       { href: "conferences/", label: "Conferences" },
-      { href: "honors/", label: "Honors" },
-      { href: "#contact", label: "Contact" }
+      { href: "honors/", label: "Honors" }
     ],
-    contactBtn: "Contact Me",
     langLabel: "English"
   },
 
