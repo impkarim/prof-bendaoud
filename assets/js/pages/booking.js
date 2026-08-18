@@ -238,6 +238,7 @@ function renderForm() {
               </div>
 
               <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <button type="submit" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 hover:text-slate-900 font-bold rounded-xl px-6 py-3 text-sm transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30">
                   <i class="fas fa-paper-plane"></i>${data.submitBtn}
                 </button>
@@ -321,6 +322,7 @@ function renderForm() {
   const submitBtn = form.querySelector("button[type='submit']");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const lang = getCurrentLang();
     state.name = app.querySelector("#b-name").value.trim();
     state.phone = app.querySelector("#b-phone").value.trim();
     state.email = app.querySelector("#b-email").value.trim();
@@ -330,6 +332,12 @@ function renderForm() {
       alert(data.formHeading);
       return;
     }
+
+    const botcheck = form.querySelector('input[name="botcheck"]');
+    if (botcheck && botcheck.checked) {
+      return;
+    }
+    state.botcheck = botcheck ? botcheck.checked : false;
 
     state.reference = `BB-${Date.now().toString(36).toUpperCase()}`;
 
@@ -518,6 +526,7 @@ function sendBookingEmail(booking, data) {
     subject: `${lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request"} ${booking.reference}`,
     from_name: booking.name,
     email: booking.email,
+    botcheck: state.botcheck ? "on" : "",
     [lang === "ar" ? "رقم الحجز" : "Reference"]: booking.reference,
     [lang === "ar" ? "الاسم" : "Name"]: booking.name,
     [lang === "ar" ? "الهاتف" : "Phone"]: booking.phone,
@@ -525,7 +534,6 @@ function sendBookingEmail(booking, data) {
     [lang === "ar" ? "نوع الاستشارة" : "Consultation"]: selectedType ? selectedType.title : booking.type,
     [lang === "ar" ? "المبلغ" : "Amount"]: selectedType ? selectedType.price : "",
     [lang === "ar" ? "وصف الاستشارة" : "Details"]: booking.details,
-    botcheck: "",
   };
 
   fetch("https://api.web3forms.com/submit", {
