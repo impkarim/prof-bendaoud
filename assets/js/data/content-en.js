@@ -743,7 +743,7 @@ export const content = {
     info: {
       email: "contact@brahimbendaoud.com",
 phone: "213676273636",
-      address: "Faculty of Law, University of Algiers, Algeria"
+      address: "Resident in the Province of Djelfa, People's Democratic Republic of Algeria"
     }
   },
 
