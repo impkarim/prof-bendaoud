@@ -502,7 +502,7 @@ async function bookAppointment(data) {
   }
 }
 
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const WEB3FORMS_ACCESS_KEY = "af5b047e-07ca-4dc5-a0b5-5ea6be24d9cb";
 
 function sendBookingEmail(booking, data) {
   if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("YOUR_")) {
