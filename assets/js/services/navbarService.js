@@ -14,9 +14,9 @@ export function renderTopBar() {
   topbar.innerHTML = `
     <div class="fixed top-0 left-0 right-0 z-50 bg-slate-800/90 border-b border-gray-700/50 text-xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-9">
+        <div class="flex items-center justify-between h-9 min-h-9 flex-wrap gap-y-1 py-1 sm:py-0">
           <div class="flex items-center gap-4 min-w-0">
-            <span class="text-gray-400 truncate min-w-0 max-w-[160px] sm:max-w-none"><i class="fas fa-envelope me-1.5 text-amber-400"></i><bdi dir="ltr">${data.email}</bdi></span>
+            <span class="text-gray-400 truncate min-w-0 sm:max-w-none"><i class="fas fa-envelope me-1.5 text-amber-400"></i><bdi dir="ltr">${data.email}</bdi></span>
             <span class="text-gray-400 hidden sm:inline"><i class="fas fa-phone-alt me-1.5 text-amber-400"></i><bdi dir="ltr">${data.phone}</bdi></span>
           </div>
           <div class="flex items-center gap-3">
