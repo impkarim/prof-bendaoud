@@ -3,9 +3,9 @@ export const content = {
     brand: "Brahim Bendaoud",
     links: [
       { href: "#hero", label: "Home" },
-      { href: "#vision", label: "Vision" },
       { href: "#timeline", label: "Career" },
       { href: "library/", label: "Library" },
+      { href: "podcast/", label: "Podcast" },
       { href: "lectures/", label: "Lectures" },
       { href: "conferences/", label: "Conferences" },
       { href: "honors/", label: "Honors" },
@@ -706,6 +706,23 @@ export const content = {
         organization: "Algerian Association of Educated Youth",
         location: "Algeria",
         longDesc: "Golden Burnous and Appreciation Medal for Personality of the Year 2015 awarded by the Algerian Association of Educated Youth on December 18, 2015, in recognition of the distinguished scientific and national career."
+      }
+    ]
+  },
+
+  podcast: {
+    heading: "Podcast",
+    subtitle: "Podcast videos on law, religious sciences and academia",
+    backLabel: "Back to Home",
+    episodes: [
+      {
+        id: "episode-1",
+        title: "Episode 1 – International Humanitarian Law",
+        desc: "A conversation on the principles of international humanitarian law and the protection of civilians in armed conflicts.",
+        videoId: "",
+        duration: "—",
+        date: "2026",
+        type: "Podcast"
       }
     ]
   },
