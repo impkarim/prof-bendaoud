@@ -716,10 +716,10 @@ export const content = {
     backLabel: "Back to Home",
     episodes: [
       {
-        id: "episode-1",
-        title: "Episode 1 – International Humanitarian Law",
-        desc: "A conversation on the principles of international humanitarian law and the protection of civilians in armed conflicts.",
-        videoId: "",
+        id: "methodology-phd-questions",
+        title: "Methodology for Answering PhD Questions",
+        desc: "A video explaining the methodology for answering PhD exam questions, published on YouTube.",
+        videoId: "fL3cE-sU_Sk",
         duration: "—",
         date: "2026",
         type: "Podcast"
