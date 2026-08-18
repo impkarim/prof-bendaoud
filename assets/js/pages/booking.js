@@ -124,6 +124,10 @@ function renderContactSidebar() {
 const inputClass =
   "w-full bg-white/5 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200";
 
+function priceColorClass(price) {
+  return price === "مجاناً" || price === "Free" ? "text-emerald-400" : "text-amber-400";
+}
+
 function renderForm() {
   const data = getBookingData();
   const app = document.getElementById("booking-app");
@@ -142,7 +146,7 @@ function renderForm() {
         <span class="flex-1">
           <span class="flex items-center justify-between gap-2">
             <span class="block font-bold text-white text-sm">${t.title}</span>
-            <span class="text-amber-400 font-bold text-sm flex-shrink-0">${t.price}</span>
+            <span class="${priceColorClass(t.price)} font-bold text-sm flex-shrink-0">${t.price}</span>
           </span>
           <span class="block text-gray-400 text-xs leading-relaxed mt-1">${t.desc}</span>
           <span class="inline-flex items-center gap-1.5 text-xs text-gray-500 mt-2">
@@ -202,7 +206,7 @@ function renderForm() {
                       </span>
                     </span>
                     <span class="flex items-center gap-3 flex-shrink-0">
-                      <span id="b-type-price" class="text-amber-400 font-bold">${selectedType.price}</span>
+                      <span id="b-type-price" class="${priceColorClass(selectedType.price)} font-bold">${selectedType.price}</span>
                       <i id="b-type-chevron" class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
                     </span>
                   </button>
@@ -268,7 +272,9 @@ function renderForm() {
     typeValue.value = id;
     app.querySelector("#b-type-title").textContent = t.title;
     app.querySelector("#b-type-duration").innerHTML = `<i class="fas fa-clock text-amber-400/70 me-1"></i>${t.duration}`;
-    app.querySelector("#b-type-price").textContent = t.price;
+    const priceEl = app.querySelector("#b-type-price");
+    priceEl.textContent = t.price;
+    priceEl.className = `${priceColorClass(t.price)} font-bold`;
     typeTrigger.querySelector("span.flex-shrink-0 i").className = `fas ${t.icon}`;
     typeMenu.querySelectorAll(".b-type-option").forEach((opt) => {
       const active = opt.dataset.type === id;
@@ -397,7 +403,7 @@ function renderPayment() {
           </div>
           <div class="bg-white/5 border border-amber-500/30 rounded-xl px-4 py-3">
             <p class="text-gray-500 text-xs mb-1">${data.priceLabel}</p>
-            <p class="text-amber-400 font-bold text-lg">${selectedType.price}</p>
+            <p class="${priceColorClass(selectedType.price)} font-bold text-lg">${selectedType.price}</p>
           </div>
         </div>
       </div>
