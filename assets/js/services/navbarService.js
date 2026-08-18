@@ -17,7 +17,7 @@ export function renderTopBar() {
         <div class="flex items-center justify-between h-9">
           <div class="flex items-center gap-4">
             <span class="text-gray-400"><i class="fas fa-envelope me-1.5 text-amber-400"></i>${data.email}</span>
-            <span class="text-gray-400 hidden sm:inline"><i class="fas fa-phone-alt me-1.5 text-amber-400"></i>${data.phone}</span>
+            <span class="text-gray-400 hidden sm:inline"><i class="fas fa-phone-alt me-1.5 text-amber-400"></i><bdi dir="ltr">${data.phone}</bdi></span>
           </div>
           <div class="flex items-center gap-3">
             ${data.social.map(s => `<a href="${s.url}" target="_blank" rel="noopener" title="${s.title}" class="text-gray-400 hover:text-amber-400 transition-colors"><i class="${s.icon}"></i></a>`).join("")}
