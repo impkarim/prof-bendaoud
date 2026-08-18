@@ -81,8 +81,9 @@ export function renderNavbar() {
         ? (basePath ? `${basePath}index.html` : "./")
         : `${basePath}${link.href}`;
       const targetId = isSection ? link.href.slice(1) : "";
+      const sectionAttr = isSection ? ` data-section="${targetId}"` : "";
       const cls = `nav-link${isSection ? " nav-section" : ""}`;
-      return `<a href="${href}" data-section="${targetId}" class="${cls} text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
+      return `<a href="${href}"${sectionAttr} class="${cls} text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm lg:text-base">${link.label}</a>`;
     })
     .join("");
 
