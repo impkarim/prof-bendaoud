@@ -333,3 +333,24 @@ textarea:-webkit-autofill {
 /* --- Theme toggle icon visibility --- */
 [data-theme="dark"] [data-theme-icon="moon"] { display: none !important; }
 [data-theme="light"] [data-theme-icon="sun"] { display: none !important; }
+
+/* ===== English typography scaling ===== */
+html[lang="en"] #page-heading { font-size: 2rem; }
+html[lang="en"] #book-title,
+html[lang="en"] #award-title,
+html[lang="en"] #lecture-title { font-size: 1.5rem; }
+html[lang="en"] #page-subtitle { font-size: 1rem; }
+html[lang="en"] #hero h1 { font-size: 2.5rem; }
+html[lang="en"] section h2 { font-size: 1.75rem; }
+html[lang="en"] .font-title { letter-spacing: -0.01em; }
+html[lang="en"] .nav-link { font-size: 0.875rem; }
+html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
+
+@media (min-width: 1024px) {
+  html[lang="en"] #page-heading { font-size: 3rem; }
+  html[lang="en"] #hero h1 { font-size: 3.25rem; }
+  html[lang="en"] section h2 { font-size: 2.25rem; }
+  html[lang="en"] #book-title,
+  html[lang="en"] #award-title,
+  html[lang="en"] #lecture-title { font-size: 1.75rem; }
+}
