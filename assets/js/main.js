@@ -282,7 +282,7 @@ function renderContact() {
               </div>
               <div class="flex items-center gap-3">
                 <i class="fas fa-phone text-amber-400 w-5"></i>
-                <span class="text-gray-300 text-sm">${data.info.phone}</span>
+                <span class="text-gray-300 text-sm"><bdi dir="ltr">${data.info.phone}</bdi></span>
               </div>
               <div class="flex items-center gap-3">
                 <i class="fas fa-map-marker-alt text-amber-400 w-5"></i>
