@@ -734,6 +734,8 @@ export const content = {
         "Media Interview",
         "Other"
       ],
+      messageLabel: "Message",
+      messagePlaceholder: "Write your message here...",
       submitBtn: "Send Message",
       submittingBtn: "Sending...",
       successMsg: "Your message has been sent successfully. We will contact you as soon as possible.",
