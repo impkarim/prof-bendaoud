@@ -7,16 +7,8 @@ import { sendTelegramMessage } from "../config/telegram.js";
 import { booking as bookingAr } from "../data/booking-ar.js";
 import { booking as bookingEn } from "../data/booking-en.js";
 
-const WORKING_DAYS = [0, 1, 2, 3, 4, 6];
-const SLOT_START_HOUR = 9;
-const SLOT_END_HOUR = 17;
-const SLOT_MINUTES = 30;
-const DAYS_AHEAD = 14;
-
 let state = {
   type: null,
-  date: null,
-  time: null,
   name: "",
   phone: "",
   email: "",
@@ -43,57 +35,6 @@ function renderFooter() {
         </div>
       </div>
     </div>`;
-}
-
-function formatDate(date) {
-  const lang = getCurrentLang();
-  return date.toLocaleDateString(lang === "ar" ? "ar-DZ" : "en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
-function generateDays() {
-  const days = [];
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  for (let i = 0; i < DAYS_AHEAD; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    days.push(d);
-  }
-  return days.filter((d) => WORKING_DAYS.includes(d.getDay()));
-}
-
-function generateSlots(date) {
-  const slots = [];
-  for (let h = SLOT_START_HOUR; h < SLOT_END_HOUR; h += SLOT_MINUTES / 60) {
-    const time = `${String(Math.floor(h)).padStart(2, "0")}:${h % 1 === 0 ? "00" : "30"}`;
-    slots.push(time);
-  }
-  return slots;
-}
-
-async function fetchBookedSlots(date) {
-  const client = getSupabaseClient();
-  if (!client || !client.rpc) return [];
-  try {
-    const { data, error } = await client.rpc("get_booked_slots", { p_date: formatDateKey(date) });
-    if (error) {
-      console.error("[Booking] get_booked_slots error:", error);
-      return [];
-    }
-    return (data || []).map((row) => row.time);
-  } catch (err) {
-    console.error("[Booking] fetch booked slots error:", err);
-    return [];
-  }
-}
-
-function formatDateKey(date) {
-  return date.toISOString().slice(0, 10);
 }
 
 function renderHeading() {
@@ -156,124 +97,7 @@ function renderTypes() {
   app.querySelectorAll(".type-card").forEach((card) => {
     card.addEventListener("click", () => {
       state.type = card.dataset.type;
-      renderDates();
-    });
-  });
-}
-
-function renderDates() {
-  const data = getBookingData();
-  const app = document.getElementById("booking-app");
-  const days = generateDays();
-  const lang = getCurrentLang();
-
-  const dayCells = days
-    .map((d) => {
-      const selected = state.date && formatDateKey(state.date) === formatDateKey(d);
-      const weekday = d.toLocaleDateString(lang === "ar" ? "ar-DZ" : "en-GB", { weekday: "short" });
-      const dayNum = d.toLocaleDateString(lang === "ar" ? "ar-DZ" : "en-GB", { day: "numeric" });
-      const month = d.toLocaleDateString(lang === "ar" ? "ar-DZ" : "en-GB", { month: "short" });
-      return `
-      <button data-date="${formatDateKey(d)}" class="date-cell rounded-xl border px-2 py-3 text-center transition-all duration-200 ${
-        selected
-          ? "bg-amber-500/15 border-amber-500/50 text-amber-300"
-          : "bg-white/[0.02] border-gray-700/30 text-gray-300 hover:border-amber-500/40 hover:bg-white/[0.04]"
-      }">
-        <span class="block text-[11px] opacity-80 mb-1">${weekday}</span>
-        <span class="block text-sm font-bold">${dayNum} ${month}</span>
-      </button>`;
-    })
-    .join("");
-
-  renderStep(`
-    <div>
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl lg:text-3xl font-bold text-white font-title">${data.dateHeading}</h2>
-        <button id="back-types" class="text-sm text-gray-400 hover:text-amber-400 transition-colors inline-flex items-center gap-1">
-          <i class="fas fa-arrow-${lang === "ar" ? "right" : "left"} me-1"></i>${data.backToSlots}
-        </button>
-      </div>
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2.5">
-        ${dayCells}
-      </div>
-    </div>
-  `);
-
-  app.querySelectorAll(".date-cell").forEach((cell) => {
-    cell.addEventListener("click", () => {
-      const date = new Date(cell.dataset.date + "T00:00:00");
-      state.date = date;
-      renderSlots();
-    });
-  });
-  app.querySelector("#back-types").addEventListener("click", () => {
-    state.date = null;
-    renderTypes();
-  });
-}
-
-function renderSlots() {
-  const data = getBookingData();
-  const app = document.getElementById("booking-app");
-  const slots = generateSlots(state.date);
-  const lang = getCurrentLang();
-
-  renderStep(`
-    <div>
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl lg:text-3xl font-bold text-white font-title">${data.slotHeading}</h2>
-        <button id="back-dates" class="text-sm text-gray-400 hover:text-amber-400 transition-colors inline-flex items-center gap-1">
-          <i class="fas fa-arrow-${lang === "ar" ? "right" : "left"} me-1"></i>${data.backToSlots}
-        </button>
-      </div>
-      <p class="text-gray-400 text-sm mb-6">${formatDate(state.date)}</p>
-      <div id="slot-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
-        ${slots
-          .map(
-            (time) => `
-          <div class="slot-loading rounded-xl border border-gray-700/30 bg-white/[0.02] px-3 py-2.5 flex items-center justify-center">
-            <i class="fas fa-spinner fa-spin text-amber-400/60 text-sm"></i>
-          </div>`
-          )
-          .join("")}
-      </div>
-      <p class="text-gray-500 text-xs mt-6 flex items-center gap-2">
-        <i class="fas fa-info-circle text-amber-400/60"></i>${data.unavailableNote}
-      </p>
-    </div>
-  `);
-
-  app.querySelector("#back-dates").addEventListener("click", () => {
-    state.time = null;
-    renderDates();
-  });
-
-  const grid = app.querySelector("#slot-grid");
-  const selected = state.time;
-
-  slots.forEach((time) => {
-    const btn = document.createElement("button");
-    btn.dataset.time = time;
-    btn.innerHTML = `<span dir="ltr">${time}</span>`;
-    btn.className = "slot-cell rounded-xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 bg-white/[0.02] border-gray-700/30 text-gray-300 hover:border-amber-500/40 hover:bg-white/[0.04]";
-    if (selected === time) {
-      btn.className = "slot-cell rounded-xl border px-3 py-2.5 text-sm font-bold transition-all duration-200 bg-amber-500/15 border-amber-500/50 text-amber-300";
-    }
-    btn.addEventListener("click", () => {
-      state.time = time;
       renderForm();
-    });
-    grid.appendChild(btn);
-  });
-
-  fetchBookedSlots(state.date).then((bookedTimes) => {
-    grid.querySelectorAll(".slot-cell").forEach((cell) => {
-      const time = cell.dataset.time;
-      if (bookedTimes.includes(time)) {
-        cell.disabled = true;
-        cell.classList.remove("bg-white/[0.02]", "border-gray-700/30", "text-gray-300", "hover:border-amber-500/40", "hover:bg-white/[0.04]", "bg-amber-500/15", "border-amber-500/50", "text-amber-300");
-        cell.classList.add("border-gray-700/20", "text-gray-600", "cursor-not-allowed", "line-through");
-      }
     });
   });
 }
@@ -291,18 +115,14 @@ function renderForm() {
       </div>
 
       <div class="bg-white/[0.02] border border-gray-700/30 rounded-2xl p-5 mb-6">
-        <div class="grid grid-cols-2 gap-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
           <div>
             <p class="text-gray-500 text-xs mb-1">${data.typeLabel}</p>
             <p class="text-white font-bold">${selectedType.title}</p>
           </div>
           <div>
-            <p class="text-gray-500 text-xs mb-1">${data.dateLabel}</p>
-            <p class="text-white font-bold">${formatDate(state.date)}</p>
-          </div>
-          <div>
-            <p class="text-gray-500 text-xs mb-1">${data.timeLabel}</p>
-            <p class="text-white font-bold" dir="ltr">${state.time}</p>
+            <p class="text-gray-500 text-xs mb-1">${data.durationLabel}</p>
+            <p class="text-gray-300">${selectedType.duration}</p>
           </div>
           <div>
             <p class="text-gray-500 text-xs mb-1">${data.priceLabel}</p>
@@ -331,18 +151,18 @@ function renderForm() {
           <textarea id="b-details" rows="4" required class="w-full bg-slate-800/70 border border-gray-600 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-amber-500 transition-colors resize-none" placeholder="${data.detailsPlaceholder}"></textarea>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 pt-2">
-          <button id="back-slots" type="button" class="flex-1 border border-gray-600 text-gray-300 hover:border-amber-500 hover:text-amber-400 rounded-xl px-6 py-3 text-sm font-bold transition-colors">${data.backToSlots}</button>
+          <button id="back-types" type="button" class="flex-1 border border-gray-600 text-gray-300 hover:border-amber-500 hover:text-amber-400 rounded-xl px-6 py-3 text-sm font-bold transition-colors">${data.backToSlots}</button>
           <button type="submit" class="flex-[2] bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 inline-flex items-center justify-center gap-2">
-            <i class="fas fa-calendar-check"></i>${data.submitBtn}
+            <i class="fas fa-paper-plane"></i>${data.submitBtn}
           </button>
         </div>
       </form>
     </div>
   `);
 
-  app.querySelector("#back-slots").addEventListener("click", () => {
-    state.time = null;
-    renderSlots();
+  app.querySelector("#back-types").addEventListener("click", () => {
+    state.type = null;
+    renderTypes();
   });
 
   const form = app.querySelector("#booking-form");
@@ -371,12 +191,6 @@ function renderForm() {
     submitBtn.innerHTML = originalHTML;
 
     if (!result.success) {
-      if (result.slotTaken) {
-        alert(data.slotTakenMsg);
-        state.time = null;
-        renderSlots();
-        return;
-      }
       alert(data.bookingErrorMsg);
       return;
     }
@@ -392,7 +206,7 @@ function renderPayment() {
   const contact = getContent().topbar;
 
   const whatsappUrl = `https://wa.me/${contact.phone.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
-    `${lang === "ar" ? "تأكيد الحجز" : "Booking confirmation"} ${state.reference}`
+    `${lang === "ar" ? "طلب استشارة" : "Consultation request"} ${state.reference}\n${lang === "ar" ? "رقم الحجز" : "Reference"}: ${state.reference}\n${lang === "ar" ? "الاسم" : "Name"}: ${state.name}\n${lang === "ar" ? "نوع الاستشارة" : "Consultation"}: ${selectedType.title}`
   )}`;
 
   const steps = data.paymentSteps
@@ -429,14 +243,6 @@ function renderPayment() {
             <p class="text-white font-bold">${selectedType.title}</p>
           </div>
           <div>
-            <p class="text-gray-500 text-xs mb-1">${data.dateLabel}</p>
-            <p class="text-white font-bold">${formatDate(state.date)}</p>
-          </div>
-          <div>
-            <p class="text-gray-500 text-xs mb-1">${data.timeLabel}</p>
-            <p class="text-white font-bold" dir="ltr">${state.time}</p>
-          </div>
-          <div>
             <p class="text-gray-500 text-xs mb-1">${data.durationLabel}</p>
             <p class="text-gray-300">${selectedType.duration}</p>
           </div>
@@ -468,7 +274,8 @@ function renderPayment() {
       </div>
 
       <div class="bg-white/[0.02] border border-gray-700/30 rounded-2xl p-6 mb-6">
-        <h3 class="text-white font-bold text-lg font-title mb-4">${data.paymentHeading}</h3>
+        <h3 class="text-white font-bold text-lg font-title mb-4">${data.appointmentNoteHeading}</h3>
+        <p class="text-gray-300 text-sm leading-relaxed mb-4">${data.appointmentNote}</p>
         <ol class="space-y-3">${steps}</ol>
       </div>
 
@@ -476,7 +283,7 @@ function renderPayment() {
         <a href="${whatsappUrl}" target="_blank" rel="noopener" class="flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl px-6 py-3 text-sm font-bold transition-all duration-300 shadow-lg shadow-emerald-500/20">
           <i class="fab fa-whatsapp text-lg"></i>${data.contactWhatsApp}
         </a>
-        <a href="mailto:${contact.email}?subject=${encodeURIComponent(`${lang === "ar" ? "تأكيد الحجز" : "Booking confirmation"} ${state.reference}`)}" class="flex-1 inline-flex items-center justify-center gap-2 border border-gray-600 text-gray-300 hover:border-amber-500 hover:text-amber-400 rounded-xl px-6 py-3 text-sm font-bold transition-colors">
+        <a href="mailto:${contact.email}?subject=${encodeURIComponent(`${lang === "ar" ? "طلب استشارة" : "Consultation request"} ${state.reference}`)}" class="flex-1 inline-flex items-center justify-center gap-2 border border-gray-600 text-gray-300 hover:border-amber-500 hover:text-amber-400 rounded-xl px-6 py-3 text-sm font-bold transition-colors">
           <i class="fas fa-envelope"></i>${data.contactEmail}
         </a>
       </div>
@@ -493,8 +300,8 @@ async function bookAppointment(data) {
   const booking = {
     reference: state.reference,
     type: state.type,
-    date: formatDateKey(state.date),
-    time: state.time,
+    date: "",
+    time: "",
     name: state.name,
     phone: state.phone,
     email: state.email,
@@ -524,31 +331,27 @@ async function bookAppointment(data) {
 
     if (error) {
       console.error("[Booking] create_booking error:", error);
-      return { success: false, slotTaken: false };
+      return { success: false };
     }
 
     if (!result || result.success === false) {
-      if (result && result.error === "slot_taken") {
-        return { success: false, slotTaken: true };
-      }
-      return { success: false, slotTaken: false };
+      return { success: false };
     }
 
     sendTelegramNotification(booking, data);
     return { success: true };
   } catch (err) {
     console.error("[Booking] Unexpected error:", err);
-    return { success: false, slotTaken: false };
+    return { success: false };
   }
 }
 
 function sendTelegramNotification(booking, data) {
   const selectedType = data.types.find((t) => t.id === booking.type);
   const lang = getCurrentLang();
-  const dateText = formatDate(state.date);
 
   const lines = [
-    "📌 <b>" + (lang === "ar" ? "طلب حجز جديد" : "New Booking Request") + "</b>",
+    "📌 <b>" + (lang === "ar" ? "طلب استشارة جديد" : "New Consultation Request") + "</b>",
     "━━━━━━━━━━━━━━━",
     "🆔 " + (lang === "ar" ? "رقم الحجز" : "Reference") + ": <code>" + booking.reference + "</code>",
     "👤 " + (lang === "ar" ? "الاسم" : "Name") + ": " + booking.name,
@@ -556,9 +359,9 @@ function sendTelegramNotification(booking, data) {
     "✉️ " + (lang === "ar" ? "البريد" : "Email") + ": " + booking.email,
     "⚖️ " + (lang === "ar" ? "نوع الاستشارة" : "Consultation") + ": " + (selectedType ? selectedType.title : booking.type),
     "💵 " + (lang === "ar" ? "المبلغ" : "Amount") + ": " + (selectedType ? selectedType.price : ""),
-    "📅 " + (lang === "ar" ? "التاريخ" : "Date") + ": " + dateText,
-    "⏰ " + (lang === "ar" ? "الوقت" : "Time") + ": " + booking.time,
     "📝 " + (lang === "ar" ? "وصف الاستشارة" : "Details") + ": " + booking.details,
+    "",
+    "🕐 " + (lang === "ar" ? "الموعد: يُحدد بعد استلام وصل الدفع" : "Appointment: set after receiving payment receipt"),
   ];
 
   sendTelegramMessage(lines.join("\n"));
