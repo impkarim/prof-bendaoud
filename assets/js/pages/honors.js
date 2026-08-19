@@ -32,7 +32,7 @@ function renderAwards() {
   const awardsHTML = data.awards
     .map(
       (award) =>
-        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-10 pb-6 px-5 text-center">
+        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-5 pb-6 px-5 text-center flex flex-col items-center h-full">
           <div class="medal-disc">
             <div class="medal-disc-inner">
               <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
@@ -42,7 +42,7 @@ function renderAwards() {
           ${award.year ? `<span class="medal-year">${award.year}</span>` : ""}
           <div class="medal-divider"></div>
           <h3 class="text-lg font-bold text-white font-title leading-snug group-hover:text-amber-400 transition-colors">${award.title}</h3>
-          <p class="text-gray-400 text-sm mt-2 leading-relaxed">${award.desc}</p>
+          <p class="text-gray-400 text-sm mt-2 leading-relaxed flex-1">${award.desc}</p>
           <span class="medal-org"><i class="fas fa-building-columns"></i>${award.organization}</span>
         </a>`
     )
