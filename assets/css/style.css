@@ -383,19 +383,6 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   html[lang="en"] #hero h1 { font-size: 1.75rem; }
 }
 
-/* ===== Honors Page Background ===== */
-.honor-bg-pattern {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.14'%3E%3Cpath d='M40 8 L72 40 L40 72 L8 40 Z'/%3E%3Cpath d='M40 24 L56 40 L40 56 L24 40 Z'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 80px 80px;
-}
-[data-theme="light"] .honor-bg-pattern {
-  opacity: 0.4;
-}
-
 /* ===== Honors Page Heading ===== */
 .honor-heading-title {
   background: linear-gradient(180deg, #fde68a 0%, #f59e0b 45%, #b45309 100%);
@@ -431,6 +418,8 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
 .medal-card {
   position: relative;
   background-color: rgba(30, 41, 59, 0.65);
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.10'%3E%3Cpath d='M36 7 L65 36 L36 65 L7 36 Z'/%3E%3Cpath d='M36 22 L50 36 L36 50 L22 36 Z'/%3E%3Ccircle cx='36' cy='36' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 72px 72px;
   border: 1px solid rgba(217, 119, 6, 0.25);
   border-radius: 0;
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease,
@@ -538,6 +527,7 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
 /* --- Medal cards (light) --- */
 [data-theme="light"] .medal-card {
   background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.12'%3E%3Cpath d='M36 7 L65 36 L36 65 L7 36 Z'/%3E%3Cpath d='M36 22 L50 36 L36 50 L22 36 Z'/%3E%3Ccircle cx='36' cy='36' r='4'/%3E%3C/g%3E%3C/svg%3E");
   border-color: rgba(217, 119, 6, 0.3);
 }
 [data-theme="light"] .medal-card::before {
