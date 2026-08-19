@@ -63,9 +63,8 @@ function renderHero() {
               <div class="relative w-64 h-64 lg:w-80 lg:h-80">
                 <div class="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/15 via-slate-700/50 to-slate-800/70 border-2 border-amber-500/30 shadow-xl shadow-amber-500/10 overflow-hidden flex items-center justify-center">
                   <img id="profile-img" src="assets/images/profile/profile.png" alt="${data.name}" width="500" height="532" fetchpriority="high"
-                    class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500"
-                    onerror="this.remove()"
-                    onload="this.style.opacity='1'">
+                    class="w-full h-full object-cover absolute inset-0"
+                    onerror="this.remove()">
                 </div>
               </div>
             </div>
