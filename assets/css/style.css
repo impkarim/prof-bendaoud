@@ -384,82 +384,33 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
 }
 
 /* ===== Honors Page Heading ===== */
-.honor-heading-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-.honor-heading-line {
-  width: clamp(2.5rem, 8vw, 6rem);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.8), transparent);
-  position: relative;
-}
-.honor-heading-line::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  width: 7px;
-  height: 7px;
-  background: #f59e0b;
-  transform: rotate(45deg);
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
-}
-.honor-heading-line:first-child::before { left: 0; }
-.honor-heading-line:last-child::before { right: 0; }
-.honor-heading-orn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  font-size: 1.35rem;
-  color: #fbbf24;
-  background-color: rgba(217, 119, 6, 0.18);
-  border: 1px solid rgba(217, 119, 6, 0.45);
-  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.08), 0 8px 22px -8px rgba(245, 158, 11, 0.5);
-  transition: background-color 0.6s var(--theme-ease), box-shadow 0.6s var(--theme-ease);
-}
 .honor-heading-title {
   background: linear-gradient(180deg, #fde68a 0%, #f59e0b 45%, #b45309 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.25));
+}
+.honor-heading-line-center {
+  position: relative;
+  width: clamp(3rem, 10vw, 7rem);
+  height: 1px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.7), transparent);
+}
+.honor-heading-line-center::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: rgba(245, 158, 11, 0.9);
 }
 .honor-heading-sub {
   letter-spacing: 0.02em;
   color: rgba(148, 163, 184, 0.9) !important;
-}
-.honor-heading-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.4rem;
-}
-.honor-heading-divider span {
-  width: clamp(2rem, 6vw, 4.5rem);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.55), transparent);
-}
-.honor-heading-divider i {
-  font-size: 0.6rem;
-  color: rgba(245, 158, 11, 0.85);
-  animation: honor-pulse 2.5s ease-in-out infinite;
-}
-@keyframes honor-pulse {
-  0%, 100% { opacity: 0.45; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
-[data-theme="light"] .honor-heading-orn {
-  background-color: #ffffff;
-  border-color: rgba(217, 119, 6, 0.4);
-  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.07), 0 8px 22px -10px rgba(217, 119, 6, 0.4);
 }
 [data-theme="light"] .honor-heading-sub { color: #64748b !important; }
 
