@@ -30,23 +30,35 @@ function renderAwards() {
   if (!grid) return;
 
   const awardsHTML = data.awards
-    .map(
-      (award) =>
-        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-200 backdrop-blur-sm text-center group hover:-translate-y-1">
-          <div class="relative h-36 overflow-hidden bg-gradient-to-br from-amber-500/20 to-slate-700/50">
-            <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              onerror="this.style.display='none'">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    .map((award, index) => {
+      const num = String(index + 1).padStart(2, "0");
+      return `
+        <a href="../award/?id=${encodeURIComponent(award.id)}" class="honor-card block group">
+          <span class="honor-spot"></span>
+          <span class="honor-glow"></span>
+          <span class="honor-corner tl"></span>
+          <span class="honor-corner tr"></span>
+          <span class="honor-corner bl"></span>
+          <span class="honor-corner br"></span>
+          <span class="honor-sparkle s1"></span>
+          <span class="honor-sparkle s2"></span>
+          <span class="honor-sparkle s3"></span>
+          <span class="honor-sparkle s4"></span>
+
+          <div class="honor-frame relative rounded-2xl p-6 pt-8 text-center overflow-hidden">
+            <span class="honor-number">#${num}</span>
+            <div class="honor-img-wrap">
+              <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
+                class="honor-img"
+                onerror="this.outerHTML='<div class=honor-img-ph><i class=fas fa-trophy></i></div>'">
+            </div>
+            ${award.year ? `<span class="inline-block mt-4 text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-0.5 rounded-full">${award.year}</span>` : ""}
+            <h3 class="honor-title-line text-lg font-bold text-white mt-3 font-title group-hover:text-amber-400 transition-colors">${award.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">${award.desc}</p>
+            <p class="text-gray-500 text-xs mt-3 inline-flex items-center gap-1.5"><i class="fas fa-building-columns text-amber-500/60 text-[10px]"></i>${award.organization}</p>
           </div>
-          <div class="p-5">
-          ${award.year ? `<span class="text-xs text-amber-400 font-semibold bg-amber-500/10 px-2 py-0.5 rounded-full">${award.year}</span>` : ""}
-          <h3 class="text-lg font-bold text-white mt-2 font-title group-hover:text-amber-400 transition-colors">${award.title}</h3>
-          <p class="text-gray-400 text-sm mt-2">${award.desc}</p>
-          <p class="text-gray-500 text-xs mt-3">${award.organization}</p>
-          </div>
-        </a>`
-    )
+        </a>`;
+    })
     .join("");
 
   grid.innerHTML = awardsHTML;
