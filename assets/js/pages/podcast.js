@@ -37,6 +37,18 @@ function renderPodcast() {
   const grid = document.getElementById("podcast-grid");
   if (!grid) return;
 
+  const channelEl = document.getElementById("podcast-channel");
+  if (channelEl && data.channelUrl) {
+    channelEl.innerHTML = `
+      <a href="${data.channelUrl}" target="_blank" rel="noopener"
+        class="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold text-sm lg:text-base rounded-full px-6 py-3.5 shadow-lg shadow-red-600/25 hover:shadow-red-500/40 transition-all duration-300 hover:-translate-y-0.5 group">
+        <span class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <i class="fab fa-youtube text-lg"></i>
+        </span>
+        <span>${data.channelBtn}</span>
+      </a>`;
+  }
+
   const iconColors = [
     "from-amber-500/25 to-slate-700/50",
     "from-blue-500/25 to-slate-700/50",
