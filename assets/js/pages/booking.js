@@ -194,7 +194,7 @@ function renderForm() {
               <div>
                 <label class="block text-gray-300 text-sm font-bold mb-2">${data.typeLabel}</label>
                 <div class="relative">
-                  <button type="button" id="b-type-trigger" class="w-full bg-white/5 border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200 flex items-center justify-between gap-3">
+                  <button type="button" id="b-type-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="b-type-menu" class="w-full bg-white/5 border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-colors duration-200 flex items-center justify-between gap-3">
                     <span class="flex items-center gap-3 min-w-0">
                       <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
                         <i class="fas ${selectedType.icon}"></i>
@@ -209,7 +209,7 @@ function renderForm() {
                       <i id="b-type-chevron" class="fas fa-chevron-down text-gray-500 transition-transform duration-200"></i>
                     </span>
                   </button>
-                  <div id="b-type-menu" class="hidden absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900 border border-gray-700 rounded-xl shadow-2xl shadow-black/40 overflow-hidden max-h-80 overflow-y-auto">
+                  <div id="b-type-menu" role="listbox" aria-label="${data.typeLabel}" class="hidden absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900 border border-gray-700 rounded-xl shadow-2xl shadow-black/40 overflow-hidden max-h-80 overflow-y-auto">
                     ${typeCards}
                   </div>
                 </div>
@@ -218,22 +218,22 @@ function renderForm() {
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label class="block text-gray-300 text-sm font-bold mb-2">${data.nameLabel}</label>
+                  <label for="b-name" class="block text-gray-300 text-sm font-bold mb-2">${data.nameLabel}</label>
                   <input id="b-name" type="text" required class="${inputClass}" placeholder="${data.namePlaceholder}">
                 </div>
                 <div>
-                  <label class="block text-gray-300 text-sm font-bold mb-2">${data.phoneLabel}</label>
+                  <label for="b-phone" class="block text-gray-300 text-sm font-bold mb-2">${data.phoneLabel}</label>
                   <input id="b-phone" type="tel" required dir="ltr" class="${inputClass} text-left" placeholder="${data.phonePlaceholder}">
                 </div>
               </div>
 
               <div>
-                <label class="block text-gray-300 text-sm font-bold mb-2">${data.emailLabel}</label>
+                <label for="b-email" class="block text-gray-300 text-sm font-bold mb-2">${data.emailLabel}</label>
                 <input id="b-email" type="email" required dir="ltr" class="${inputClass} text-left" placeholder="${data.emailPlaceholder}">
               </div>
 
               <div>
-                <label class="block text-gray-300 text-sm font-bold mb-2">${data.detailsLabel}</label>
+                <label for="b-details" class="block text-gray-300 text-sm font-bold mb-2">${data.detailsLabel}</label>
                 <textarea id="b-details" rows="5" required class="${inputClass} resize-none" placeholder="${data.detailsPlaceholder}"></textarea>
               </div>
 
@@ -291,11 +291,13 @@ function renderForm() {
 
   function closeMenu() {
     typeMenu.classList.add("hidden");
+    typeTrigger.setAttribute("aria-expanded", "false");
     chevron.style.transform = "rotate(0deg)";
   }
 
   function toggleMenu() {
-    typeMenu.classList.toggle("hidden");
+    const isHidden = typeMenu.classList.toggle("hidden");
+    typeTrigger.setAttribute("aria-expanded", String(!isHidden));
     chevron.style.transform = typeMenu.classList.contains("hidden") ? "rotate(0deg)" : "rotate(180deg)";
   }
 
