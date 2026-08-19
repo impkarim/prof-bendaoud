@@ -30,35 +30,23 @@ function renderAwards() {
   if (!grid) return;
 
   const awardsHTML = data.awards
-    .map((award, index) => {
-      const num = String(index + 1).padStart(2, "0");
-      return `
-        <a href="../award/?id=${encodeURIComponent(award.id)}" class="honor-card block group">
-          <span class="honor-spot"></span>
-          <span class="honor-glow"></span>
-          <span class="honor-corner tl"></span>
-          <span class="honor-corner tr"></span>
-          <span class="honor-corner bl"></span>
-          <span class="honor-corner br"></span>
-          <span class="honor-sparkle s1"></span>
-          <span class="honor-sparkle s2"></span>
-          <span class="honor-sparkle s3"></span>
-          <span class="honor-sparkle s4"></span>
-
-          <div class="honor-frame relative rounded-2xl p-6 pt-8 text-center overflow-hidden">
-            <span class="honor-number">#${num}</span>
-            <div class="honor-img-wrap">
+    .map(
+      (award) =>
+        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-10 pb-6 px-5 text-center">
+          <span class="medal-ribbon"></span>
+          <div class="medal-disc">
+            <div class="medal-disc-inner">
               <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
-                class="honor-img"
-                onerror="this.outerHTML='<div class=honor-img-ph><i class=fas fa-trophy></i></div>'">
+                onerror="this.outerHTML='<div class=medal-img-ph><i class=fas fa-trophy></i></div>'">
             </div>
-            ${award.year ? `<span class="inline-block mt-4 text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-0.5 rounded-full">${award.year}</span>` : ""}
-            <h3 class="honor-title-line text-lg font-bold text-white mt-3 font-title group-hover:text-amber-400 transition-colors">${award.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed">${award.desc}</p>
-            <p class="text-gray-500 text-xs mt-3 inline-flex items-center gap-1.5"><i class="fas fa-building-columns text-amber-500/60 text-[10px]"></i>${award.organization}</p>
           </div>
-        </a>`;
-    })
+          ${award.year ? `<span class="medal-year">${award.year}</span>` : ""}
+          <div class="medal-divider"></div>
+          <h3 class="text-lg font-bold text-white font-title leading-snug group-hover:text-amber-400 transition-colors">${award.title}</h3>
+          <p class="text-gray-400 text-sm mt-2 leading-relaxed">${award.desc}</p>
+          <span class="medal-org"><i class="fas fa-building-columns"></i>${award.organization}</span>
+        </a>`
+    )
     .join("");
 
   grid.innerHTML = awardsHTML;
