@@ -716,6 +716,8 @@ export const content = {
     subtitle: "فيديوهات بودكاست في القانون والعلوم الشرعية والأكاديميا",
     badgeLabel: "قناة يوتيوب",
     backLabel: "العودة للصفحة الرئيسية",
+    channelUrl: "https://www.youtube.com/@البروفيسوربنداودبراهيم",
+    channelBtn: "زيارة قناة اليوتيوب",
     episodes: [
       {
         id: "منهجية-الإجابة-عن-أسئلة-الدكتوراه",
