@@ -35,7 +35,7 @@ function renderAwards() {
         `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-5 pb-6 px-5 text-center flex flex-col items-center h-full">
           <div class="medal-disc">
             <div class="medal-disc-inner">
-              <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
+              <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}" loading="lazy"
                 onerror="this.outerHTML='<div class=medal-img-ph><i class=fas fa-trophy></i></div>'">
             </div>
           </div>

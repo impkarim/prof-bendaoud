@@ -89,7 +89,7 @@ function renderBookDetail() {
   const coverEl = document.getElementById("book-cover");
   coverEl.className = `w-full aspect-[3/4] rounded-2xl relative overflow-hidden border border-amber-500/30 bg-gradient-to-br ${colorClass}`;
   coverEl.innerHTML = `
-    <img src="${imgPath}" alt="${book.title}"
+    <img src="${imgPath}" alt="${book.title}" loading="lazy"
       class="w-full h-full object-cover absolute inset-0 opacity-0 transition-opacity duration-500 z-10"
       onerror="this.style.display='none'"
       onload="this.style.opacity='1'">`;
