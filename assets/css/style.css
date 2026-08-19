@@ -344,6 +344,23 @@ select option {
 [data-theme="light"] #back-link i { color: #94a3b8 !important; }
 [data-theme="light"] #back-link:hover i { color: #d97706 !important; }
 
+/* --- Medal cards (light) --- */
+[data-theme="light"] .medal-card {
+  background: linear-gradient(180deg, #ffffff, #f8f6f3);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+[data-theme="light"] .medal-card:hover {
+  box-shadow: 0 20px 45px -18px rgba(217, 119, 6, 0.25);
+}
+[data-theme="light"] .medal-disc-inner {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.18), rgba(255, 255, 255, 0.9));
+}
+[data-theme="light"] .medal-org {
+  color: rgba(51, 65, 85, 0.7);
+}
+[data-theme="light"] .medal-org i { color: rgba(217, 119, 6, 0.6); }
+[data-theme="light"] .medal-img-ph { color: rgba(180, 83, 9, 0.85); }
+
 /* ===== View Transitions ===== */
 @view-transition {
   navigation: auto;
