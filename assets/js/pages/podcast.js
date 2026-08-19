@@ -126,7 +126,7 @@ function openVideoModal(videoId, title) {
     modal.className = "fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6";
     modal.innerHTML = `
       <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-video-close></div>
-      <div class="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-slate-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl shadow-black/60 animate-[fadeInUp_0.3s_ease-out]">
+      <div class="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-slate-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl shadow-black/60 animate-[fadeInUp_0.3s_ease-out]" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
         <div class="flex items-center justify-between px-5 py-3 border-b border-gray-700/60 bg-slate-900/95 flex-shrink-0">
           <h3 id="video-modal-title" class="text-white font-bold text-sm sm:text-base font-title truncate pe-4"></h3>
           <button type="button" data-video-close aria-label="Close" class="flex-shrink-0 w-8 h-8 rounded-full border border-gray-600 text-gray-400 hover:text-amber-400 hover:border-amber-500 transition-colors flex items-center justify-center text-sm">
