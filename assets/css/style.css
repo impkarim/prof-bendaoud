@@ -383,8 +383,8 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   html[lang="en"] #hero h1 { font-size: 1.75rem; }
 }
 
-/* ===== Honors Page Background ===== */
-.honor-bg-pattern {
+/* ===== Page Background Pattern ===== */
+.page-bg-pattern {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -392,7 +392,7 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.16' stroke-width='1'%3E%3Ccircle cx='70' cy='70' r='34'/%3E%3Ccircle cx='0' cy='0' r='34'/%3E%3Ccircle cx='140' cy='0' r='34'/%3E%3Ccircle cx='0' cy='140' r='34'/%3E%3Ccircle cx='140' cy='140' r='34'/%3E%3Ccircle cx='70' cy='70' r='46' stroke-dasharray='3 3'/%3E%3Cpath d='M70 30 L110 70 L70 110 L30 70 Z'/%3E%3Cpath d='M70 44 L96 70 L70 96 L44 70 Z'/%3E%3Cpath d='M18 18 L122 122'/%3E%3Cpath d='M122 18 L18 122'/%3E%3Cpath d='M0 70 L140 70'/%3E%3Cpath d='M70 0 L70 140'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 140px 140px;
 }
-[data-theme="light"] .honor-bg-pattern {
+[data-theme="light"] .page-bg-pattern {
   opacity: 0.4;
 }
 
