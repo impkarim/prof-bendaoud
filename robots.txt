@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://brahimbendaoud.com/sitemap.xml
+# ملف تعريف الموقع لنماذج الذكاء الاصطناعي
+# https://llmstxt.org
