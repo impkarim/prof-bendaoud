@@ -337,7 +337,8 @@ select option {
 [data-theme="light"] .year-divider span.text-7xl { color: rgba(217,119,6,0.15) !important; }
 
 /* --- Common page elements --- */
-[data-theme="light"] #page-heading { color: #1e293b !important; }
+[data-theme="light"] #page-heading:not(.honor-heading-title) { color: #1e293b !important; }
+[data-theme="light"] #page-heading.honor-heading-title { color: transparent !important; }
 [data-theme="light"] #page-subtitle { color: #64748b !important; }
 [data-theme="light"] #back-label { color: #64748b !important; }
 [data-theme="light"] #back-link:hover #back-label { color: #d97706 !important; }
@@ -402,9 +403,16 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: transparent !important;
   line-height: 1.55;
   padding-block: 0.12em 0.08em;
+}
+[data-theme="light"] .honor-heading-title {
+  background: linear-gradient(180deg, #b45309 0%, #d97706 55%, #92400e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
 }
 .honor-heading-line-center {
   position: relative;
