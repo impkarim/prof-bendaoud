@@ -403,6 +403,8 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  line-height: 1.55;
+  padding-block: 0.12em 0.08em;
 }
 .honor-heading-line-center {
   position: relative;
