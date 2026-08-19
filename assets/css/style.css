@@ -491,12 +491,10 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
 }
 
 .medal-disc-inner img {
-  width: 108%;
-  height: 108%;
-  max-width: none;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transform: translate(-3.7%, -3.7%);
 }
 
 .medal-img-ph {
