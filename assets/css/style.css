@@ -496,7 +496,7 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   object-fit: cover;
   display: block;
   transform-origin: center;
-  transform: scale(1.28);
+  transform: scale(1.2);
 }
 
 .medal-img-ph {
