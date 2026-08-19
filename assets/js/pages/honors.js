@@ -33,7 +33,6 @@ function renderAwards() {
     .map(
       (award) =>
         `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-10 pb-6 px-5 text-center">
-          <span class="medal-ribbon"></span>
           <div class="medal-disc">
             <div class="medal-disc-inner">
               <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"

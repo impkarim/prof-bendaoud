@@ -408,36 +408,6 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   transform: translateY(-6px);
 }
 
-/* Ribbon */
-.medal-ribbon {
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  width: 44px;
-  height: 72px;
-  transform: translateX(-50%) rotate(0deg);
-  transform-origin: top center;
-  z-index: 3;
-  background: linear-gradient(90deg, #b45309 0%, #fbbf24 30%, #d97706 55%, #fde68a 70%, #b45309 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
-  box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease;
-}
-
-.medal-card:hover .medal-ribbon { transform: translateX(-50%) rotate(-4deg); }
-
-.medal-ribbon::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 78%;
-  transform: translateX(-50%);
-  width: 26px;
-  height: 20px;
-  clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%);
-  background: linear-gradient(180deg, #d97706, #92400e);
-}
-
 /* Medal disc */
 .medal-disc {
   position: relative;
