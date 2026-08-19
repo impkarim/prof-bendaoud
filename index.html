@@ -83,11 +83,14 @@
   <title>البروفيسور براهيم بن داود | أستاذ القانون العام ومحامٍ معتمد في الجزائر</title>
   <script>document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light")</script>
 
+  <!-- Preload critical resources -->
+  <link rel="preload" as="image" href="assets/images/profile/profile.png" fetchpriority="high" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
 
@@ -154,6 +157,36 @@
     <div class="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent pointer-events-none"></div>
     <div class="absolute top-20 left-10 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-16 lg:pb-24">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <h1 class="text-4xl lg:text-6xl font-bold text-white mt-2 leading-tight font-title"><span class="text-amber-400 font-semibold text-2xl lg:text-3xl tracking-wider">البروفيسور</span> براهيم بن داود</h1>
+          <div class="mt-4 space-y-1">
+            <p class="text-gray-300 text-base lg:text-lg"><i class="fas fa-scroll text-amber-500 me-2 text-xs w-4 text-center"></i>بروفيسور في القانون العام</p>
+            <p class="text-gray-300 text-base lg:text-lg"><i class="fas fa-scale-balanced text-amber-500 me-2 text-xs w-4 text-center"></i>محامٍ معتمد لدى المحكمة العليا ومجلس الدولة</p>
+            <p class="text-gray-300 text-base lg:text-lg"><i class="fas fa-building-columns text-amber-500 me-2 text-xs w-4 text-center"></i>مدير الدراسات العليا جامعة الغرير بدبي</p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="./" data-section="timeline" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200">سيرتي المهنية</a>
+            <a href="booking/" class="border border-gray-500 hover:border-amber-500 text-gray-200 hover:text-amber-400 px-6 py-3 rounded-lg transition-colors duration-200">تواصل معي</a>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 flex justify-center mt-8 lg:mt-12">
+          <div class="flex flex-col items-center">
+            <div class="relative">
+              <div class="absolute -inset-3 rounded-full border border-amber-500/20"></div>
+              <div class="absolute -inset-[6px] rounded-full border border-amber-500/40"></div>
+              <div class="relative w-64 h-64 lg:w-80 lg:h-80">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/15 via-slate-700/50 to-slate-800/70 border-2 border-amber-500/30 shadow-xl shadow-amber-500/10 overflow-hidden flex items-center justify-center">
+                  <img id="profile-img" src="assets/images/profile/profile.png" alt="البروفيسور براهيم بن داود" width="500" height="532" fetchpriority="high"
+                    class="w-full h-full object-cover absolute inset-0" onerror="this.remove()">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Vision Section -->
