@@ -392,62 +392,6 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.14'%3E%3Cpath d='M40 8 L72 40 L40 72 L8 40 Z'/%3E%3Cpath d='M40 24 L56 40 L40 56 L24 40 Z'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 80px 80px;
 }
-/* Decorative Arabic medallion with duas around concentric rings */
-.honor-bg-medallion {
-  position: absolute;
-  top: 54%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-.honor-doa {
-  position: absolute;
-  font-family: var(--font-title);
-  font-weight: 700;
-  line-height: 1.4;
-  white-space: nowrap;
-  color: rgba(245, 158, 11, 0.09);
-}
-.honor-doa-center {
-  font-size: clamp(1.3rem, 3.4vw, 2.4rem);
-  color: rgba(245, 158, 11, 0.13);
-  letter-spacing: 0.04em;
-}
-.r1 {
-  font-size: clamp(0.78rem, 2vw, 1.15rem);
-  color: rgba(245, 158, 11, 0.08);
-}
-.r2 {
-  font-size: clamp(0.62rem, 1.55vw, 0.9rem);
-  color: rgba(245, 158, 11, 0.065);
-}
-/* Center */
-.honor-doa-center {
-  transform: translate(-50%, -50%);
-}
-/* Ring 1 (inner): radius clamp(5rem,13vw,8.5rem) */
-.r1.a1 { transform: translate(-50%,-50%) rotate(0deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(0deg); }
-.r1.a2 { transform: translate(-50%,-50%) rotate(45deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-45deg); }
-.r1.a3 { transform: translate(-50%,-50%) rotate(90deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-90deg); }
-.r1.a4 { transform: translate(-50%,-50%) rotate(135deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-135deg); }
-.r1.a5 { transform: translate(-50%,-50%) rotate(180deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-180deg); }
-.r1.a6 { transform: translate(-50%,-50%) rotate(225deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-225deg); }
-.r1.a7 { transform: translate(-50%,-50%) rotate(270deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-270deg); }
-.r1.a8 { transform: translate(-50%,-50%) rotate(315deg) translateY(calc(-1*clamp(5rem,13vw,8.5rem))) rotate(-315deg); }
-/* Ring 2 (outer): radius clamp(9rem,24vw,16rem), offset 22.5deg */
-.r2.a1 { transform: translate(-50%,-50%) rotate(22.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-22.5deg); }
-.r2.a2 { transform: translate(-50%,-50%) rotate(67.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-67.5deg); }
-.r2.a3 { transform: translate(-50%,-50%) rotate(112.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-112.5deg); }
-.r2.a4 { transform: translate(-50%,-50%) rotate(157.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-157.5deg); }
-.r2.a5 { transform: translate(-50%,-50%) rotate(202.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-202.5deg); }
-.r2.a6 { transform: translate(-50%,-50%) rotate(247.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-247.5deg); }
-.r2.a7 { transform: translate(-50%,-50%) rotate(292.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-292.5deg); }
-.r2.a8 { transform: translate(-50%,-50%) rotate(337.5deg) translateY(calc(-1*clamp(9rem,24vw,16rem))) rotate(-337.5deg); }
-[data-theme="light"] .honor-doa,
-[data-theme="light"] .honor-doa-center { color: rgba(217, 119, 6, 0.08); }
 [data-theme="light"] .honor-bg-pattern {
   opacity: 0.4;
 }
