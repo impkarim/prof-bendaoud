@@ -51,13 +51,13 @@ export function renderTopBar() {
   topbar.innerHTML = `
     <div class="fixed top-0 left-0 right-0 z-50 bg-slate-800/90 border-b border-gray-700/50 text-xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-9 min-h-9 flex-wrap gap-y-1 py-1 sm:py-0">
-          <div class="flex items-center gap-4 min-w-0">
+        <div class="flex items-center justify-between h-10">
+          <div class="flex items-center gap-3 min-w-0">
             <span class="text-gray-400 truncate min-w-0 sm:max-w-none"><i class="fas fa-envelope me-1.5 text-amber-400"></i><bdi dir="ltr">${data.email}</bdi></span>
             <span class="text-gray-400 hidden sm:inline"><i class="fas fa-phone-alt me-1.5 text-amber-400"></i><bdi dir="ltr">${data.phone}</bdi></span>
           </div>
-          <div class="flex items-center gap-3">
-            ${data.social.map(s => `<a href="${s.url}" target="_blank" rel="noopener" title="${s.title}" aria-label="${s.title}" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-amber-400 hover:bg-white/5 rounded transition-colors"><i class="${s.icon}"></i></a>`).join("")}
+          <div class="flex items-center shrink-0">
+            ${data.social.map(s => `<a href="${s.url}" target="_blank" rel="noopener" title="${s.title}" aria-label="${s.title}" class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-amber-400 transition-colors"><i class="${s.icon}"></i></a>`).join("")}
           </div>
         </div>
       </div>
