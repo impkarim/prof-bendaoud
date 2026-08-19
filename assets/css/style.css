@@ -392,134 +392,117 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.14'%3E%3Cpath d='M40 8 L72 40 L40 72 L8 40 Z'/%3E%3Cpath d='M40 24 L56 40 L40 56 L24 40 Z'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 80px 80px;
 }
-.honor-bg-calligraphy {
+/* Decorative Arabic letters scattered across the background */
+.honor-bg-letter {
   position: absolute;
   font-family: var(--font-title);
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1;
   pointer-events: none;
   user-select: none;
-  color: rgba(245, 158, 11, 0.05);
+  color: rgba(245, 158, 11, 0.07);
   z-index: 0;
 }
-/* Distributed phrases across the whole background */
-.honor-call-1 {
-  top: 10%;
+.honor-ltr-1 {
+  top: 8%;
+  left: 6%;
+  font-size: clamp(3rem, 9vw, 7rem);
+  transform: rotate(-6deg);
+}
+.honor-ltr-2 {
+  top: 6%;
+  right: 12%;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  transform: rotate(4deg);
+}
+.honor-ltr-3 {
+  top: 16%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: clamp(2.4rem, 7vw, 5rem);
-  white-space: nowrap;
-  letter-spacing: 0.05em;
+  font-size: clamp(4rem, 13vw, 10rem);
+  letter-spacing: 0;
 }
-.honor-call-2 {
-  bottom: 6%;
-  right: -2%;
-  font-size: clamp(1rem, 2.6vw, 1.9rem);
-  max-width: 42%;
-  text-align: right;
-  letter-spacing: 0.02em;
-}
-.honor-call-3 {
+.honor-ltr-4 {
   top: 30%;
-  left: 2%;
-  transform: rotate(-8deg);
-  font-size: clamp(1.4rem, 4vw, 2.8rem);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.08em;
-}
-.honor-call-4 {
-  top: 40%;
-  right: 2%;
-  transform: rotate(6deg);
-  font-size: clamp(1.4rem, 4vw, 2.8rem);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.08em;
-}
-.honor-call-5 {
-  top: 4%;
   left: 4%;
-  font-size: clamp(1.6rem, 4.5vw, 3.2rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(2.6rem, 8vw, 6.5rem);
+  transform: rotate(8deg);
 }
-.honor-call-6 {
-  top: 6%;
-  right: 8%;
-  font-size: clamp(1.2rem, 3.4vw, 2.4rem);
-  transform: rotate(3deg);
+.honor-ltr-5 {
+  top: 33%;
+  right: 4%;
+  font-size: clamp(2.6rem, 8vw, 6.5rem);
+  transform: rotate(-7deg);
 }
-.honor-call-7 {
-  top: 22%;
-  left: 14%;
-  font-size: clamp(1rem, 2.8vw, 2rem);
+.honor-ltr-6 {
+  top: 46%;
+  left: 12%;
+  font-size: clamp(3.2rem, 10vw, 8rem);
   transform: rotate(-4deg);
-  opacity: 0.85;
 }
-.honor-call-8 {
-  top: 24%;
-  right: 12%;
-  font-size: clamp(1rem, 2.6vw, 1.8rem);
-  transform: rotate(2deg);
-  max-width: 30%;
-  text-align: right;
-}
-.honor-call-9 {
+.honor-ltr-7 {
   top: 48%;
-  left: 6%;
-  font-size: clamp(1rem, 2.6vw, 1.8rem);
-  transform: rotate(-2deg);
-  max-width: 26%;
-  text-align: left;
-}
-.honor-call-10 {
-  top: 52%;
-  right: 6%;
-  font-size: clamp(1rem, 2.6vw, 1.8rem);
-  transform: rotate(3deg);
-  max-width: 26%;
-  text-align: right;
-}
-.honor-call-11 {
-  bottom: 24%;
-  left: 10%;
-  transform: rotate(-5deg);
-  font-size: clamp(1.3rem, 3.6vw, 2.6rem);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.08em;
-}
-.honor-call-12 {
-  bottom: 22%;
-  right: 10%;
+  right: 14%;
+  font-size: clamp(3rem, 9vw, 7rem);
   transform: rotate(5deg);
-  font-size: clamp(1.2rem, 3.4vw, 2.4rem);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.08em;
 }
-.honor-call-13 {
+.honor-ltr-8 {
+  top: 62%;
+  left: 5%;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  transform: rotate(3deg);
+}
+.honor-ltr-9 {
+  top: 64%;
+  right: 6%;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  transform: rotate(-5deg);
+}
+.honor-ltr-10 {
+  bottom: 20%;
+  left: 18%;
+  font-size: clamp(2.8rem, 8.5vw, 7rem);
+  transform: rotate(-8deg);
+}
+.honor-ltr-11 {
+  bottom: 18%;
+  right: 18%;
+  font-size: clamp(2.8rem, 8.5vw, 7rem);
+  transform: rotate(6deg);
+}
+.honor-ltr-12 {
   bottom: 34%;
-  left: 30%;
-  font-size: clamp(0.9rem, 2.4vw, 1.6rem);
-  transform: rotate(-3deg);
-  opacity: 0.8;
-}
-.honor-call-14 {
-  bottom: 38%;
-  right: 28%;
-  font-size: clamp(0.9rem, 2.4vw, 1.6rem);
+  left: 38%;
+  font-size: clamp(2rem, 6vw, 4.8rem);
   transform: rotate(2deg);
-  opacity: 0.8;
 }
-.honor-call-15 {
-  bottom: 10%;
-  left: 6%;
-  font-size: clamp(1.2rem, 3.2vw, 2.2rem);
-  transform: rotate(-2deg);
+.honor-ltr-13 {
+  bottom: 36%;
+  right: 36%;
+  font-size: clamp(2rem, 6vw, 4.8rem);
+  transform: rotate(-3deg);
 }
-[data-theme="light"] .honor-bg-calligraphy {
-  color: rgba(217, 119, 6, 0.06);
+.honor-ltr-14 {
+  bottom: 8%;
+  left: 8%;
+  font-size: clamp(2.4rem, 7vw, 5.8rem);
+  transform: rotate(5deg);
+}
+.honor-ltr-15 {
+  bottom: 7%;
+  right: 8%;
+  font-size: clamp(2.4rem, 7vw, 5.8rem);
+  transform: rotate(-4deg);
+}
+.honor-ltr-16 {
+  top: 2%;
+  left: 38%;
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  transform: rotate(2deg);
+  opacity: 0.75;
+}
+[data-theme="light"] .honor-bg-letter {
+  color: rgba(217, 119, 6, 0.07);
 }
 [data-theme="light"] .honor-bg-pattern {
   opacity: 0.4;
