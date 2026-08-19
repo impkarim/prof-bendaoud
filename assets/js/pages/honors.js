@@ -32,19 +32,22 @@ function renderAwards() {
   const awardsHTML = data.awards
     .map(
       (award) =>
-        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="medal-card block group relative pt-10 pb-6 px-5 text-center">
-          <span class="medal-ribbon"></span>
-          <div class="medal-disc">
-            <div class="medal-disc-inner">
+        `<a href="../award/?id=${encodeURIComponent(award.id)}" class="honor-card-simple block group">
+          <div class="bg-white/5 border border-gray-700/50 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+            <div class="aspect-square overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
               <img src="../assets/images/awards/${award.id}.jpg" alt="${award.title}"
-                onerror="this.outerHTML='<div class=medal-img-ph><i class=fas fa-trophy></i></div>'">
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.style.display='none'">
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 mb-2">
+                ${award.year ? `<span class="text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full">${award.year}</span>` : ""}
+              </div>
+              <h3 class="text-base font-bold text-white font-title leading-snug group-hover:text-amber-400 transition-colors">${award.title}</h3>
+              <p class="text-gray-400 text-sm mt-1.5 leading-relaxed line-clamp-2">${award.desc}</p>
+              <p class="text-gray-500 text-xs mt-3 inline-flex items-center gap-1.5"><i class="fas fa-building-columns text-amber-500/60 text-[10px]"></i>${award.organization}</p>
             </div>
           </div>
-          ${award.year ? `<span class="medal-year">${award.year}</span>` : ""}
-          <div class="medal-divider"></div>
-          <h3 class="text-lg font-bold text-white font-title leading-snug group-hover:text-amber-400 transition-colors">${award.title}</h3>
-          <p class="text-gray-400 text-sm mt-2 leading-relaxed">${award.desc}</p>
-          <span class="medal-org"><i class="fas fa-building-columns"></i>${award.organization}</span>
         </a>`
     )
     .join("");
