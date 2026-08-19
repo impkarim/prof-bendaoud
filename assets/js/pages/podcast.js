@@ -66,7 +66,7 @@ function renderPodcast() {
         <div class="group flex flex-col bg-white/5 border border-gray-700/50 rounded-2xl overflow-hidden hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1.5 transition-all duration-300 backdrop-blur-sm">
           <div class="relative aspect-video bg-gradient-to-br ${colorClass}">
             ${hasVideo ? `
-              <img src="${thumbSrc(episode.videoId)}" alt="${episode.title}"
+              <img src="${thumbSrc(episode.videoId)}" alt="${episode.title}" loading="lazy"
                 data-fallback="https://img.youtube.com/vi/${episode.videoId}/hqdefault.jpg"
                 loading="lazy"
                 class="podcast-thumb absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">

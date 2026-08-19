@@ -59,7 +59,7 @@ function renderBooks() {
       return `
         <a href="${detailPage}" class="group block bg-white/5 border border-gray-700/50 rounded-xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
           <div class="aspect-[3/4] relative overflow-hidden bg-gradient-to-br ${colorClass}">
-            <img src="${imgPath}" alt="${book.title}"
+            <img src="${imgPath}" alt="${book.title}" loading="lazy"
               class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               onerror="this.style.display='none'"
               onload="this.style.opacity='1'">
