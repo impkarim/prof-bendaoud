@@ -383,6 +383,40 @@ html[lang="en"] .font-arabic { font-family: var(--font-body-lat); }
   html[lang="en"] #hero h1 { font-size: 1.75rem; }
 }
 
+/* ===== Honors Page Background ===== */
+.honor-bg-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d97706' stroke-opacity='0.12'%3E%3Cpath d='M40 8 L72 40 L40 72 L8 40 Z'/%3E%3Cpath d='M40 24 L56 40 L40 56 L24 40 Z'/%3E%3Ccircle cx='40' cy='40' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 40%, transparent 100%);
+}
+.honor-bg-calligraphy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-title);
+  font-size: clamp(4rem, 18vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  color: rgba(245, 158, 11, 0.05);
+  letter-spacing: 0.05em;
+  z-index: 0;
+}
+[data-theme="light"] .honor-bg-calligraphy {
+  color: rgba(217, 119, 6, 0.06);
+}
+[data-theme="light"] .honor-bg-pattern {
+  opacity: 0.4;
+}
+
 /* ===== Honors Page Heading ===== */
 .honor-heading-title {
   background: linear-gradient(180deg, #fde68a 0%, #f59e0b 45%, #b45309 100%);
