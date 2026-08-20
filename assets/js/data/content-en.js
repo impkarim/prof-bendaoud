@@ -939,7 +939,7 @@ phone: "+213 676 27 36 36",
       { icon: "fab fa-whatsapp", url: "https://wa.me/213780054857", title: "WhatsApp" }
     ],
     academic: [
-      { icon: "fas fa-id-card", url: "https://orcid.org/0009-0007-1687-035X", title: "ORCID", label: "ORCID" }
+      { icon: "fab fa-orcid", url: "https://orcid.org/0009-0007-1687-035X", title: "ORCID", label: "ORCID" }
     ]
   },
 
