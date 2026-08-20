@@ -57,6 +57,7 @@ export function renderTopBar() {
             <span class="text-gray-400 hidden sm:inline"><i class="fas fa-phone-alt me-1.5 text-amber-400"></i><bdi dir="ltr">${data.phone}</bdi></span>
           </div>
           <div class="flex items-center shrink-0">
+            ${data.academic ? data.academic.map(a => `<a href="${a.url}" target="_blank" rel="noopener" title="${a.title}" aria-label="${a.title}" class="hidden sm:flex w-9 h-9 items-center justify-center text-gray-400 hover:text-amber-400 transition-colors"><i class="${a.icon}"></i></a>`).join("") : ""}
             ${data.social.map(s => `<a href="${s.url}" target="_blank" rel="noopener" title="${s.title}" aria-label="${s.title}" class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-amber-400 transition-colors"><i class="${s.icon}"></i></a>`).join("")}
           </div>
         </div>

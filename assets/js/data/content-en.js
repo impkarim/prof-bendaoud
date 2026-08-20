@@ -224,7 +224,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book studying and analyzing commercial instruments in Algerian commercial law, reviewing the provisions of bills of exchange, promissory notes, and checks according to Algerian legislation and jurisprudence. Published by Dar Al-Kitab Al-Hadith in 2011.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Commercial%20Instruments%20in%20Algerian%20Commercial%20Law%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "file-invoice"
       },
       {
@@ -238,7 +238,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book addressing the system of bankruptcy and judicial settlement in Algerian commercial law, covering judicial settlement procedures, declaration of bankruptcy, and its legal effects. Published by Dar Al-Kitab Al-Hadith in 2009.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22The%20System%20of%20Bankruptcy%20and%20Judicial%20Settlement%20in%20Algerian%20Commercial%20Law%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "gavel"
       },
       {
@@ -252,7 +252,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book examining the mechanisms of financial control over public expenditure, addressing the legal and institutional frameworks for control and methods for evaluating the effectiveness of public spending. Published by Dar Al-Kitab Al-Hadith in 2010.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Financial%20Control%20Over%20Public%20Expenditure%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "chart-line"
       },
       {
@@ -266,7 +266,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "An encyclopedic book studying international treaties from the conclusion phase to the termination phase, analyzing the provisions of treaty law according to the Vienna Convention on the Law of Treaties and international applications. Published by Dar Al-Kitab Al-Hadith in 2010.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22International%20Treaties%20Between%20Conclusion%20and%20Termination%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "file-signature"
       },
       {
@@ -280,7 +280,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book providing a comprehensive study of the law of international relations, addressing the legal foundations of relations between states and international organizations. Published by Dar Al-Kitab Al-Hadith in 2011.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22The%20Law%20of%20International%20Relations%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "globe-americas"
       },
       {
@@ -294,7 +294,7 @@ export const content = {
         publisher: "Dar Al-Khaldounia",
         longDesc: "A book co-authored with Dr. Fawzi Ousdik addressing the subject of reference in the law of international relations, analyzing the concept of reference and its provisions and applications in international law. Published by Dar Al-Khaldounia in 2012.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Reference%20in%20the%20Law%20of%20International%20Relations%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "file-contract"
       },
       {
@@ -308,7 +308,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book addressing electoral crimes in both their international and national aspects, analyzing forms of electoral crimes and ways to combat them at domestic and international levels. Published by Dar Al-Kitab Al-Hadith in 2012.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Electoral%20Crimes%20Between%20International%20and%20National%20Dimensions%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "vote-yea"
       },
       {
@@ -322,7 +322,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book examining consumer protection law, addressing consumer rights, legal guarantees, and protection mechanisms in Algerian and comparative legislation. Published by Dar Al-Kitab Al-Hadith in 2013.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Consumer%20Protection%20Law%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "hand-holding-heart"
       },
       {
@@ -336,7 +336,7 @@ export const content = {
         publisher: "Dar Al-Kitab Al-Hadith",
         longDesc: "A book addressing the role of civil society between effectiveness and marginalization, analyzing the reality of civil society organizations and mechanisms for activating their role in light of current challenges. Published by Dar Al-Kitab Al-Hadith in 2015.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Civil%20Society%20Between%20Effectiveness%20and%20Marginalization%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "users"
       },
       {
@@ -350,7 +350,7 @@ export const content = {
         publisher: "",
         longDesc: "A book on public international law covering the foundations and general principles of international law, its sources, and main subjects. Forthcoming.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Public%20International%20Law%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "law-globe"
       },
       {
@@ -364,7 +364,7 @@ export const content = {
         publisher: "",
         longDesc: "A university polycopy in commercial law intended for fourth-year law students, covering the basic concepts of commerce, commercial activities, merchants, and commercial contracts.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Commercial%20Law%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "book-open"
       },
       {
@@ -378,7 +378,7 @@ export const content = {
         publisher: "",
         longDesc: "A university polycopy intended for doctoral school law students, addressing the subject of the state and international relations in international law.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22The%20State%20and%20International%20Relations%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "university"
       },
       {
@@ -392,7 +392,7 @@ export const content = {
         publisher: "",
         longDesc: "A university polycopy on civil society and public freedoms intended for master's students, Faculty of Law and Political Science, University of Ouargla.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Civil%20Society%20and%20Public%20Freedoms%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "building-columns"
       },
       {
@@ -406,7 +406,7 @@ export const content = {
         publisher: "",
         longDesc: "A university polycopy on international and regional protection of artistic and literary property intended for master's students, Faculty of Law and Political Science, University of Djelfa.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22International%20and%20Regional%20Protection%20of%20Artistic%20and%20Literary%20Property%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "copyright"
       },
       {
@@ -420,7 +420,7 @@ export const content = {
         publisher: "",
         longDesc: "A book addressing the subject of creativity and excellence in university teaching, covering the latest pedagogical methods and approaches in higher education. Forthcoming.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Creativity%20and%20Excellence%20in%20University%20Teaching%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "chalkboard-teacher"
       },
       {
@@ -434,7 +434,7 @@ export const content = {
         publisher: "Dar Al-Hafiz for Publishing",
         longDesc: "A book on the methodology of preparing documented scientific research and studies, published by Dar Al-Hafiz for Publishing in the United Arab Emirates, covering the methodological steps for preparing scientific research in a rigorous academic style.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Methodology%20for%20Preparing%20Documented%20Scientific%20Research%20and%20Studies%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "scroll"
       },
       {
@@ -448,7 +448,7 @@ export const content = {
         publisher: "Dar Al-Hafiz for Publishing",
         longDesc: "A book addressing the domestic application of international treaties and charters, taking the United Arab Emirates as a model, analyzing the mechanisms for integrating treaties into domestic law. Published by Dar Al-Hafiz for Publishing.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22The%20Domestic%20Application%20of%20International%20Treaties%20and%20Charters%20%E2%80%93%20The%20UAE%20as%20a%20Model%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "file-treaty"
       },
       {
@@ -462,7 +462,7 @@ export const content = {
         publisher: "",
         longDesc: "A book addressing the phenomenon of verbal terrorism against women and examining mechanisms to counter it at legal, social, and cultural levels. Forthcoming in the United Arab Emirates.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Verbal%20Terrorism%20Against%20Women%20and%20Mechanisms%20to%20Counter%20It%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "handcuffs"
       },
       {
@@ -476,7 +476,7 @@ export const content = {
         publisher: "Dar Al-Hafiz for Publishing",
         longDesc: "A book addressing the bankruptcy system under Law No. 09 of 2016 in the United Arab Emirates, analyzing the provisions of UAE law on bankruptcy and financial settlement. Published by Dar Al-Hafiz for Publishing.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Bankruptcy%20Under%20Law%20No.%2009%20of%202016%20in%20the%20United%20Arab%20Emirates%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "balance-scale"
       },
       {
@@ -490,7 +490,7 @@ export const content = {
         publisher: "",
         longDesc: "A collective book under the general supervision of Professor Brahim Bendaoud, addressing the legal mechanisms for protecting victims of human trafficking, particularly women and children, analyzing the international and national legal framework in this field. Published second semester 2022.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Legal%20Mechanisms%20for%20Protecting%20Victims%20of%20Human%20Trafficking%20%E2%80%93%20Women%20and%20Children%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "hands-helping"
       },
       {
@@ -504,8 +504,148 @@ export const content = {
         publisher: "",
         longDesc: "A book presenting a draft international convention on artificial intelligence, addressing the proposed principles and provisions for regulating artificial intelligence at the international level. Published March 2026.",
         chapters: [],
-        link: "#",
+        link: "https://www.google.com/search?q=%22Draft%20International%20Convention%20on%20Artificial%20Intelligence%22%20%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85%20%D8%A8%D9%86%20%D8%AF%D8%A7%D9%88%D8%AF",
         cover: "robot"
+      },
+      {
+        id: "القانون-المدني-الجزائري",
+        title: "The Algerian Civil Code",
+        desc: "A comprehensive study of the provisions of the Algerian Civil Code",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book that studies and analyzes the provisions of the Algerian Civil Code, reviewing the general theory of obligations, contracts, and civil liability in accordance with legislative texts and judicial rulings.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Algerian%20Civil%20Code%22%20Brahim%20Bendaoud",
+        cover: "scale-balanced"
+      },
+      {
+        id: "قانون-الأجانب",
+        title: "The Law on Foreigners",
+        desc: "A study of the law governing foreigners",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the legal provisions governing the status of foreigners, covering the rules of entry, residence, and the rights and duties of foreigners under Algerian and comparative legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Law%20on%20Foreigners%22%20Brahim%20Bendaoud",
+        cover: "passport"
+      },
+      {
+        id: "قانون-الاجراءات-الجزائية",
+        title: "The Code of Criminal Procedure",
+        desc: "A study of the Algerian Code of Criminal Procedure",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book addressing criminal proceedings, the stages of investigation and trial, and the available appeals under the Algerian Code of Criminal Procedure.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Code%20of%20Criminal%20Procedure%22%20Brahim%20Bendaoud",
+        cover: "gavel"
+      },
+      {
+        id: "قانون-الاسرة",
+        title: "The Family Code",
+        desc: "A study of the Algerian Family Code",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the provisions of the Algerian Family Code, covering marriage, its effects, divorce, khul', maintenance, custody, and inheritance.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Family%20Code%22%20Brahim%20Bendaoud",
+        cover: "users"
+      },
+      {
+        id: "قانون-الصحة",
+        title: "Health Law",
+        desc: "A study of health law",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the legal framework regulating public health, covering the organization of the health sector, patient rights, and medical liability under Algerian legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22Health%20Law%22%20Brahim%20Bendaoud",
+        cover: "heart-pulse"
+      },
+      {
+        id: "قانون-العقوبات-الجزائري",
+        title: "The Algerian Penal Code",
+        desc: "A study of the Algerian Penal Code",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book addressing the general theory of crime and punishment under the Algerian Penal Code, covering the elements of crime, criminal responsibility, and types of penalties.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Algerian%20Penal%20Code%22%20Brahim%20Bendaoud",
+        cover: "balance-scale"
+      },
+      {
+        id: "قانون-القضاء-العسكري",
+        title: "Military Justice Law",
+        desc: "A study of military justice law",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the organization of military justice, its jurisdiction, and the procedures followed before military courts under Algerian legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22Military%20Justice%20Law%22%20Brahim%20Bendaoud",
+        cover: "landmark"
+      },
+      {
+        id: "قانون-المياه",
+        title: "Water Law",
+        desc: "A study of water law",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the legal provisions regulating water resources, covering the protection, distribution, and management of water under Algerian legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22Water%20Law%22%20Brahim%20Bendaoud",
+        cover: "droplet"
+      },
+      {
+        id: "قانون-تنظيم-السجون-واعادة-الادماج-الاجتماعي-للمحبوسين",
+        title: "The Law on Prison Organization and the Social Reintegration of Detainees",
+        desc: "A study of prison organization and social reintegration law",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book addressing the legal system for organizing prisons and the mechanisms for the social reintegration of detainees under Algerian legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Law%20on%20Prison%20Organization%20and%20the%20Social%20Reintegration%20of%20Detainees%22%20Brahim%20Bendaoud",
+        cover: "hands-helping"
+      },
+      {
+        id: "قانون-مكافحة-الجريمة-المجتمعية",
+        title: "The Law on Combating Community Crime",
+        desc: "A study of the law on combating community crime",
+        type: "Book",
+        pages: 0,
+        year: "",
+        isbn: "",
+        publisher: "",
+        longDesc: "A book examining the legal mechanisms for combating community crime, covering prevention and response strategies under Algerian legislation.",
+        chapters: [],
+        link: "https://www.google.com/search?q=%22The%20Law%20on%20Combating%20Community%20Crime%22%20Brahim%20Bendaoud",
+        cover: "shield-halved"
       }
     ]
   },
@@ -732,6 +872,23 @@ export const content = {
     ]
   },
 
+  media: {
+    heading: "Media Coverage",
+    subtitle: "Press coverage, interviews, and media presence",
+    items: [
+      {
+        id: "youtube-channel",
+        title: "Prof. Brahim Bendaoud's YouTube Channel",
+        desc: "Videos and podcasts on law, academic methodology, and advice for students and researchers",
+        type: "Channel",
+        source: "YouTube",
+        year: "2026",
+        url: "https://www.youtube.com/@البروفيسوربنداودبراهيم",
+        icon: "fa-youtube"
+      }
+    ]
+  },
+
   conferences: {
     heading: "National and International Conferences",
     subtitle: "Scientific participations in forums, seminars, and conferences",
@@ -780,6 +937,10 @@ phone: "+213 676 27 36 36",
       { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/brahim-bendaoud-28800460/", title: "LinkedIn" },
       { icon: "fab fa-youtube", url: "https://www.youtube.com/@%D8%A7%D9%84%D8%A8%D8%B1%D9%88%D9%81%D9%8A%D8%B3%D9%88%D8%B1%D8%A8%D9%86%D8%AF%D8%A7%D9%88%D8%AF%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85", title: "YouTube" },
       { icon: "fab fa-whatsapp", url: "https://wa.me/213780054857", title: "WhatsApp" }
+    ],
+    academic: [
+      { icon: "fas fa-graduation-cap", url: "https://scholar.google.com/citations?hl=en&q=Brahim+Bendaoud", title: "Google Scholar", label: "Google Scholar" },
+      { icon: "fas fa-id-card", url: "https://orcid.org", title: "ORCID", label: "ORCID" }
     ]
   },
 

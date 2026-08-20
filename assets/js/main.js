@@ -12,6 +12,8 @@ function renderHero() {
   const hero = document.getElementById("hero");
   if (!hero) return;
 
+  const academic = getContent().topbar.academic || [];
+
   const statsHTML = data.stats
     .map(
       (s) =>
@@ -53,6 +55,11 @@ function renderHero() {
             <a href="booking/" class="border border-gray-500 hover:border-amber-500 text-gray-200 hover:text-amber-400 px-6 py-3 rounded-lg transition-colors duration-200">
               ${data.secondaryCta}
             </a>
+          </div>
+          <div class="mt-5 flex flex-wrap items-center gap-4 text-xs">
+            ${academic.map(a => `<a href="${a.url}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-gray-400 hover:text-amber-400 transition-colors" title="${a.title}">
+              <i class="${a.icon}"></i><span class="font-semibold">${a.label}</span>
+            </a>`).join("")}
           </div>
         </div>
         <div class="order-1 lg:order-2 flex justify-center mt-8 lg:mt-12">
@@ -209,6 +216,47 @@ function renderCertificates() {
   `;
 }
 
+function renderMedia() {
+  const data = getContent().media;
+  const section = document.getElementById("media");
+  if (!section) return;
+
+  const itemsHTML = data.items
+    .map(
+      (item) => `
+        <a href="${item.url}" target="_blank" rel="noopener"
+          class="group block bg-white/5 border border-gray-700/50 rounded-xl p-6 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+          <div class="flex items-start gap-4">
+            <div class="w-14 h-14 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="fab ${item.icon} text-2xl text-amber-400"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="inline-block text-xs font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full">${item.source}</span>
+                ${item.year ? `<span class="text-gray-500 text-xs">${item.year}</span>` : ""}
+              </div>
+              <h3 class="text-lg lg:text-xl font-bold text-white mt-2 font-title group-hover:text-amber-400 transition-colors">${item.title}</h3>
+              <p class="text-gray-400 text-sm mt-1 leading-relaxed">${item.desc}</p>
+            </div>
+            <i class="fas fa-external-link-alt text-gray-500 group-hover:text-amber-400 transition-colors mt-1 text-xs"></i>
+          </div>
+        </a>`
+    )
+    .join("");
+
+  section.innerHTML = `
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-white font-title">${data.heading}</h2>
+        <p class="text-gray-400 mt-2">${data.subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
+        ${itemsHTML}
+      </div>
+    </div>
+  `;
+}
+
 function renderFooter() {
   const data = getContent().footer;
   const footer = document.getElementById("footer");
@@ -234,6 +282,7 @@ function renderAll() {
   renderVision();
   renderTimeline();
   renderCertificates();
+  renderMedia();
   renderFooter();
 }
 

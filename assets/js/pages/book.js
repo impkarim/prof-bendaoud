@@ -127,6 +127,14 @@ function renderBookDetail() {
   document.getElementById("desc-heading").textContent = l.desc;
   document.getElementById("back-label").textContent = l.back;
 
+  const bookLinkEl = document.getElementById("book-link");
+  if (book.link && book.link !== "#") {
+    bookLinkEl.href = book.link;
+    bookLinkEl.classList.remove("hidden");
+  } else {
+    bookLinkEl.classList.add("hidden");
+  }
+
   const chaptersSection = document.getElementById("chapters-section");
   if (book.chapters && book.chapters.length > 0) {
     chaptersSection.classList.remove("hidden");
