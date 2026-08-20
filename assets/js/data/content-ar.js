@@ -940,8 +940,7 @@ phone: "+213 676 27 36 36",
       { icon: "fab fa-whatsapp", url: "https://wa.me/213780054857", title: "واتساب" }
     ],
     academic: [
-      { icon: "fas fa-graduation-cap", url: "https://scholar.google.com/citations?hl=ar&q=براهيم+بن+داود", title: "Google Scholar", label: "Google Scholar" },
-      { icon: "fas fa-id-card", url: "https://orcid.org", title: "ORCID", label: "ORCID" }
+      { icon: "fas fa-id-card", url: "https://orcid.org/0009-0007-1687-035X", title: "ORCID", label: "ORCID" }
     ]
   },
 
